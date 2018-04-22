@@ -41,7 +41,7 @@ SRC	=	copy_env.c		\
 
 OBJ	=	$(SRC:.c=.o)
 
-NAME	=	./mysh
+NAME	=	42sh
 
 all:	$(NAME)
 

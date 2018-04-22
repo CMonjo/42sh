@@ -65,10 +65,10 @@ tree_t*	my_list_command(char *command, env_st_t* info)
 	int ct = 0;
 
 	if ((ct = check_sep(word_array(command))) != -1 && ct != -2) {
-		printf("\n\n\nBOUCOULILAH\n\n\n");
+		//printf("\n\n\nBOUCOULILAH\n\n\n");
 		arr = my_separator_command(command, (char *)tab_name[ct]);
 		temp = fill_struct_comand((char *)tab_name[ct], 0, 1);
-		printf("\n\n\nBOUCOULILAH    COMMANDE GAUCHE   '%s'   COMMANDE DROITE   '%s'\n\n\n", arr[1], arr[2]);
+		//printf("\n\n\nBOUCOULILAH    COMMANDE GAUCHE   '%s'   COMMANDE DROITE   '%s'\n\n\n", arr[1], arr[2]);
 		temp->left = my_list_command(arr[1], info);
 		temp->right = my_list_command(arr[2], info);
 		b = 1;

@@ -32,7 +32,7 @@ tree_t* temp, env_st_t *env_st, int *b)
 			check_gnl(temp->right->commande_parseur, env_st->envp_cpy, env_st);
 		else if (env_st->status == 0 && check_sep_char(temp->right->commande_parseur) == 1) {
 			check_gnl(temp->right->left->commande_parseur, env_st->envp_cpy, env_st);
-			if (env_st->status == 0 && check_sep_char(temp->right->commande_parseur) == -1)
+			if (env_st->status != 0)
 				check_gnl(temp->right->right->commande_parseur, env_st->envp_cpy, env_st);
 		}
 		else if (env_st->status != 0 && check_sep_char(temp->right->commande_parseur) == 1) {

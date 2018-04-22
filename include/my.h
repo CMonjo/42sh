@@ -75,36 +75,55 @@
 		int (*flag_c_p)(char *str, int ctp, char *temp, char *str_temp);
 	} flag_char_t;
 
-	void first_simple_or_sep(char **arr, tree_t* temp, env_st_t *env_st, int *b);
+	void first_simple_or_sep(char **arr, tree_t* temp,
+	env_st_t *env_st, int *b);
 	void my_pipe(char **command, int fd_in, int fd_out, env_st_t *env_st);
-	int my_first_command_pipe(env_st_t *env_st, char **command_in, tree_t* temp, int *num);
-	int my_last_command_pipe(env_st_t *env_st, char **command_out, tree_t* temp, int *num);
-	int my_pipe_start_more(env_st_t *env_st, tree_t* temp, int *num, int *num_pip);
+	int my_first_command_pipe(env_st_t *env_st,
+	char **command_in, tree_t* temp, int *num);
+	int my_last_command_pipe(env_st_t *env_st,
+	char **command_out, tree_t* temp, int *num);
+	int my_pipe_start_more(env_st_t *env_st, tree_t* temp,
+	int *num, int *num_pip);
 	char **load_command_out(tree_t* temp);
-	void check_path_pip(char **envp, char *name, env_st_t* env_st, char **str_arr);
+	void check_path_pip(char **envp, char *name,
+	env_st_t* env_st, char **str_arr);
 	int check_bult_in(char *str);
-	void fourth_double_verif_sep(char **arr, tree_t* temp, env_st_t *env_st, int *b);
-	void third_double_verif_sep(char **arr, tree_t* temp, env_st_t *env_st, int *b);
-	void second_double_verif_sep(char **arr, tree_t* temp, env_st_t *env_st, int *b);
-	void first_double_verif_sep(char **arr, tree_t* temp, env_st_t *env_st, int *b);
-	void first_start_sep(char **arr, tree_t* temp, env_st_t *env_st, int *b);
-	void second_start_sep(char **arr, tree_t* temp, env_st_t *env_st, int *b);
-	void third_start_sep(char **arr, tree_t* temp, env_st_t *env_st, int *b);
+	void fourth_double_verif_sep(char **arr,
+	tree_t* temp, env_st_t *env_st, int *b);
+	void third_double_verif_sep(char **arr,
+	tree_t* temp, env_st_t *env_st, int *b);
+	void second_double_verif_sep(char **arr,
+	tree_t* temp, env_st_t *env_st, int *b);
+	void first_double_verif_sep(char **arr,
+	tree_t* temp, env_st_t *env_st, int *b);
+	void first_start_sep(char **arr,
+	tree_t* temp, env_st_t *env_st, int *b);
+	void second_start_sep(char **arr,
+	tree_t* temp, env_st_t *env_st, int *b);
+	void third_start_sep(char **arr,
+	tree_t* temp, env_st_t *env_st, int *b);
 	int exit_value(char *command_in, char *command_out);
 	int my_getnbr(char const *str);
 	int main_loop(char **envp, int end, char *str);
 	void my_right_red_pipe(char **file, tree_t* temp, char *sep);
 	int pipe_check_exec(char **command, char **envp, env_st_t *env_st);
-	int my_pipe_start(env_st_t *env_st, char **command_in, char **command_out, tree_t* temp);
+	int my_pipe_start(env_st_t *env_st,
+	char **command_in, char **command_out, tree_t* temp);
 	int my_putstr_err(char *str, char *msg);
 	void my_printf_err(char *str, ...);
-	void my_right_red_start(env_st_t *env_st, char **command, char **file, tree_t* temp);
-	void my_right_double_red_start(env_st_t *env_st, char **command, char **file, tree_t* temp);
-	void my_left_red_start(env_st_t *env_st, char **command, char **file, tree_t* temp);
-	void my_double_left_red_start(env_st_t *env_st, char **command, char **file, tree_t* temp);
+	void my_right_red_start(env_st_t *env_st,
+	char **command, char **file, tree_t* temp);
+	void my_right_double_red_start(env_st_t *env_st,
+	char **command, char **file, tree_t* temp);
+	void my_left_red_start(env_st_t *env_st,
+	char **command, char **file, tree_t* temp);
+	void my_double_left_red_start(env_st_t *env_st,
+	char **command, char **file, tree_t* temp);
 	char  *my_getline(void);
-	int strat_exec_red(char *name, char **str, env_st_t* env_st, tree_t* temp);
-	void check_path_env_red(char *name, env_st_t* env_st, char **str_arr, tree_t* temp);
+	int strat_exec_red(char *name, char **str,
+	env_st_t* env_st, tree_t* temp);
+	void check_path_env_red(char *name,
+	env_st_t* env_st, char **str_arr, tree_t* temp);
 	int status(int w, env_st_t* env_st);
 	int exec_red(env_st_t* env_st, char **str, tree_t* temp);
 	int check_gnl(char *name, char **envp, env_st_t *env_st);
@@ -127,8 +146,10 @@
 	int start_error_tree(tree_t* temp, int b);
 	char *get_next_line(int fd);
 	char *maloc_str(int ct, int b, int ctb, char **str);
-	void check_path_env(char **envp, char *name, env_st_t* env_st, char **str_arr);
-	int check_path_bsc(char **envp, char *name, char **str_arr, env_st_t* env_st);
+	void check_path_env(char **envp, char *name, env_st_t* env_st,
+	char **str_arr);
+	int check_path_bsc(char **envp, char *name, char **str_arr,
+	env_st_t* env_st);
 	int strat_exec(char *name, char **envp, char **str, env_st_t* env_st);
 	char *pathing(char **envp, int *ct, int ctb);
 	int error_oldpwd(char **str, int cd_min, env_st_t *env_st);
@@ -213,7 +234,8 @@
 	int len_flag(char *str, int ct);
 	void flag_sign(long long rst);
 	int flag_flag(char *str, int ct);
-	int choise_flag_flag(char *str, int ctp, long long temp, char *str_temp);
+	int choise_flag_flag(char *str, int ctp,
+	long long temp, char *str_temp);
 	int choise_flg_flg_c(char *str, int ctp, char* temp, char *str_temp);
 	void flag_nbr_disp(int nbr, int len_f);
 	int flag_nbr(char *str, char *str_temp, int ctp, int temp);

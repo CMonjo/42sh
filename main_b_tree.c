@@ -81,7 +81,7 @@ void	my_printf_te(tree_t* temp)
 	char **arr;
 
 	arr = word_array(temp->commande_parseur);
-//	printf(" COMMANDE  '%s'\n", arr[0]);
+	printf(" COMMANDE  '%s'\n", arr[0]);
 	if (temp->left != NULL)
 		my_printf_te(temp->left);
 	if (temp->right != NULL)
@@ -91,7 +91,7 @@ void	my_printf_te(tree_t* temp)
 void	my_printf_history(history_t* temp)
 {
 	while (temp != NULL) {
-		printf("HISTORY : %s\n", temp->command);
+		//printf("HISTORY : %s\n", temp->command);
 		temp = temp->next;
 	}
 }

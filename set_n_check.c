@@ -5,11 +5,7 @@
 ** the main file of mini1
 */
 
-#include <stdlib.h>
-#include <unistd.h>
 #include "my.h"
-#include <fcntl.h>
-#include <stdio.h>
 
 int	check_val(char **envp, char *name, env_st_t* env_st)
 {

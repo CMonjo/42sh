@@ -6,12 +6,11 @@
 */
 
 #include "my.h"
-#include <unistd.h>
 
 void	prompt(void)
 {
 	if (isatty(0) == 1)
-		my_printf("$> ");
+		my_printf("%s $> ", getcwd(NULL, 0));
 }
 
 int	main_loop(char **envp, int end, char *str)

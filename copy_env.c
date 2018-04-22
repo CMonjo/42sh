@@ -5,11 +5,7 @@
 ** copy the env for the minishell1
 */
 
-#include <stdlib.h>
-#include <unistd.h>
 #include "my.h"
-#include <fcntl.h>
-#include <stdio.h>
 
 char **create_env(void)
 {

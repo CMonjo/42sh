@@ -6,10 +6,6 @@
 */
 
 #include "my.h"
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <sys/wait.h>
 
 void	my_pipe(char **command, int fd_in,
 int fd_out, env_st_t *env_st)

@@ -6,10 +6,6 @@
 */
 
 #include "my.h"
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <sys/wait.h>
 
 void	my_left_red_start(env_st_t *env_st, char **command,
 char **file, tree_t* temp)

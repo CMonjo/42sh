@@ -5,11 +5,7 @@
 ** the function of exit
 */
 
-#include <stdlib.h>
-#include <unistd.h>
 #include "my.h"
-#include <fcntl.h>
-#include <stdio.h>
 
 int	checking_alpha(char **str, int ct, int *b)
 {

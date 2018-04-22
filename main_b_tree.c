@@ -115,12 +115,6 @@ int	main_b_tree(char *str, env_st_t *info)
 	if ((arr = word_array(str)) == NULL)
 		return (0);
 	command = check_command(str, 0);
-	for (int ct = 0; command[ct] != '\0'; ct ++) {
-		if (command[ct] == 34 || command[ct] == 39) {
-			ct ++;
-			error_backstick_quote(command, command[ct - 1], &ct);
-		}
-	}
 	error_parent(command);
 	fill_history(info, command);
 	//printf("\n--------------HISTORY----------\n\n");

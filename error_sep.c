@@ -110,6 +110,10 @@ void	error_parent(char *command)
 			parent_right ++;
 		if (command[ct] == 40)
 			parent_left ++;
+		if (command[ct] == 34 || command[ct] == 39) {
+			ct ++;
+			error_backstick_quote(command, command[ct - 1], &ct);
+		}
 	}
 	if (parent_left == 0 && parent_right == 0)
 		return;

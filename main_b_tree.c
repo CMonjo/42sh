@@ -106,6 +106,22 @@ void	fill_history(env_st_t *info, char *str)
 	info->history = new_ele;
 }
 
+int	check_special_case(str)
+{
+	char **arr = word_array(str);
+	int str_arr = 0;
+
+	while (arr[str_arr] != NULL)
+		str_arr ++;
+	if (str_arr != 1)
+		return (0);
+	for (int ct = 0; arr[0][ct] != '\0'; ct ++)
+		if (arr[0][ct] != ';' && arr[0][ct] != '&')
+			return (0);
+	exit(0);
+	return (0);
+}
+
 int	main_b_tree(char *str, env_st_t *info)
 {
 	tree_t* temp;
@@ -114,6 +130,7 @@ int	main_b_tree(char *str, env_st_t *info)
 
 	if ((arr = word_array(str)) == NULL)
 		return (0);
+	check_special_case(str);
 	command = check_command(str, 0);
 	error_parent(command);
 	fill_history(info, command);

@@ -52,6 +52,10 @@ int	error_pipe_redic_bis(tree_t* temp, char *str, char **arr)
 
 int	error_pipe_redic_first(tree_t* temp, char *str)
 {
+	if (my_strcmp_c(str, tab_name[2]) == 0 && temp->right == NULL) {
+		my_printf("Invalid null command.\n");
+		exit(1);
+	}
 	if ((my_strcmp_c(str, tab_name[5]) == 0
 	&& (temp->left == NULL || temp->right == NULL))
 	|| (my_strcmp_c(str, tab_name[7]) == 0 && temp->left == NULL)) {

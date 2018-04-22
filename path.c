@@ -5,16 +5,7 @@
 ** pathing for the minishell1
 */
 
-#include <stdlib.h>
-#include <unistd.h>
 #include "my.h"
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <dirent.h>
-#include <pwd.h>
-#include <grp.h>
-#include <sys/types.h>
-#include <sys/wait.h>
 
 char*	pathing(char **envp, int *ct, int ctb)
 {

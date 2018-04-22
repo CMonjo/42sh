@@ -5,11 +5,7 @@
 ** other function and env of minishell
 */
 
-#include <stdlib.h>
-#include <unistd.h>
 #include "my.h"
-#include <fcntl.h>
-#include <stdio.h>
 
 int	check_env(char *envp, char *name)
 {

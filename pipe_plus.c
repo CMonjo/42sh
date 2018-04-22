@@ -6,9 +6,6 @@
 */
 
 #include "my.h"
-#include <unistd.h>
-#include <sys/wait.h>
-#include <stdlib.h>
 
 char	**load_command_out(tree_t* temp)
 {

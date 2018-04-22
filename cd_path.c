@@ -5,15 +5,7 @@
 ** the path for the cd minishell1
 */
 
-#include <stdlib.h>
-#include <unistd.h>
 #include "my.h"
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <dirent.h>
-#include <pwd.h>
-#include <grp.h>
-#include <errno.h>
 
 int	cd_oldpwd(char **str, char **envp, env_st_t *env_st, int cd_min)
 {

@@ -5,14 +5,7 @@
 ** functions for the cd func
 */
 
-#include <stdlib.h>
-#include <unistd.h>
 #include "my.h"
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <dirent.h>
-#include <pwd.h>
-#include <grp.h>
 
 char	*my_getcwd(char *str, int ctb)
 {

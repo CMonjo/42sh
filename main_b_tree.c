@@ -121,6 +121,7 @@ int	main_b_tree(char *str, env_st_t *info)
 			error_backstick_quote(command, command[ct - 1], &ct);
 		}
 	}
+	error_parent(command);
 	fill_history(info, command);
 	//printf("\n--------------HISTORY----------\n\n");
 	my_printf_history(info->history);

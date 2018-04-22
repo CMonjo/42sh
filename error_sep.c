@@ -99,3 +99,34 @@ void	error_backstick_quote(char *str, char c, int *ct)
 	my_printf("Unmatched %c.\n", c);
 	exit(1);
 }
+
+void	error_parent(char *command)
+{
+	int parent_left = 0;
+	int parent_right = 0;
+
+	for (int ct = 0; command[ct] != '\0'; ct ++) {
+		if (command[ct] == 41)
+			parent_right ++;
+		if (command[ct] == 40)
+			parent_left ++;
+	}
+	if (parent_left == 0 && parent_right == 0)
+		return;
+	if (parent_left == 0) {
+		my_printf("Too many %c's.\n", 41);
+		exit(1);
+	}
+	if (parent_right == 0) {
+		my_printf("Too many %c's.\n", 40);
+		exit(1);
+	}
+	if ((parent_right / parent_left) == 0) {
+		my_printf("Too many %c's.\n", 40);
+		exit(1);
+	}
+	if ((parent_left / parent_right) == 0) {
+		my_printf("Too many %c's.\n", 41);
+		exit(1);
+	}
+}

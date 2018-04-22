@@ -13,6 +13,10 @@ int	status(int w, env_st_t* env_st)
 		env_st->status = 1;
 		return (0);
 	}
+	if ((w % 255) == 2) {
+		env_st->status = 2;
+		return (0);
+	}
 	if (SIGFPE == WTERMSIG(w)) {
 		my_printf("Floating exception");
 		if (WCOREDUMP(w))

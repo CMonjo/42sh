@@ -25,12 +25,12 @@ int	check_sep(char **arr)
 	for (int ctb = 0; arr[ctb] != NULL; ctb ++)
 		if (my_strcmp(arr[ctb], ";") == 0)
 			return (0);
-	for (int ctb = 0; arr[ctb] != NULL; ctb ++)
+	/*for (int ctb = 0; arr[ctb] != NULL; ctb ++)
 		if (my_strcmp(arr[ctb], "||") == 0)
 			return (1);
 	for (int ctb = 0; arr[ctb] != NULL; ctb ++)
 		if (my_strcmp(arr[ctb], "&&") == 0)
-			return (2);
+			return (2);*/
 	for (int ctb = 0; arr[ctb] != NULL; ctb ++)
 		if (my_strcmp(arr[ctb], ">") == 0)
 			return (7);

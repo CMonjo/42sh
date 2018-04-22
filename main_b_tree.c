@@ -91,7 +91,7 @@ void	my_printf_te(tree_t* temp)
 void	my_printf_history(history_t* temp)
 {
 	while (temp != NULL) {
-		//printf("HISTORY : %s\n", temp->command);
+		printf("HISTORY : %s\n", temp->command);
 		temp = temp->next;
 	}
 }
@@ -117,9 +117,9 @@ int	main_b_tree(char *str, env_st_t *info)
 	command = check_command(str, 0);
 	error_parent(command);
 	fill_history(info, command);
-	//printf("\n--------------HISTORY----------\n\n");
+	printf("\n--------------HISTORY----------\n\n");
 	my_printf_history(info->history);
-	//printf("\n--------------HISTORY----------\n\n");
+	printf("\n--------------HISTORY----------\n\n");
 	temp = my_list_command(command, info);
 	/*printf("\n--------------TREEE----------\n\n");
 	my_printf_te(temp);

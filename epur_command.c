@@ -29,13 +29,14 @@ char	*epur_command(int ctp, char *command)
 char	*start_sep_command(int ct, int ctb, char *command, int *b)
 {
 	if (ct != 0 && command[ct - 1] != 32 && command[ct - 1] != '<'
-	&& command[ct - 1] != '>' && command[ct - 1] != '|') {
+	&& command[ct - 1] != '>' && command[ct - 1] != '|'
+	&& command[ct - 1] != '&') {
 		(*b) = 1;
 		return (epur_command(ct, command));
 	}
 	if (command[ct + 1] != '\0' && command[ct + 1] != '<'
 	&& command[ct + 1] != '>' && command[ct + 1] != 32
-	&& command[ct + 1] != '|') {
+	&& command[ct + 1] != '|' && command[ct + 1] != '&') {
 			(*b) = 1;
 			return (epur_command(ct + 1, command));
 	}

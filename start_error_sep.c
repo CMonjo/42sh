@@ -25,7 +25,7 @@ int	start_error_tree(tree_t* temp, int b)
 	int val = 0;
 
 	arr = word_array(temp->commande_parseur);
-	for (int ct = 0; tab_name[ct] != NULL; ct ++) {
+	for (int ct = 0; ct != 7; ct ++) {
 		if ((val = start_error_sep(temp, arr, ct, b)) == 1)
 			return (1);
 		if (val == -1)

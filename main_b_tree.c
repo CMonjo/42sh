@@ -119,6 +119,12 @@ int	main_b_tree(char *str, env_st_t *info)
 	if ((arr = word_array(str)) == NULL)
 		return (0);
 	command = check_command(str, 0);
+	for (int ct = 0; command[ct] != '\0'; ct ++) {
+		if (command[ct] == 34 || command[ct] == 39) {
+			ct ++;
+			error_backstick_quote(command, command[ct - 1], &ct);
+		}
+	}
 	fill_history(info, command);
 	//printf("\n--------------HISTORY----------\n\n");
 	my_printf_history(info->history);
@@ -127,15 +133,14 @@ int	main_b_tree(char *str, env_st_t *info)
 	/*printf("\n--------------TREEE----------\n\n");
 	my_printf_te(temp);
 	printf("--------------TREEE-------------\n\n");*/
-	/*if (start_error_tree(temp, 0) == 1) {
+	if (start_error_tree(temp, 0) == 1) {
 		info->status = 1;
 		return (1);
 	}
 	if (start_error_tree(temp, 1) == 1) {
 		info->status = 1;
 		return (1);
-	}*/
-
+	}
 	my_printf_tree(temp, info);
 	return (0);
 }

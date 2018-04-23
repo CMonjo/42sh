@@ -81,7 +81,7 @@ void	my_printf_te(tree_t* temp)
 	char **arr;
 
 	arr = word_array(temp->commande_parseur);
-	printf(" COMMANDE  '%s'\n", arr[0]);
+	//printf(" COMMANDE  '%s'\n", arr[0]);
 	if (temp->left != NULL)
 		my_printf_te(temp->left);
 	if (temp->right != NULL)
@@ -134,14 +134,13 @@ int	main_b_tree(char *str, env_st_t *info)
 	command = check_command(str, 0);
 	error_parent(command);
 	fill_history(info, command);
-	printf("\n--------------HISTORY----------\n\n");
+	/*printf("\n--------------HISTORY----------\n\n");
 	my_printf_history(info->history);
-	printf("\n--------------HISTORY----------\n\n");
+	printf("\n--------------HISTORY----------\n\n");*/
 	temp = my_list_command(command, info);
-	printf("\n--------------TREEE----------\n\n");
+	/*printf("\n--------------TREEE----------\n\n");
 	my_printf_te(temp);
-	printf("ACTU  :   %s     RIGHT :   %s   LEFT  :   %s  RIGHT-LEFT  %s     LEFT-RIGHT   %s\n\n", temp->commande_parseur, temp->right->commande_parseur, temp->left->commande_parseur, temp->right->left->commande_parseur, temp->left->right->commande_parseur);
-	printf("--------------TREEE-------------\n\n");
+	printf("--------------TREEE-------------\n\n");*/
 	if (start_error_tree(temp, 0) == 1) {
 		info->status = 1;
 		return (1);

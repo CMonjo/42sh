@@ -71,7 +71,8 @@ int	exit_env(char **str, char **envp, env_st_t *env_st)
 	(void)str;
 
 	if (str[1] == NULL) {
-		my_printf("exit\n");
+		if (isatty(0) == 1)
+			my_printf("exit\n");
 		exit(0);
 	}
 	if (check_alpha(str) == -1)

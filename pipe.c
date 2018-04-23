@@ -56,7 +56,7 @@ char **command_in, char **command_out, tree_t* temp)
 			//my_pipe(command_in, num_pip[1], 1, env_st);
 			arr1 = word_array(temp->right->left->commande_parseur);
 			arr2 = word_array(temp->right->right->commande_parseur);
-			my_printf(" WALLAH CA RENTRE DANS LE PIPE    COMMAND IN   :   %s     COMMAND OUT  :   %s\n", arr1[0], arr2[0]);
+			//my_printf(" WALLAH CA RENTRE DANS LE PIPE    COMMAND IN   :   %s     COMMAND OUT  :   %s\n", arr1[0], arr2[0]);
 			my_pipe_start(env_st, arr1, arr2, temp->right);
 		} else {
 			my_first_command_pipe(env_st, command_in, temp, num);
@@ -76,10 +76,10 @@ char **command_in, char **command_out, tree_t* temp)
 
 	if (my_strcmp_c(command_out[0], tab_name[5]) != 0)
 		check_path_pip(env_st->envp_cpy, command_out[0], env_st, command_out);
-	my_printf("AVANT VERIF   COMMAND IN   :   %s     COMMAND OUT  :   %s    STATUS    :   %d\n", command_in[0], command_out[0], env_st->status);
+	//my_printf("AVANT VERIF   COMMAND IN   :   %s     COMMAND OUT  :   %s    STATUS    :   %d\n", command_in[0], command_out[0], env_st->status);
 	if (env_st->status == 1)
 		return (0);
-	my_printf("APRES   VERIF   COMMAND IN   :   %s     COMMAND OUT  :   %s      STATUS    :    %d\n", command_in[0], command_out[0], env_st->status);
+	//my_printf("APRES   VERIF   COMMAND IN   :   %s     COMMAND OUT  :   %s      STATUS    :    %d\n", command_in[0], command_out[0], env_st->status);
 	my_pipe_start_only(env_st, command_in, command_out, temp);
 	dup2(fd_save, 1);
 	dup2(fd_save_1, 0);

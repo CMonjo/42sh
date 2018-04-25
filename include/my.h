@@ -75,6 +75,7 @@
 		int (*flag_c_p)(char *str, int ctp, char *temp, char *str_temp);
 	} flag_char_t;
 
+	int	grep(char **str, char **envp, env_st_t *env_st);
 	void first_simple_or_sep(char **arr, tree_t* temp,
 	env_st_t *env_st, int *b);
 	void my_pipe(char **command, int fd_in, int fd_out, env_st_t *env_st);
@@ -106,7 +107,7 @@
 	int my_getnbr(char const *str);
 	int main_loop(char **envp, int end, char *str);
 	void my_right_red_pipe(char **file, tree_t* temp, char *sep);
-	int pipe_check_exec(char **command, char **envp, env_st_t *env_st);
+	int pipe_check_exec(char **command, char **envp, env_st_t *env_st, tree_t* temp);
 	int my_pipe_start(env_st_t *env_st,
 	char **command_in, char **command_out, tree_t* temp);
 	int my_putstr_err(char *str, char *msg);
@@ -126,7 +127,7 @@
 	env_st_t* env_st, char **str_arr, tree_t* temp);
 	int status(int w, env_st_t* env_st);
 	int exec_red(env_st_t* env_st, char **str, tree_t* temp);
-	int check_gnl(char *name, char **envp, env_st_t *env_st);
+	int check_gnl(char *name, char **envp, env_st_t *env_st, tree_t* temp);
 	int main_b_tree(char *str, env_st_t *info);
 	int my_strcmp_c(char *s1, char const *s2);
 	tree_t *my_list_command(char *command, env_st_t *info);
@@ -147,10 +148,10 @@
 	char *get_next_line(int fd);
 	char *maloc_str(int ct, int b, int ctb, char **str);
 	void check_path_env(char **envp, char *name, env_st_t* env_st,
-	char **str_arr);
+	char **str_arr, tree_t* temp);
 	int check_path_bsc(char **envp, char *name, char **str_arr,
-	env_st_t* env_st);
-	int strat_exec(char *name, char **envp, char **str, env_st_t* env_st);
+	env_st_t* env_st, tree_t* temp);
+	int strat_exec(char *name, char **envp, char **str, env_st_t* env_st, tree_t* temp);
 	char *pathing(char **envp, int *ct, int ctb);
 	int error_oldpwd(char **str, int cd_min, env_st_t *env_st);
 	char **create_env(void);
@@ -172,7 +173,7 @@
 	int cd_pwd(char **str, env_st_t *env_st);
 	int cd_home(char **str, char **envp, env_st_t *env_st, int cd_min);
 	int cd_oldpwd(char **str, char **envp, env_st_t *env_st, int cd_min);
-	int exec(char **envp, env_st_t* env_st, char **str);
+	int exec(char **envp, env_st_t* env_st, char **str, tree_t* temp);
 	int set_env(char **str, char **envp, env_st_t* env_st);
 	int unset_env(char **str, char **envp, env_st_t* env_st);
 	int exit_env(char **str, char **envp, env_st_t *env_st);

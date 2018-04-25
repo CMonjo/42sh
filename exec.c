@@ -50,7 +50,7 @@ int	exec_erno(char *name, char **envp, char **str, env_st_t* env_st)
 	return (0);
 }
 
-int	strat_exec(char *name, char **envp, char **str, env_st_t* env_st)
+int	strat_exec(char *name, char **envp, char **str, env_st_t* env_st, tree_t* temp)
 {
 	int w;
 	int val;
@@ -58,6 +58,11 @@ int	strat_exec(char *name, char **envp, char **str, env_st_t* env_st)
 	if ((val = fork()) == -1)
 		return (0);
 	if (val == 0) {
+		//close(num[0]);
+		//dup2(temp->fd_in, 0);
+		//dup2(temp->fd_out, 1);
+		dup2(temp->fd_in, 0);
+		dup2(temp->fd_out, 1);
 		if (exec_erno(name, envp, str, env_st) == -1)
 			return (0);
 	} else
@@ -65,10 +70,10 @@ int	strat_exec(char *name, char **envp, char **str, env_st_t* env_st)
 	return (status(w, env_st));
 }
 
-int	exec_arg(char **envp, env_st_t* env_st, char **str)
+int	exec_arg(char **envp, env_st_t* env_st, char **str, tree_t* temp)
 {
 	if (access(str[0], F_OK) != -1) {
-		if (strat_exec(str[0], envp, str, env_st) == 1)
+		if (strat_exec(str[0], envp, str, env_st, temp) == 1)
 			env_st->status = 0;
 		return (0);
 	}
@@ -77,7 +82,7 @@ int	exec_arg(char **envp, env_st_t* env_st, char **str)
 	return (0);
 }
 
-int	exec(char **envp, env_st_t* env_st, char **str)
+int	exec(char **envp, env_st_t* env_st, char **str, tree_t* temp)
 {
 	int ct = 0;
 	int b = 0;
@@ -87,9 +92,9 @@ int	exec(char **envp, env_st_t* env_st, char **str)
 		ct ++;
 	}
 	if (b == 1) {
-		exec_arg(envp, env_st, str);
+		exec_arg(envp, env_st, str, temp);
 	} else {
-		check_path_env(envp, str[0], env_st, str);
+		check_path_env(envp, str[0], env_st, str, temp);
 	}
 	return (0);
 }

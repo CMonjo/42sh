@@ -16,7 +16,7 @@ void	check_path_pip(char **envp, char *name,
 	char *str;
 
 	if (check_val(envp, "PATH", env_st) == 0) {
-		check_path_bsc(env_st->envp_bsc, name, str_arr, env_st);
+		check_path_bsc(env_st->envp_bsc, name, str_arr, env_st, NULL);
 		return;
 	}
 	ct = check_same(envp, env_st);
@@ -69,7 +69,7 @@ void	my_printf_tree(tree_t* temp, env_st_t *env_st)
 	if (b != 0)
 		return;
 	if (boul == 0)
-		check_gnl(temp->commande_parseur, env_st->envp_cpy, env_st);
+		check_gnl(temp->commande_parseur, env_st->envp_cpy, env_st, temp);
 	if (temp->left != NULL)
 		my_printf_tree(temp->left, env_st);
 	if (temp->right != NULL)
@@ -81,7 +81,7 @@ void	my_printf_te(tree_t* temp)
 	char **arr;
 
 	arr = word_array(temp->commande_parseur);
-	//printf(" COMMANDE  '%s'\n", arr[0]);
+	printf(" COMMANDE  '%s'\n", arr[0]);
 	if (temp->left != NULL)
 		my_printf_te(temp->left);
 	if (temp->right != NULL)
@@ -134,13 +134,14 @@ int	main_b_tree(char *str, env_st_t *info)
 	command = check_command(str, 0);
 	error_parent(command);
 	fill_history(info, command);
-	/*printf("\n--------------HISTORY----------\n\n");
+	//printf("0  %s    1  %s     2     %s\n\n", arr[0], arr[1], arr[2]);
+	printf("\n--------------HISTORY----------\n\n");
 	my_printf_history(info->history);
-	printf("\n--------------HISTORY----------\n\n");*/
+	printf("\n--------------HISTORY----------\n\n");
 	temp = my_list_command(command, info);
-	/*printf("\n--------------TREEE----------\n\n");
+	printf("\n--------------TREEE----------\n\n");
 	my_printf_te(temp);
-	printf("--------------TREEE-------------\n\n");*/
+	printf("--------------TREEE-------------\n\n");
 	if (start_error_tree(temp, 0) == 1) {
 		info->status = 1;
 		return (1);

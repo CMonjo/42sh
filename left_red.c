@@ -91,5 +91,5 @@ char **file, tree_t* temp)
 	}
 	my_left_red_start(env_st, command, word_array(file_tmp), temp);
 	exec(env_st->envp_cpy, env_st,
-	word_array(my_strcat("rm ", file_tmp, 0)));
+	word_array(my_strcat("rm ", file_tmp, 0)), temp);
 }

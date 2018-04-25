@@ -14,7 +14,7 @@ void	check_path_env_red(char *name,
 	char *str;
 
 	if (check_val(env_st->envp_cpy, "PATH", env_st) == 0) {
-		check_path_bsc(env_st->envp_bsc, name, str_arr, env_st);
+		check_path_bsc(env_st->envp_bsc, name, str_arr, env_st, temp);
 		return;
 	}
 	ct = check_same(env_st->envp_cpy, env_st);

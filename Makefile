@@ -23,6 +23,7 @@ SRC	=	copy_env.c		\
 		exit.c		\
 		prompt.c		\
 		cd_path.c		\
+		grep.c		\
 		unsetenv.c		\
 		env_other.c		\
 		path.c		\

@@ -43,7 +43,7 @@ char **file, tree_t* temp)
 		exec_red(env_st, command, temp);
 		close(fd);
 		if (env_st->status == 1)
-			exec(env_st->envp_cpy, env_st, word_array(rm));
+			exec(env_st->envp_cpy, env_st, word_array(rm), temp);
 	} else {
 		fd = open(file[0], O_RDWR | O_CREAT, 0666);
 		exec_red(env_st, command, temp);
@@ -51,7 +51,7 @@ char **file, tree_t* temp)
 		temp->fd_out = 1;
 		close(fd);
 		if (env_st->status == 1)
-			exec(env_st->envp_cpy, env_st, word_array(rm));
+			exec(env_st->envp_cpy, env_st, word_array(rm), temp);
 	}
 }
 
@@ -68,7 +68,7 @@ char **file, tree_t* temp)
 		exec_red(env_st, command, temp);
 		close(fd);
 		if (env_st->status == 1)
-			exec(env_st->envp_cpy, env_st, word_array(rm));
+			exec(env_st->envp_cpy, env_st, word_array(rm), temp);
 	} else {
 		fd = open(file[0], O_RDWR | O_CREAT, 0666);
 		temp->fd_in = fd;
@@ -76,6 +76,6 @@ char **file, tree_t* temp)
 		exec_red(env_st, command, temp);
 		close(fd);
 		if (env_st->status == 1)
-			exec(env_st->envp_cpy, env_st, word_array(rm));
+			exec(env_st->envp_cpy, env_st, word_array(rm), temp);
 	}
 }

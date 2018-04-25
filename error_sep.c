@@ -122,7 +122,7 @@ void	error_backstick_quote(char *str, char c, int *ct)
 	exit(1);
 }
 
-void	check_sep_nbr(char *command)
+/*void	check_sep_nbr(char *command)
 {
 	char const *tab_sep[] = {"|", "<", ">"};
 
@@ -141,7 +141,7 @@ void	check_long_sep(char *command)
 	for (int ct = 0; command[ct] != '\0'; ct ++) {
 		check_sep_nbr(char *command)
 	}
-}
+}*/
 
 void	error_parent(char *command)
 {

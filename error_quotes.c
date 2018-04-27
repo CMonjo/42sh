@@ -14,7 +14,7 @@ void	error_backstick_quote(char *str, char c, int *ct)
 			return;
 		(*ct) ++;
 	}
-	if (str[*ct] == '\'') {
+	if (c == 39) {
 		my_printf("Unmatched '%c'.\n", c);
 		exit(1);
 	}

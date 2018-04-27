@@ -39,6 +39,25 @@ int	pipe_check_exec(char **command, char **envp, env_st_t *env_st, tree_t* temp)
 	return (0);
 }
 
+void	pass_quotes(char *str, int *ct, char quote)
+{
+	(*ct) ++;
+	while (str[ct] != quote)
+		(*ct) ++;
+	(*ct ++);
+}
+
+int	check_stars(char *str)
+{
+	for (int ct = 0; str[ct] != '\0'; ct ++) {
+		if (str[ct] == '\'' || str[ct] == '\"')
+			pass_quotes(str, &ct, str[ct]);
+		if (str[ct] == '*')
+			return (1);
+	}
+	return (0);
+}
+
 int	check_gnl(char *name, char **envp, env_st_t *env_st, tree_t* temp)
 {
 	int ct = 0;
@@ -46,6 +65,9 @@ int	check_gnl(char *name, char **envp, env_st_t *env_st, tree_t* temp)
 
 	if ((str = word_array(name)) == NULL)
 		return (0);
+	if (check_stars(name) == 1) {
+
+	}
 	while (ct < 6) {
 		if (str[0] != NULL
 		&& my_strcmp(str[0], tab_name_b[ct].name) == 0) {

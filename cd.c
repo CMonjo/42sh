@@ -81,6 +81,10 @@ int	cd(char **str, char **envp, env_st_t *env_st)
 	char *env_oldwd = "OLDPWD";
 	int cd_min = 0;
 
+	if (str[0] != NULL && my_strlen(str[1]) > 255) {
+		my_putstr_err(str[1], ": File name too long.\n");
+		return (1);
+	}
 	if (cd_home(str, envp, env_st, 0) == 1)
 		return (0);
 	cd_min = check_val(envp, env_oldwd, env_st);

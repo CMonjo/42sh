@@ -36,6 +36,8 @@ SRC	=	copy_env.c		\
 		epur_command.c		\
 		check_command.c		\
 		error_sep.c		\
+		error_parent.c		\
+		error_quotes.c		\
 		error_long_sep.c		\
 		start_error_sep.c		\
 		right_red.c		\

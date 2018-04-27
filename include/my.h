@@ -75,6 +75,8 @@
 		int (*flag_c_p)(char *str, int ctp, char *temp, char *str_temp);
 	} flag_char_t;
 
+	void	error_backstick_quote(char *str, char c, int *ct);
+	void	error_parent(char *command);
 	int 	check_long_sep(char *command);
 	int	repeat(char **arr, char **envp, env_st_t *env_st);
 	int	echo(char **arr, char **envp, env_st_t *env_st);

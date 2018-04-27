@@ -11,10 +11,11 @@ int	check_sep_nbr_msg(char *command, char sep, int ct)
 {
 	int command_sep = 0;
 
-	printf("WALLA\n");
-	while (command[ct] == sep || command[ct] == ' ' || command[ct] == '\t')
-		command_sep ++;
-	printf("WALLA\n");
+	while (command[ct] == sep || command[ct] == ' ' || command[ct] == '\t') {
+		if (command[ct] == sep)
+			command_sep ++;
+		ct ++;
+	}
 	if (sep == '|' && command_sep > 2) {
 		my_printf("Invalid null command.\n");
 		exit(1);
@@ -36,7 +37,6 @@ int	check_sep_nbr(char *command, int ct)
 		if (tab_sep_err[ctb][0] == command[ct])
 			if (check_sep_nbr_msg(command, command[ct], ct) == 1)
 				return (1);
-		printf("TAB : %c     COMMAND  :    %c\n", tab_sep_err[ctb][0], command[ct]);
 	}
 	return (0);
 }

@@ -42,7 +42,7 @@ int	pipe_check_exec(char **command, char **envp, env_st_t *env_st, tree_t* temp)
 void	pass_quotes(char *str, int *ct, char quote)
 {
 	(*ct) ++;
-	while (str[ct] != quote)
+	while (str[*ct] != quote)
 		(*ct) ++;
 	(*ct ++);
 }

@@ -130,9 +130,9 @@ int	main_b_tree(char *str, env_st_t *info)
 	if ((arr = word_array(str)) == NULL)
 		return (0);
 	check_special_case(str);
-	/*printf("STRR   :    %s\n", str);
+	printf("STRR   :    %s\n", str);
 	if (check_long_sep(str) == 1)
-		return (1);*/
+		return (1);
 	command = check_command(str, 0);
 	error_parent(command);
 	fill_history(info, command);

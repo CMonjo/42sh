@@ -59,6 +59,25 @@ int	check_stars(char *str)
 	return (0);
 }
 
+int	error_alias_loop(char *first, char *str, env_st_t *env_st)
+{
+	alias_t* alias = env_st->alias;
+
+	while (alias != NULL) {
+		if (my_strcmp(alias->bind, str) == 0) {
+			if (my_strcmp(alias->command_bind, first) == 0) {
+				env_st->status = 1;
+				my_printf("Alias loop.\n");
+				return (1);
+			}
+			str = my_strdup(alias->command_bind);
+			alias = env_st->alias;
+		} else
+			alias = alias->next;
+	}
+	return (0);
+}
+
 int	check_alias_local_var(char *str, env_st_t *env_st)
 {
 	alias_t* alias = env_st->alias;
@@ -68,6 +87,8 @@ int	check_alias_local_var(char *str, env_st_t *env_st)
 	}*/
 	while (alias != NULL) {
 		if (my_strcmp(alias->bind, str) == 0) {
+			if (error_alias_loop(alias->bind, alias->command_bind, env_st) == 1)
+				return (1);
 			check_gnl(alias->command_bind,
 			env_st->envp_cpy, env_st,
 			my_list_command(alias->command_bind, env_st));

@@ -7,16 +7,6 @@
 
 #include "main.h"
 
-void alias_display(env_st_t *env_st)
-{
-	alias_t *tmp = env_st->alias;
-
-	while (tmp != NULL) {
-		my_printf("%s\t%s\n", tmp->bind, tmp->command_display);
-		tmp = tmp->next;
-	}
-}
-
 alias_t *alias_add_node(char **str, char *long_str)
 {
 	alias_t *tmp = malloc(sizeof(alias_t));

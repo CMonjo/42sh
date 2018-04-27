@@ -39,6 +39,7 @@ SRC	=	src/main.c		\
 		src/builtins/grep/grep.c		\
 		src/builtins/alias/alias.c		\
 		src/builtins/alias/alias_parsing.c	\
+		src/builtins/alias/alias_display.c	\
 		src/builtins/exit/exit.c		\
 		src/error/error_sep.c			\
 		src/error/error_parent.c		\

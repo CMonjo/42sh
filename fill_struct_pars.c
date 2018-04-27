@@ -77,7 +77,8 @@ tree_t*	my_list_command(char *command, env_st_t* info)
 		temp = NULL;
 		return (temp);
 	}
-	if (b == 0)
+	if (b == 0) {
 		temp = fill_struct_comand(command, 0, 1);
+	}
 	return (temp);
 }

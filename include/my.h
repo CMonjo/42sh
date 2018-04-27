@@ -75,6 +75,10 @@
 		int (*flag_c_p)(char *str, int ctp, char *temp, char *str_temp);
 	} flag_char_t;
 
+	int 	check_long_sep(char *command);
+	int	repeat(char **arr, char **envp, env_st_t *env_st);
+	int	echo(char **arr, char **envp, env_st_t *env_st);
+	int	cat(char **arr, char **envp, env_st_t *env_st);
 	int	grep(char **str, char **envp, env_st_t *env_st);
 	void first_simple_or_sep(char **arr, tree_t* temp,
 	env_st_t *env_st, int *b);

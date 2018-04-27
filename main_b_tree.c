@@ -98,7 +98,6 @@ void	my_printf_history(history_t* temp)
 
 void	fill_history(env_st_t *info, char *str)
 {
-	//history_t *temp = info->history;
 	history_t* new_ele = malloc(sizeof(history_t));
 
 	new_ele->command = my_strdup(str);
@@ -131,6 +130,9 @@ int	main_b_tree(char *str, env_st_t *info)
 	if ((arr = word_array(str)) == NULL)
 		return (0);
 	check_special_case(str);
+	/*printf("STRR   :    %s\n", str);
+	if (check_long_sep(str) == 1)
+		return (1);*/
 	command = check_command(str, 0);
 	error_parent(command);
 	fill_history(info, command);

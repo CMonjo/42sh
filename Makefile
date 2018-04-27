@@ -13,10 +13,13 @@ CFLAGS += -g3
 
 SRC	=	copy_env.c		\
 		cd.c		\
+		cat.c		\
+		echo.c		\
 		other.c		\
 		main.c		\
 		exec.c		\
 		pipe.c		\
+		repeat.c		\
 		pipe_plus.c		\
 		exec_red.c		\
 		exec_path_red.c		\
@@ -33,6 +36,7 @@ SRC	=	copy_env.c		\
 		epur_command.c		\
 		check_command.c		\
 		error_sep.c		\
+		error_long_sep.c		\
 		start_error_sep.c		\
 		right_red.c		\
 		left_red.c		\

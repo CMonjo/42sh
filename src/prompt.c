@@ -59,6 +59,25 @@ int	check_stars(char *str)
 	return (0);
 }
 
+int	check_alias_local_var(char *str, env_st_t *env_st)
+{
+	alias_t* alias = env_st->alias;
+
+	/*if (str[0] == '$') {
+		//local variables
+	}*/
+	while (alias != NULL) {
+		if (my_strcmp(alias->bind, str) == 0) {
+			check_gnl(alias->command_bind,
+			env_st->envp_cpy, env_st,
+			my_list_command(alias->command_bind, env_st));
+			return (1);
+		}
+		alias = alias->next;
+	}
+	return (0);
+}
+
 int	check_gnl(char *name, char **envp, env_st_t *env_st, tree_t* temp)
 {
 	int ct = 0;
@@ -66,8 +85,11 @@ int	check_gnl(char *name, char **envp, env_st_t *env_st, tree_t* temp)
 
 	if ((str = word_array(name)) == NULL)
 		return (0);
-	if (check_stars(name) == 1) {
+	/*if (check_stars(name) == 1) {
 
+	}*/
+	if (check_alias_local_var(str[0], env_st) == 1) {
+		return (1);
 	}
 	while (ct < 6) {
 		if (str[0] != NULL

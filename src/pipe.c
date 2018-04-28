@@ -44,8 +44,6 @@ char **command_in, char **command_out, tree_t* temp)
 	int fd_save_1 = dup(0);
 	int fd_save = dup(1);
 
-	temp->fd_in = 0;
-	temp->fd_out = 1;
 	if (my_strcmp_c(command_out[0], tab_name[5]) != 0)
 		check_path_pip(env_st->envp_cpy, command_out[0], env_st, command_out);
 	if (env_st->status == 1)

@@ -10,7 +10,7 @@
 int	start_error_sep(tree_t* temp, char **arr, int ct, int b)
 {
 	if (my_strcmp_c(arr[0], tab_name[ct]) == 0) {
-		printf("WALLA LA STR  :   %s\n", arr[0]);
+		//printf("WALLA LA STR  :   %s\n", arr[0]);
 		if (b == 0 && error_pipe_redic(temp, arr[0]) == 1)
 			return (1);
 		if (b == 1 && error_pipe_redic_second(temp, arr[0]) == 1)

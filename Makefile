@@ -12,6 +12,7 @@ CFLAGS	=	-I./include -W -Wall -Wextra
 CFLAGS +=	-g3
 
 SRC	=	src/main.c		\
+		src/error_alias.c		\
 		src/exec.c		\
 		src/pipe.c		\
 		src/pipe_plus.c		\

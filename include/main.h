@@ -66,6 +66,7 @@
 		int (*name_str)(char **str, char **envp, env_st_t *env_st);
 	} name_env_t;
 
+	int	error_alias_loop(char *first, char *str, env_st_t *env_st);
 	void error_backstick_quote(char *str, char c, int *ct);
 	void error_parent(char *command);
 	int check_long_sep(char *command);

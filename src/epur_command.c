@@ -26,19 +26,34 @@ char	*epur_command(int ctp, char *command)
 	return (str);
 }
 
+char	*epur_command_sep(char sep, char *command, int ct, int *b)
+{
+	if (command[ct + 1] == sep && command[ct + 2] != '\0'
+	&& command[ct + 2] != ' ') {
+		(*b) = 1;
+		return (epur_command(ct + 2, command));
+	}
+	if (command[ct + 1] != sep && command[ct + 1] != '\0'
+	&& command[ct + 1] != ' ') {
+		(*b) = 1;
+		return (epur_command(ct + 1, command));
+	}
+	return (command);
+}
+
 char	*start_sep_command(int ct, char *command, int *b)
 {
+	char const *tab_sep_err[8] = {";", "(", ")", "&", "|", "<", ">"};
+
 	if (ct != 0 && command[ct - 1] != 32 && command[ct - 1] != '<'
 	&& command[ct - 1] != '>' && command[ct - 1] != '|'
 	&& command[ct - 1] != '&') {
 		(*b) = 1;
 		return (epur_command(ct, command));
 	}
-	if (command[ct + 1] != '\0' && command[ct + 1] != '<'
-	&& command[ct + 1] != '>' && command[ct + 1] != 32
-	&& command[ct + 1] != '|' && command[ct + 1] != '&') {
-			(*b) = 1;
-			return (epur_command(ct + 1, command));
-	}
+	for (int ctb = 0; tab_sep_err[ctb] != NULL; ctb ++)
+		if (command[ct] == tab_sep_err[ctb][0])
+			return (epur_command_sep(tab_sep_err[ctb][0],
+			command, ct, b));
 	return (command);
 }

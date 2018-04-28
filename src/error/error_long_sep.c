@@ -11,7 +11,8 @@ int	check_sep_nbr_msg(char *command, char sep, int ct)
 {
 	int command_sep = 0;
 
-	while (command[ct] == sep || command[ct] == ' ' || command[ct] == '\t') {
+	while (command[ct] == sep || command[ct] == ' '
+	|| command[ct] == '\t') {
 		if (command[ct] == sep)
 			command_sep ++;
 		ct ++;

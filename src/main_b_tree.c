@@ -117,8 +117,7 @@ int	check_special_case(char *str)
 	for (int ct = 0; arr[0][ct] != '\0'; ct ++)
 		if (arr[0][ct] != ';' && arr[0][ct] != '&')
 			return (0);
-	exit(0);
-	return (0);
+	return (1);
 }
 
 int	main_b_tree(char *str, env_st_t *info)
@@ -129,10 +128,17 @@ int	main_b_tree(char *str, env_st_t *info)
 
 	if ((arr = word_array(str)) == NULL)
 		return (0);
-	check_special_case(str);
+	if (check_special_case(str) == 1) {
+		command = check_command(str, 0);
+		fill_history(info, command);
+		return (0);
+	}
 	//printf("STRR   :    %s\n", str);
-	if (check_long_sep(str) == 1)
+	if (check_long_sep(str) == 1) {
+		command = check_command(str, 0);
+		fill_history(info, command);
 		return (1);
+	}
 	command = check_command(str, 0);
 	error_parent(command);
 	fill_history(info, command);
@@ -142,7 +148,7 @@ int	main_b_tree(char *str, env_st_t *info)
 	printf("\n--------------HISTORY----------\n\n");*/
 	temp = my_list_command(command, info);
 	//printf("\n--------------TREEE----------\n\n");
-	my_printf_te(temp);
+	//my_printf_te(temp);
 	//printf("--------------TREEE-------------\n\n");
 	if (start_error_tree(temp, 0) == 1) {
 		info->status = 1;

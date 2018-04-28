@@ -78,10 +78,10 @@ void	my_printf_tree(tree_t* temp, env_st_t *env_st)
 
 void	my_printf_te(tree_t* temp)
 {
-	// char **arr = NULL;
-	//
-	// arr = word_array(temp->commande_parseur);
-	//printf(" COMMANDE  '%s'\n", arr[0]);
+	/*char **arr = NULL;
+
+	arr = word_array(temp->commande_parseur);
+	printf(" COMMANDE  '%s'\n", arr[0]);*/
 	if (temp->left != NULL)
 		my_printf_te(temp->left);
 	if (temp->right != NULL)

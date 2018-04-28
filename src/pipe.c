@@ -16,10 +16,12 @@ char **command_in, char **command_out, tree_t* temp)
 	char **arr2;
 
 	pipe(num);
+	//dprintf(2, "FD_IN  :   %d    FD_OUT :   %d\n", temp->fd_in, temp->fd_out);
 	if ((child = fork()) == 0) {
 		temp->left->fd_in = temp->fd_in;
 		temp->left->fd_out = num[1];
 		pipe_check_exec(command_in, env_st->envp_cpy, env_st, temp->left);
+		exit(0);
 	} else if (my_strcmp_c(command_out[0], tab_name[5]) == 0) {
 		arr1 = word_array(temp->right->left->commande_parseur);
 		arr2 = word_array(temp->right->right->commande_parseur);

@@ -106,9 +106,12 @@ tree_t* temp, env_st_t *env_st, int *b)
 	check_sep_char(temp->left->commande_parseur) != -1) {
 		my_right_red_pipe(word_array(temp->right->commande_parseur),
 		temp, arr[0]);
-		fd = temp->fd_out;
+		temp->left->fd_in = temp->fd_in;
+		temp->left->fd_out = temp->fd_out;
 		temp = temp->left;
-		temp->fd_out = fd;
+		/*fd = temp->fd_out;
+		temp = temp->left;
+		temp->fd_out = fd;*/
 		arr = word_array(temp->commande_parseur);
 		if (my_strcmp_c(arr[0], tab_name[5]) == 0) {
 			my_pipe_start(env_st,

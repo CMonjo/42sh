@@ -12,20 +12,26 @@ void	my_right_red_pipe(char **file, tree_t* temp, char *sep)
 	int fd;
 
 	if (access(file[0], F_OK) != -1) {
-		if (my_strcmp_c(sep, tab_name[2]) == 0) {
+		/*if (my_strcmp_c(sep, tab_name[7]) == 0) {
 			fd = open(file[0], O_RDWR | O_APPEND, 0666);
+			temp->fd_in = 0;
 			temp->fd_out = fd;
 			return;
-		}
+		}*/
 		fd = open(file[0], O_WRONLY | O_APPEND | O_TRUNC);
+		temp->fd_in = 0;
 		temp->fd_out = fd;
 	} else {
-		if (my_strcmp_c(sep, tab_name[2]) == 0) {
+		/*if (my_strcmp_c(sep, tab_name[7]) == 0) {
 			fd = open(file[0], O_RDWR | O_CREAT, 0666);
+			temp->fd_in = 0;
 			temp->fd_out = fd;
+			printf("FD_OUT RED %d\n", fd);
 			return;
-		}
+		}*/
 		fd = open(file[0], O_RDWR | O_CREAT, 0666);
+		printf("FD out : %d\n", fd);
+		temp->fd_in = 0;
 		temp->fd_out = fd;
 	}
 }

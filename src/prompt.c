@@ -31,6 +31,8 @@ int	pipe_check_exec(char **command, char **envp, env_st_t *env_st, tree_t* temp)
 	while (ct < 6) {
 		if (command[0] != NULL
 		&& my_strcmp(command[0], tab_name_b[ct].name) == 0) {
+			dup2(temp->fd_in, 0);
+			dup2(temp->fd_out, 1);
 			(tab_name_b[ct].name_str)(command, envp, env_st);
 			return (0);
 		}

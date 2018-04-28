@@ -68,7 +68,7 @@ int	check_alias_local_var(char *str, env_st_t *env_st)
 	}*/
 	while (alias != NULL) {
 		if (my_strcmp(alias->bind, str) == 0) {
-			printf("COMMAND EXEC : %s   COMMAND DISPLAY   :   %s\n", alias->command_bind, alias->command_display);
+			//printf("COMMAND EXEC : %s   COMMAND DISPLAY   :   %s\n", alias->command_bind, alias->command_display);
 			if (error_alias_loop(alias->bind, alias->command_bind, env_st) == 1)
 				return (1);
 			check_gnl(alias->command_bind,

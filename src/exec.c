@@ -58,9 +58,7 @@ int	strat_exec(char *name, char **envp, char **str, env_st_t* env_st, tree_t* te
 	if ((val = fork()) == -1)
 		return (0);
 	if (val == 0) {
-		//close(num[0]);
-		//dup2(temp->fd_in, 0);
-		//dup2(temp->fd_out, 1);
+		//printf("FD_IN   :   %d    FD_OUT     %d\n", temp->fd_in, temp->fd_out);
 		dup2(temp->fd_in, 0);
 		dup2(temp->fd_out, 1);
 		if (exec_erno(name, envp, str, env_st) == -1)

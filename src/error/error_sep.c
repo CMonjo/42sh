@@ -44,7 +44,7 @@ int	error_pipe_redic_second(tree_t* temp, char *str)
 			return (1);
 		}
 	}
-	if (my_strcmp_c(str, "||") == 0 && my_strcmp_c(arr[0], "&&") == 0) {
+	if (my_strcmp_c(str, "||") == 0 && my_strcmp_c(arr[0], "&&") == 0 && temp->right->left == NULL) {
 		my_printf("Invalid null command.\n");
 		return (1);
 	}

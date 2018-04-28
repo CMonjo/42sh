@@ -98,6 +98,13 @@ int	error_pipe_redic_bis(tree_t* temp, char *str, char **arr)
 
 int	error_pipe_redic_first(tree_t* temp, char *str)
 {
+	if ((my_strcmp_c(str, tab_name[7]) == 0
+	|| my_strcmp_c(str, tab_name[4]) == 0
+	|| my_strcmp_c(str, tab_name[6]) == 0
+	|| my_strcmp_c(str, tab_name[3]) == 0) && temp->right == NULL) {
+		my_printf("Missing name for redirect.\n");
+		return (1);
+	}
 	if ((my_strcmp_c(str, tab_name[2]) == 0
 	|| my_strcmp_c(str, "||") == 0 || my_strcmp_c(str, "&&") == 0) && temp->right == NULL) {
 		my_printf("Invalid null command.\n");
@@ -107,13 +114,6 @@ int	error_pipe_redic_first(tree_t* temp, char *str)
 	&& (temp->left == NULL || temp->right == NULL))
 	|| (my_strcmp_c(str, tab_name[7]) == 0 && temp->left == NULL)) {
 		my_printf("Invalid null command.\n");
-		return (1);
-	}
-	if ((my_strcmp_c(str, tab_name[7]) == 0
-	|| my_strcmp_c(str, tab_name[4]) == 0
-	|| my_strcmp_c(str, tab_name[6]) == 0
-	|| my_strcmp_c(str, tab_name[3]) == 0) && temp->right == NULL) {
-		my_printf("Missing name for redirect.\n");
 		return (1);
 	}
 	return (0);

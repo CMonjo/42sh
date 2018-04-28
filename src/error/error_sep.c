@@ -41,8 +41,12 @@ int	error_pipe_redic_second(tree_t* temp, char *str)
 		&& (my_strcmp("<", arr[0]) == 0
 		|| my_strcmp("<<", arr[0]) == 0) == 0) {
 			my_printf("Ambiguous input redirect.\n");
-		exit(1);
+			return (1);
 		}
+	}
+	if (my_strcmp_c(str, "||") == 0 && my_strcmp_c(arr[0], "&&") == 0) {
+		my_printf("Invalid null command.\n");
+		return (1);
 	}
 	return (0);
 }
@@ -53,19 +57,19 @@ int	error_pipe_redic_bis(tree_t* temp, char *str, char **arr)
 	|| my_strcmp_c(str, tab_name[4]) == 0)
 	&& check_sep_char(arr[0]) != -1 && temp->right->left == NULL) {
 		my_printf("Missing name for redirect.\n");
-		exit(1);
+		return (1);
 	}
 	if ((my_strcmp_c(str, tab_name[7]) == 0
 	|| my_strcmp_c(str, tab_name[4]) == 0)
 	&& my_strcmp("|", arr[0]) == 0) {
 		my_printf("Ambiguous output redirect.\n");
-		exit(1);
+		return (1);
 	}
 
 	if ((my_strcmp_c(str, tab_name[5]) == 0) && (my_strcmp("<", arr[0]) == 0
 	|| my_strcmp("<<", arr[0]) == 0)) {
 		my_printf("Ambiguous input redirect.\n");
-		exit(1);
+		return (1);
 	}
 	return (0);
 }
@@ -73,7 +77,7 @@ int	error_pipe_redic_bis(tree_t* temp, char *str, char **arr)
 int	error_pipe_redic_first(tree_t* temp, char *str)
 {
 	if ((my_strcmp_c(str, tab_name[2]) == 0
-	|| my_strcmp_c(str, "||") == 0) && temp->right == NULL) {
+	|| my_strcmp_c(str, "||") == 0 || my_strcmp_c(str, "&&") == 0) && temp->right == NULL) {
 		my_printf("Invalid null command.\n");
 		return (1);
 	}

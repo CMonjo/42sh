@@ -100,8 +100,6 @@ tree_t* temp, env_st_t *env_st, int *b)
 void	fourth_double_verif_sep(char **arr,
 tree_t* temp, env_st_t *env_st, int *b)
 {
-	int fd = 0;
-
 	if ((*b) == 0 && my_strcmp_c(arr[0], tab_name[4]) == 0 &&
 	check_sep_char(temp->left->commande_parseur) != -1) {
 		my_right_red_pipe(word_array(temp->right->commande_parseur),
@@ -109,9 +107,6 @@ tree_t* temp, env_st_t *env_st, int *b)
 		temp->left->fd_in = temp->fd_in;
 		temp->left->fd_out = temp->fd_out;
 		temp = temp->left;
-		/*fd = temp->fd_out;
-		temp = temp->left;
-		temp->fd_out = fd;*/
 		arr = word_array(temp->commande_parseur);
 		if (my_strcmp_c(arr[0], tab_name[5]) == 0) {
 			my_pipe_start(env_st,

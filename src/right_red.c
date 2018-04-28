@@ -30,7 +30,7 @@ void	my_right_red_pipe(char **file, tree_t* temp, char *sep)
 			return;
 		}*/
 		fd = open(file[0], O_RDWR | O_CREAT, 0666);
-		printf("FD out : %d\n", fd);
+		//printf("FD out : %d\n", fd);
 		temp->fd_in = 0;
 		temp->fd_out = fd;
 	}

@@ -14,20 +14,24 @@ char **file, tree_t* temp)
 
 	if (access(file[0], F_OK) != -1) {
 		fd = open(file[0], O_RDONLY);
-		if (temp->fd_out == 1) {
+		//printf("COMMANDE   :  %s   COMMANDE LEFT  :   %s   COMANDE RIGHT	:  %s\n", command[0], temp->left->commande_parseur, temp->right->commande_parseur);
+		temp->left->fd_in = fd;
+		exec(env_st->envp_cpy, env_st, command, temp->left);
+		close(fd);
+		/*if (temp->fd_out == 1) {
 			temp->fd_in = fd;
-			temp->fd_out = 0;
-			exec_red(env_st, command, temp);
+			//temp->fd_out = 0;
+			exec(env_st->envp_cpy, env_st, command, temp);
 			close(fd);
 		} else {
 			temp->fd_in = fd;
-			temp->fd_out = 0;
+			//temp->fd_out = 0;
 			temp->right->fd_in = fd;
 			my_pipe_start(env_st,
 			word_array(temp->left->commande_parseur),
 			word_array(temp->right->right->commande_parseur),
 			temp->right);
-		}
+		}*/
 	} else
 		my_putstr_err(file[0], ": No such file or directory.\n");
 }

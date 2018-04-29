@@ -21,15 +21,19 @@ void	skip_parent(char **arr, int *ctb)
 	int nb_parent = 0;
 	int nb_parent_out = 0;
 
-	for (int ct = 0; arr[ct] != NULL; ct ++)
+	for (int ct = 0; arr[ct] != NULL; ct ++) {
+		if (arr[ct][0] == ')')
+			break;
 		if (arr[ct][0] == '(')
 			nb_parent ++;
+	}
 	(*ctb) ++;
 	while (nb_parent_out != nb_parent) {
 		if (arr[*ctb][0] == ')')
 			nb_parent_out ++;
 		(*ctb) ++;
 	}
+	//printf("COMMAND   : %s\n", arr[*ctb]);
 }
 
 int	check_sep(char **arr)
@@ -43,6 +47,8 @@ int	check_sep(char **arr)
 	for (int ctb = ct; arr[ctb] != NULL; ctb ++) {
 		if (arr[ctb][0] == '(')
 			skip_parent(arr, &ctb);
+		if (arr[ctb] == NULL)
+			return (-1);
 		if (my_strcmp(arr[ctb], ";") == 0)
 			return (0);
 	}
@@ -55,18 +61,24 @@ int	check_sep(char **arr)
 	for (int ctb = ct; arr[ctb] != NULL; ctb ++) {
 		if (arr[ctb][0] == '(')
 			skip_parent(arr, &ctb);
+		if (arr[ctb] == NULL)
+			return (-1);
 		if (my_strcmp(arr[ctb], ">") == 0)
 			return (7);
 	}
 	for (int ctb = ct; arr[ctb] != NULL; ctb ++) {
 		if (arr[ctb][0] == '(')
 			skip_parent(arr, &ctb);
+		if (arr[ctb] == NULL)
+			return (-1);
 		if (my_strcmp(arr[ctb], ">>") == 0)
 			return (4);
 	}
 	for (int ctb = ct; arr[ctb] != NULL; ctb ++) {
 		if (arr[ctb][0] == '(')
 			skip_parent(arr, &ctb);
+		if (arr[ctb] == NULL)
+			return (-1);
 		if ((value = check_sep_char(arr[ctb])) != -1)
 			return (value);
 	}

@@ -24,9 +24,12 @@ void	skip_parent_command(char *command, int *ctb)
 	int nb_parent = 0;
 	int nb_parent_out = 0;
 
-	for (int ct = 0; command[ct] != '\0'; ct ++)
+	for (int ct = 0; command[ct] != '\0'; ct ++) {
+		if (command[ct] == ')')
+			break;
 		if (command[ct] == '(')
 			nb_parent ++;
+	}
 	(*ctb) ++;
 	while (nb_parent_out != nb_parent) {
 		if (command[*ctb] == ')')
@@ -42,16 +45,17 @@ void	remove_parent_command(char *command, char *av, char sep, int len)
 	int b = 0;
 	int ctb = 0;
 
-	for (int ct = 0; av[ct] != '\0'; ct ++)
+	for (int ct = 0; av[ct] != '\0'; ct ++) {
+		if (av[ct] == ')')
+			break;
 		if (av[ct] == '(')
 			nb_parent ++;
+	}
 	for (int ct = 0; av[ct] != sep; ct ++) {
 		if (av[ct] == ')')
 			nb_parent_out ++;
-		if (nb_parent_out > 0 && nb_parent_out == nb_parent) {
-			nb_parent = 0;
-			ct ++;
-		}
+		if (nb_parent_out > 0 && nb_parent_out == nb_parent)
+			break;
 		if (av[ct] == '(' && b == 0)
 			b ++;
 		else {
@@ -119,6 +123,7 @@ tree_t*	my_list_command(char *command, env_st_t* info)
 	char **arr;
 	int b = 0;
 	int ct = 0;
+	char *command_tmp;
 
 	if ((ct = check_sep(word_array(command))) != -1 && ct != -2) {
 		//printf("\n\n\nBOUCOULILAH\n\n\n");
@@ -134,6 +139,16 @@ tree_t*	my_list_command(char *command, env_st_t* info)
 		return (temp);
 	}
 	if (b == 0) {
+		for (int ct = 0; command[ct] != '\0'; ct ++) {
+			if (command[ct] == '(') {
+				command_tmp = malloc(sizeof(char) * (my_strlen(command) - 1));
+				remove_parent_command(command_tmp, command, '\0', my_strlen(command) - 2);
+				//printf("WALLA COMMANDE :  %s\n", command_tmp);
+				temp = fill_struct_comand(command_tmp, 0, 1);
+				return (temp);
+			}
+
+		}
 		temp = fill_struct_comand(command, 0, 1);
 	}
 	return (temp);

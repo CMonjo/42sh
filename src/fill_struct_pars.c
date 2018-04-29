@@ -71,7 +71,6 @@ char	*my_second_command(char *av, int len)
 	for (int ct = 0; av[ct] != '\0'; ct ++)
 		if (av[ct] == '(') {
 			len = len + 3;
-			printf("F;QD,SFKDSN,FDSN,FS\n");
 			break;
 		}
 	for (int ct = len; av[ct] != '\0'; ct ++)
@@ -81,7 +80,7 @@ char	*my_second_command(char *av, int len)
 		command_two[ctb] = av[ct];
 	}
 	command_two[len_2] = '\0';
-	printf("COMMANDE RIGHT   :    %s\n", command_two);
+	//printf("COMMANDE RIGHT   :    %s\n", command_two);
 	return (command_two);
 }
 
@@ -100,7 +99,7 @@ char	**my_separator_command(char *av, char *sep)
 	}
 	command = malloc(sizeof(char) * (len + 1));
 	remove_parent_command(command, av, sep[0], len);
-	printf("LEFT  COMMANDE   :    %s\n", command);
+	//printf("LEFT  COMMANDE   :    %s\n", command);
 	/*for (int ct = 0; av[ct] != sep[0]; ct ++)
 		command[ct] = av[ct];
 	command[len] = '\0';*/

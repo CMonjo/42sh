@@ -66,7 +66,21 @@
 		int (*name_str)(char **str, char **envp, env_st_t *env_st);
 	} name_env_t;
 
+	//ALIAS
+	int alias(char **array, UNUSED char **envp, env_st_t *env_st);
+	char *alias_parse(char **tab);
+	char *alias_check_string(char **str, char *long_str);
+	void alias_fill(env_st_t *env_st, char **str, char *long_str,
+		char *parenthesis);
+	void alias_compare(env_st_t *env_st, char *str);
+	void alias_add(env_st_t *env_st, char **str, char *long_str,
+		char *parenthesis);
+	alias_t *alias_add_node(char **str, char *long_str,
+		char *parenthesis);
+	void alias_display(env_st_t *env_st);
+	char *alias_parse_parenthesis(char **tab);
 	int	error_alias_loop(char *first, char *str, env_st_t *env_st);
+
 	void error_backstick_quote(char *str, char c, int *ct);
 	void error_parent(char *command);
 	int check_long_sep(char *command);
@@ -105,7 +119,8 @@
 	int my_getnbr(char const *str);
 	int main_loop(char **envp, int end, char *str);
 	void my_right_red_pipe(char **file, tree_t* temp, char *sep);
-	int pipe_check_exec(char **command, char **envp, env_st_t *env_st, tree_t* temp);
+	int pipe_check_exec(char **command, char **envp, env_st_t *env_st,
+		tree_t* temp);
 	int my_pipe_start(env_st_t *env_st,
 	char **command_in, char **command_out, tree_t* temp);
 	int my_putstr_err(char *str, char *msg);
@@ -149,7 +164,8 @@
 	char **str_arr, tree_t* temp);
 	int check_path_bsc(char **envp, char *name, char **str_arr,
 	env_st_t* env_st, tree_t* temp);
-	int strat_exec(char *name, char **envp, char **str, env_st_t* env_st, tree_t* temp);
+	int strat_exec(char *name, char **envp, char **str, env_st_t* env_st,
+		tree_t* temp);
 	char *pathing(char **envp, int *ct, int ctb);
 	int error_oldpwd(char **str, int cd_min, env_st_t *env_st);
 	char **create_env(void);
@@ -183,12 +199,4 @@
 	int check_val(char **envp, char *name, env_st_t* env_st);
 	int check_env(char *envp, char *name);
 	int	error_redi_right_input(tree_t* temp, char *str);
-	int alias(char **array, UNUSED char **envp, env_st_t *env_st);
-	char *alias_parse(char **tab);
-	char *alias_check_string(char **str, char *long_str);
-	void alias_fill(env_st_t *env_st, char **str, char *long_str);
-	void alias_compare(env_st_t *env_st, char *str);
-	void alias_add(env_st_t *env_st, char **str, char *long_str);
-	alias_t *alias_add_node(char **str, char *long_str);
-	void alias_display(env_st_t *env_st);
 #endif

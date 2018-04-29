@@ -39,7 +39,7 @@ char *concat_alias(char *dest, char *src)
 	return (dest);
 }
 
-char *alias_parse(char **tab)
+char *alias_parse_parenthesis(char **tab)
 {
 	int i = 0;
 	char *dest = NULL;
@@ -62,23 +62,32 @@ char *alias_parse(char **tab)
 	return(dest);
 }
 
+char *alias_parse(char **tab)
+{
+	int i = 0;
+	char *dest = NULL;
+	char *tmp = NULL;
+
+	for (; tab[i] != NULL; i++);
+	if (i > 3) {
+		dest = concat_alias(dest, tab[2]);
+		i = 3;
+		while (tab[i] != NULL) {
+			tmp = NULL;
+			dest = concat_alias(dest, " ");
+			tmp = concat_alias(tmp, tab[i]);
+			dest = concat_alias(dest, tmp);
+			i++;
+		}
+	}
+	return(dest);
+}
+
+
 char *alias_check_string(char **str, char *long_str)
 {
 	if (long_str == NULL)
 		return(str[2]);
 	else
 		return(long_str);
-}
-
-void alias_compare(env_st_t *env_st, char *str)
-{
-	alias_t *tmp = env_st->alias;
-
-	while (tmp != NULL) {
-		if (my_strcmp(tmp->bind, str) == 0) {
-			my_printf("%s\n", tmp->command_display);
-			break;
-		}
-		tmp = tmp->next;
-	}
 }

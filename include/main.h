@@ -69,7 +69,7 @@
 	//ALIAS
 	int alias(char **array, UNUSED char **envp, env_st_t *env_st);
 	char *alias_parse(char **tab);
-	char *alias_check_string(char **str, char *long_str);
+	char *alias_check_string(char *long_str, char *parents);
 	void alias_fill(env_st_t *env_st, char **str, char *long_str,
 		char *parenthesis);
 	void alias_compare(env_st_t *env_st, char *str);

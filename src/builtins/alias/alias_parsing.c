@@ -84,10 +84,10 @@ char *alias_parse(char **tab)
 }
 
 
-char *alias_check_string(char **str, char *long_str)
+char *alias_check_string(char *long_str, char *parents)
 {
-	if (long_str == NULL)
-		return(str[2]);
-	else
+	if (parents == NULL)
 		return(long_str);
+	else
+		return(parents);
 }

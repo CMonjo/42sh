@@ -16,30 +16,60 @@ int	check_sep_char(char *str)
 	return (-1);
 }
 
+void	skip_parent(char **arr, int *ctb)
+{
+	int nb_parent = 0;
+	int nb_parent_out = 0;
+
+	for (int ct = 0; arr[ct] != NULL; ct ++)
+		if (arr[ct][0] == '(')
+			nb_parent ++;
+	(*ctb) ++;
+	while (nb_parent_out != nb_parent) {
+		if (arr[*ctb][0] == ')')
+			nb_parent_out ++;
+		(*ctb) ++;
+	}
+}
+
 int	check_sep(char **arr)
 {
 	int value = 0;
+	int ct = 0;
 
 	if (arr == NULL)
 		return (-2);
-	for (int ctb = 0; arr[ctb] != NULL; ctb ++)
+
+	for (int ctb = ct; arr[ctb] != NULL; ctb ++) {
+		if (arr[ctb][0] == '(')
+			skip_parent(arr, &ctb);
 		if (my_strcmp(arr[ctb], ";") == 0)
 			return (0);
+	}
 	/*for (int ctb = 0; arr[ctb] != NULL; ctb ++)
 		if (my_strcmp(arr[ctb], "||") == 0)
 			return (1);
 	for (int ctb = 0; arr[ctb] != NULL; ctb ++)
 		if (my_strcmp(arr[ctb], "&&") == 0)
 			return (2);*/
-	for (int ctb = 0; arr[ctb] != NULL; ctb ++)
+	for (int ctb = ct; arr[ctb] != NULL; ctb ++) {
+		if (arr[ctb][0] == '(')
+			skip_parent(arr, &ctb);
 		if (my_strcmp(arr[ctb], ">") == 0)
 			return (7);
-	for (int ctb = 0; arr[ctb] != NULL; ctb ++)
+	}
+	for (int ctb = ct; arr[ctb] != NULL; ctb ++) {
+		if (arr[ctb][0] == '(')
+			skip_parent(arr, &ctb);
 		if (my_strcmp(arr[ctb], ">>") == 0)
 			return (4);
-	for (int ctb = 0; arr[ctb] != NULL; ctb ++)
+	}
+	for (int ctb = ct; arr[ctb] != NULL; ctb ++) {
+		if (arr[ctb][0] == '(')
+			skip_parent(arr, &ctb);
 		if ((value = check_sep_char(arr[ctb])) != -1)
 			return (value);
+	}
 	return (-1);
 }
 

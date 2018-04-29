@@ -69,7 +69,7 @@ char *alias_parse(char **tab)
 	char *tmp = NULL;
 
 	for (; tab[i] != NULL; i++);
-	if (i > 3) {
+	if (i > 2) {
 		dest = concat_alias(dest, tab[2]);
 		i = 3;
 		while (tab[i] != NULL) {

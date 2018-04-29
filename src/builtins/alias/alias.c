@@ -12,8 +12,8 @@ alias_t *alias_add_node(char **str, char *long_str, char *parenthesis)
 	alias_t *tmp = malloc(sizeof(alias_t));
 
 	tmp->bind = str[1];
-	tmp->command_bind = long_str;
-	tmp->command_display = alias_check_string(str, parenthesis);
+	tmp->command_bind = my_strdup(long_str);
+	tmp->command_display = my_strdup(alias_check_string(str, parenthesis));
 	tmp->next = NULL;
 	return(tmp);
 }
@@ -36,8 +36,8 @@ void alias_fill(env_st_t *env_st, char **str, char *long_str, char *parenthesis)
 
 	while (tmp != NULL) {
 		if (my_strcmp(tmp->bind, str[1]) == 0) {
-			tmp->command_bind = long_str;
-			tmp->command_display = alias_check_string(str, parenthesis);
+			tmp->command_bind = my_strdup(long_str);
+			tmp->command_display = my_strdup(alias_check_string(str, parenthesis));
 			return;
 		}
 		tmp = tmp->next;

@@ -48,7 +48,7 @@ int	check_sep(char **arr)
 		if (arr[ctb][0] == '(')
 			skip_parent(arr, &ctb);
 		if (arr[ctb] == NULL)
-			return (-1);
+			break;
 		if (my_strcmp(arr[ctb], ";") == 0)
 			return (0);
 	}
@@ -62,7 +62,7 @@ int	check_sep(char **arr)
 		if (arr[ctb][0] == '(')
 			skip_parent(arr, &ctb);
 		if (arr[ctb] == NULL)
-			return (-1);
+			break;
 		if (my_strcmp(arr[ctb], ">") == 0)
 			return (7);
 	}
@@ -70,15 +70,16 @@ int	check_sep(char **arr)
 		if (arr[ctb][0] == '(')
 			skip_parent(arr, &ctb);
 		if (arr[ctb] == NULL)
-			return (-1);
+			break;
 		if (my_strcmp(arr[ctb], ">>") == 0)
 			return (4);
 	}
 	for (int ctb = ct; arr[ctb] != NULL; ctb ++) {
+		//printf("SEP  :  %s\n", arr[ctb]);
 		if (arr[ctb][0] == '(')
 			skip_parent(arr, &ctb);
 		if (arr[ctb] == NULL)
-			return (-1);
+			break;
 		if ((value = check_sep_char(arr[ctb])) != -1)
 			return (value);
 	}

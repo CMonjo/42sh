@@ -66,13 +66,13 @@ void	remove_parent_command(char *command, char *av, char sep, int len)
 	command[len] = '\0';
 }
 
-char	*my_second_command(char *av, int len)
+char	*my_second_command(char *av, int len, char sep)
 {
 	int len_2 = 0;
 	int ctb = 0;
 	char *command_two;
 
-	for (int ct = 0; av[ct] != '\0'; ct ++)
+	for (int ct = 0; av[ct] != sep; ct ++)
 		if (av[ct] == '(') {
 			len = len + 3;
 			break;
@@ -112,7 +112,7 @@ char	**my_separator_command(char *av, char *sep)
 		len ++;
 	command_arr[0] = my_strdup(sep);
 	command_arr[1] = my_strdup(command);
-	command_arr[2] = my_second_command(av, len);
+	command_arr[2] = my_second_command(av, len, sep[0]);
 	command_arr[3] = NULL;
 	return (command_arr);
 }
@@ -143,6 +143,15 @@ tree_t*	my_list_command(char *command, env_st_t* info)
 			if (command[ct] == '(') {
 				command_tmp = malloc(sizeof(char) * (my_strlen(command) - 1));
 				remove_parent_command(command_tmp, command, '\0', my_strlen(command) - 2);
+				if ((ct = check_sep(word_array(command_tmp))) != -1 && ct != -2) {
+					//printf("\n\n\nBOUCOULILAH\n\n\n");
+					arr = my_separator_command(command_tmp, (char *)tab_name[ct]);
+					temp = fill_struct_comand((char *)tab_name[ct], 0, 1);
+					//printf("\n\n\nBOUCOULILAH    COMMANDE GAUCHE   '%s'   COMMANDE DROITE   '%s'\n\n\n", arr[1], arr[2]);
+					temp->left = my_list_command(arr[1], info);
+					temp->right = my_list_command(arr[2], info);
+					return (temp);
+				}
 				//printf("WALLA COMMANDE :  %s\n", command_tmp);
 				temp = fill_struct_comand(command_tmp, 0, 1);
 				return (temp);

@@ -145,7 +145,7 @@
 	int my_strcmp_c(char *s1, char const *s2);
 	tree_t *my_list_command(char *command, env_st_t *info);
 	char **my_separator_command(char *av, char *sep);
-	char *my_second_command(char *av, int len);
+	char *my_second_command(char *av, int len, char sep);
 	tree_t *fill_struct_comand(char *command, int fd_in, int fd_out);
 	char *start_sep_command(int ct, char *command, int *b);
 	int check_sep_char(char *str);

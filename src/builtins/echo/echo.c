@@ -28,7 +28,6 @@ int	echo(char **arr, UNUSED char **envp, UNUSED env_st_t *env_st)
 {
 	if (arr[1] == NULL)
 		return (0);
-	my_printf("WALLA\n");
 	for (int ct = 1; arr[ct] != NULL; ct ++) {
 		if (arr[ct][0] == 39 || arr[ct][0] == 34)
 			skip_print_quotes(arr, ct, 1, arr[ct][0]);

@@ -18,7 +18,7 @@ int	check_bult_in(char *str)
 	char *bul_in[] = {"cd", "env", "exit", "setenv", "unsetenv",
 	"alias", "echo"};
 
-	for (int ct = 0; ct != 7; ct ++) {
+	for (int ct = 0; ct != 6; ct ++) {
 		if (my_strcmp(str, bul_in[ct]) == 0)
 			return (ct);
 	}
@@ -29,7 +29,7 @@ int	pipe_check_exec(char **command, char **envp, env_st_t *env_st, tree_t* temp)
 {
 	int ct = 0;
 
-	while (ct < 7) {
+	while (ct < 6) {
 		if (command[0] != NULL
 		&& my_strcmp(command[0], tab_name_b[ct].name) == 0) {
 			dup2(temp->fd_in, 0);
@@ -97,7 +97,7 @@ int	check_gnl(char *name, char **envp, env_st_t *env_st, tree_t* temp)
 	if (check_alias_local_var(str[0], env_st) == 1) {
 		return (1);
 	}
-	while (ct < 7) {
+	while (ct < 6) {
 		if (str[0] != NULL
 		&& my_strcmp(str[0], tab_name_b[ct].name) == 0) {
 			(tab_name_b[ct].name_str)(str, envp, env_st);

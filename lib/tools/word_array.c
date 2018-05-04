@@ -86,11 +86,11 @@ char	**word_array(char *line)
 	str = malloc(sizeof(char *) * (len + 1));
 	len = 0;
 	while (line[ct] != '\0') {
-		if (line[ct] == 39 || line[ct] == 34) {
+		/*if (line[ct] == 39 || line[ct] == 34) {
 			ct ++;
 			str[ctb] = copy_str_quote(line, &ct, line[ct - 1]);
 			ctb ++;
-		} else if (line[ct] != 32 && line[ct] != 9) {
+		} else*/ if (line[ct] != 32 && line[ct] != 9) {
 			if (line[ct] == '\\')
 				ct ++;
 			str[ctb] = copy_str_arr(line, &ct);

@@ -22,10 +22,6 @@ void	error_parent(char *command)
 	int parent_left = 0;
 	int parent_right = 0;
 
-	if (error_null_parent(word_array(command)) == 1) {
-		my_printf("Invalid null command.\n");
-		exit(1);
-	}
 	for (int ct = 0; command[ct] != '\0'; ct ++) {
 		if (command[ct] == 41)
 			parent_right ++;
@@ -52,6 +48,10 @@ void	error_parent(char *command)
 	}
 	if ((parent_left / parent_right) == 0) {
 		my_printf("Too many %c's.\n", 41);
+		exit(1);
+	}
+	if (error_null_parent(word_array(command)) == 1) {
+		my_printf("Invalid null command.\n");
 		exit(1);
 	}
 }

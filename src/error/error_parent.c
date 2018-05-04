@@ -11,8 +11,15 @@ int	error_null_parent(char **command)
 {
 	for (int ct = 0; command[ct] != NULL; ct ++) {
 		if (command[ct][0] == '('
-		&& command[ct + 1] != NULL && command[ct + 1][0] == ')')
+		&& command[ct + 1] != NULL && command[ct + 1][0] == ')') {
+			my_printf("Invalid null command.\n");
 			return (1);
+		}
+		if (command[ct][0] == '('
+		&& command[ct + 1] != NULL && check_sep_char(command[ct + 1]) != -1) {
+			my_printf("Badly placed ()'s.\n");
+			return (1);
+		}
 	}
 	return (0);
 }
@@ -51,7 +58,6 @@ void	error_parent(char *command)
 		exit(1);
 	}
 	if (error_null_parent(word_array(command)) == 1) {
-		my_printf("Invalid null command.\n");
 		exit(1);
 	}
 }

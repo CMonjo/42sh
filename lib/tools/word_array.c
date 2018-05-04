@@ -33,25 +33,19 @@ char	*copy_str_arr(char *line, int *ct)
 
 char	*copy_str_quote(char *line, int *ct, char c)
 {
-	int ctp = *ct;
-	int len = 0;
+	int len = 2;
 	char *str;
 
-	while (line[ctp] != c && line[ctp] != '\0') {
+	for (int ctb = ((*ct) + 1); line[ctb] != c; ctb ++)
 		len ++;
-		ctp ++;
-	}
-	ctp = 0;
 	str = malloc(sizeof(char) * (len + 1));
-	while (line[*ct] != c && line[*ct] != '\0') {
-		str[ctp] = line[*ct];
-		ctp ++;
-		(*ct) ++;
-	}
+	str[0] = line[*ct];
 	(*ct) ++;
-	str[ctp] = '\0';
-	len = 0;
-	ctp = 0;
+	for (int ctb = 1; line[*ct] != c; ctb ++, (*ct) ++)
+		str[ctb] = line[*ct];
+	str[len - 1] = line[*ct];
+	str[len] = '\0';
+	(*ct) ++;
 	return (str);
 }
 
@@ -86,11 +80,10 @@ char	**word_array(char *line)
 	str = malloc(sizeof(char *) * (len + 1));
 	len = 0;
 	while (line[ct] != '\0') {
-		/*if (line[ct] == 39 || line[ct] == 34) {
-			ct ++;
-			str[ctb] = copy_str_quote(line, &ct, line[ct - 1]);
+		if (line[ct] == 39 || line[ct] == 34) {
+			str[ctb] = copy_str_quote(line, &ct, line[ct]);
 			ctb ++;
-		} else*/ if (line[ct] != 32 && line[ct] != 9) {
+		} else if (line[ct] != 32 && line[ct] != 9) {
 			if (line[ct] == '\\')
 				ct ++;
 			str[ctb] = copy_str_arr(line, &ct);

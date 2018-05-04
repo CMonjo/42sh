@@ -7,11 +7,25 @@
 
 #include "main.h"
 
+int	error_null_parent(char **command)
+{
+	for (int ct = 0; command[ct] != NULL; ct ++) {
+		if (command[ct][0] == '('
+		&& command[ct + 1] != NULL && command[ct + 1][0] == ')')
+			return (1);
+	}
+	return (0);
+}
+
 void	error_parent(char *command)
 {
 	int parent_left = 0;
 	int parent_right = 0;
 
+	if (error_null_parent(word_array(command)) == 1) {
+		my_printf("Invalid null command.\n");
+		exit(1);
+	}
 	for (int ct = 0; command[ct] != '\0'; ct ++) {
 		if (command[ct] == 41)
 			parent_right ++;

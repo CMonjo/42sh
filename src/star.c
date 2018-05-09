@@ -17,25 +17,27 @@ int	is_there_star(char *str)
 	return (0);
 }
 
+int	my_arraylen(char **array)
+{
+	int i = 0;
+
+	for (; array != NULL && array[i] != NULL; i++);
+	return (i);
+}
+
 int	arg_nbr(char **array, int test)
 {
 	int c = 0;
 	int i = 1;
 
+	if (my_arraylen(array) == 1)
+		return (0);
 	for (; array[i] != NULL; i++, c++) {
 		if (is_there_star(array[i]) == 1)
 			break;
 	}
 	if (test == 0)
 		return (c);
-	return (i);
-}
-
-int	my_arraylen(char **array)
-{
-	int i = 0;
-
-	for (; array != NULL && array[i] != NULL; i++);
 	return (i);
 }
 
@@ -99,6 +101,15 @@ env_st_t *env_st)
 	pipe_check_exec(globuffer.gl_pathv, env, env_st, tree);
 }
 
+glob_t	globuffer_arg(glob_t globuffer, char **array, int index)
+{
+	if (index != 0)
+		globuffer.gl_offs = arg_nbr(array, 0) + 1;
+	else
+		globuffer.gl_offs = 0;
+	return (globuffer);
+}
+
 void	star_handle(char **array, char **env, env_st_t *env_st)
 {
 	int index;
@@ -106,7 +117,7 @@ void	star_handle(char **array, char **env, env_st_t *env_st)
 
 	array = array_star_sort(array);
 	index = arg_nbr(array, 1);
-	globuffer.gl_offs = arg_nbr(array, 0) + 1;
+	globuffer = globuffer_arg(globuffer, array, index);
 	for (int i = 0; array[index] != NULL; index++, i++) {
 		if (i == 0)
 			glob(array[index], GLOB_DOOFFS, NULL, &globuffer);

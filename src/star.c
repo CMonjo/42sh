@@ -130,7 +130,7 @@ env_st_t *env_st)
 	if (is_there_changement(array, globuffer.gl_pathv) == 1)
 		pipe_check_exec(globuffer.gl_pathv, env, env_st, tree);
 	else
-		pipe_check_exec(array, env, env_st, tree);
+		my_printf("%s: No match.\n", globuffer.gl_pathv[0]);
 }
 
 glob_t	globuffer_arg(glob_t globuffer, char **array, int index)

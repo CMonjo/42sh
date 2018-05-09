@@ -1,48 +1,53 @@
 ##
-## EPITECH PROJECT, 2018
+## EPITECH PROJECT, 2017
 ## Makefile
 ## File description:
-## Makefile for minishell1
+## Makefile for 42sh
 ##
 
-CC = gcc
+CC	=	gcc
 
-CFLAGS	=	-I./include -W -Wall -Wextra -lcriterion
+CFLAGS	=	-I./include -W -Wall -Wextra
 
-CFLAGS += -g3
+CFLAGS +=	-g3
 
-SRC	=	copy_env.c		\
-		cd.c		\
-		cat.c		\
-		echo.c		\
-		other.c		\
-		main.c		\
-		exec.c		\
-		pipe.c		\
-		repeat.c		\
-		pipe_plus.c		\
-		exec_red.c		\
-		exec_path_red.c		\
-		exit.c		\
-		prompt.c		\
-		cd_path.c		\
-		grep.c		\
-		unsetenv.c		\
-		env_other.c		\
-		path.c		\
-		main_b_tree.c	\
-		set_n_check.c	\
-		fill_struct_pars.c		\
-		epur_command.c		\
-		check_command.c		\
-		error_sep.c		\
-		error_long_sep.c		\
-		start_error_sep.c		\
-		right_red.c		\
-		left_red.c		\
-		start_sep.c		\
-		start_double_sep.c		\
-
+SRC	=	src/main.c		\
+		src/error_alias.c		\
+		src/exec.c		\
+		src/pipe.c		\
+		src/pipe_plus.c		\
+		src/exec_red.c		\
+		src/exec_path_red.c	\
+		src/prompt.c		\
+		src/path.c		\
+		src/main_b_tree.c	\
+		src/set_n_check.c	\
+		src/fill_struct_pars.c	\
+		src/epur_command.c	\
+		src/check_command.c	\
+		src/right_red.c		\
+		src/left_red.c		\
+		src/start_sep.c		\
+		src/start_double_sep.c	\
+		src/star.c	\
+		src/builtins/env/copy_env.c		\
+		src/builtins/env/unsetenv.c		\
+		src/builtins/env/env_other.c		\
+		src/builtins/cd/cd.c			\
+		src/builtins/cd/cd_path.c		\
+		src/builtins/cat/cat.c			\
+		src/builtins/echo/echo.c		\
+		src/builtins/repeat/repeat.c		\
+		src/builtins/grep/grep.c		\
+		src/builtins/alias/alias.c		\
+		src/builtins/alias/alias_parsing.c	\
+		src/builtins/alias/alias_display.c	\
+		src/builtins/exit/exit.c		\
+		src/error/error_sep.c			\
+		src/error/error_parent.c		\
+		src/error/error_quotes.c		\
+		src/error/error_long_sep.c		\
+		src/error/start_error_sep.c		\
 
 OBJ	=	$(SRC:.c=.o)
 
@@ -51,15 +56,15 @@ NAME	=	42sh
 all:	$(NAME)
 
 $(NAME):	$(OBJ)
-	make -C ./lib/my
-	$(CC) -o $(NAME) $(OBJ) -L./lib/my -lmy
+	make -C ./lib/tools
+	$(CC) -o $(NAME) $(OBJ) -L./lib/tools -ltools
 
 clean:
 	rm -f $(OBJ)
-	make clean -C ./lib/my
+	make clean -C ./lib/tools
 
 fclean:	clean
 	rm -f $(NAME)
-	make fclean -C ./lib/my
+	make fclean -C ./lib/tools
 
 re:	fclean all

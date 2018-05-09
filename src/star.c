@@ -92,13 +92,45 @@ char	**array_star_sort(char **array)
 	return (array);
 }
 
+char	**is_the_same(char **array, char *str, int *modif)
+{
+	for (int i = 0; array != NULL && array[i] != NULL; i++) {
+		if (my_strcmp(array[i], str) == 0) {
+			array = delete_line(array, i);
+			*modif = 1;
+			return (array);
+		}
+	}
+	*modif = 0;
+	return (array);
+}
+
+int	is_there_changement(char **array, char **new)
+{
+	char **tmp = array;
+	int modif = 0;
+
+	for (int i = 0; new != NULL && new[i] != NULL; i++) {
+		is_the_same(array, new[i], &modif);
+		if (modif == 0) {
+			array = tmp;
+			return (1);
+		}
+	}
+	array = tmp;
+	return (0);
+}
+
 void	star_execution(char **array, glob_t globuffer, char **env,
 env_st_t *env_st)
 {
 	tree_t *tree = env_st->tree;
 
 	tree = my_list_command(array[0], env_st);
-	pipe_check_exec(globuffer.gl_pathv, env, env_st, tree);
+	if (is_there_changement(array, globuffer.gl_pathv) == 1)
+		pipe_check_exec(globuffer.gl_pathv, env, env_st, tree);
+	else
+		pipe_check_exec(array, env, env_st, tree);
 }
 
 glob_t	globuffer_arg(glob_t globuffer, char **array, int index)

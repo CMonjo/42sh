@@ -21,6 +21,7 @@
 	#include <errno.h>
 	#include <sys/wait.h>
 	#include "tools.h"
+	#include <glob.h>
 
 	#define UNUSED __attribute__((unused))
 
@@ -199,4 +200,5 @@
 	int check_val(char **envp, char *name, env_st_t* env_st);
 	int check_env(char *envp, char *name);
 	int	error_redi_right_input(tree_t* temp, char *str);
+	void	star_handle(char **array, char **env, env_st_t *env_st);
 #endif

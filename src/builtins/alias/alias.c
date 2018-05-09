@@ -35,6 +35,8 @@ void alias_fill(env_st_t *env_st, char **str, char *long_str, char *parents)
 {
 	alias_t *tmp = env_st->alias;
 
+	printf("alias fill\nlong str %s\nparents %s\n", long_str, parents);
+
 	while (tmp != NULL) {
 		if (my_strcmp(tmp->bind, str[1]) == 0) {
 			tmp->command_bind = my_strdup(long_str);

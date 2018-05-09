@@ -45,6 +45,9 @@ char *alias_parse_parenthesis(char **tab)
 	char *dest = NULL;
 	char *tmp = NULL;
 
+	for (int i = 0; tab[i] != NULL; i++)
+		printf("• %s\n", tab[i]);
+
 	for (; tab[i] != NULL; i++);
 	if (i > 3) {
 		dest = concat_alias("(", dest);

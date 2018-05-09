@@ -83,7 +83,6 @@ char *alias_parse(char **tab)
 	return(dest);
 }
 
-
 char *alias_check_string(char *long_str, char *parents)
 {
 	if (parents == NULL)

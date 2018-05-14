@@ -76,7 +76,6 @@ int	check_same_alias(char *command, env_st_t *env_st)
 int	check_alias_local_var(char *command, char *str, env_st_t *env_st)
 {
 	alias_t* alias = env_st->alias;
-	int val = 0;
 
 	/*if (str[0] == '$') {
 		//local variables
@@ -111,7 +110,7 @@ int	check_gnl(char *name, char **envp, env_st_t *env_st, tree_t* temp)
 		star_handle(str, envp, env_st);
 		return (0);
 	}
-	if (check_alias_local_var(str[0], env_st) == 1) {
+	if (check_alias_local_var(name, str[0], env_st) == 1) {
 		return (1);
 	}
 	while (ct < 7) {

@@ -16,9 +16,9 @@ name_env_t const tab_name_b[] = {{"cd", cd}, {"env", env},
 int	check_bult_in(char *str)
 {
 	char *bul_in[] = {"cd", "env", "exit", "setenv", "unsetenv",
-	"alias", "echo"};
+	"alias", "echo", "repeat"};
 
-	for (int ct = 0; ct != 7; ct ++) {
+	for (int ct = 0; ct != 8; ct ++) {
 		if (my_strcmp(str, bul_in[ct]) == 0)
 			return (ct);
 	}
@@ -29,7 +29,7 @@ int	pipe_check_exec(char **command, char **envp, env_st_t *env_st, tree_t* temp)
 {
 	int ct = 0;
 
-	while (ct < 7) {
+	while (ct < 8) {
 		if (command[0] != NULL
 		&& my_strcmp(command[0], tab_name_b[ct].name) == 0) {
 			dup2(temp->fd_in, 0);
@@ -82,8 +82,10 @@ int	check_alias_local_var(char *command, char *str, env_st_t *env_st)
 	}*/
 	if (check_same_alias(command, env_st) == 1)
 		return (0);
-	if (alias != NULL && error_alias_loop(alias->bind, command, env_st) == 1)
+	if (alias != NULL && error_alias_loop(command, str, env_st) == 1)
 		return (1);
+	if (alias != NULL)
+		printf("WLLOLL   %s\n", command);
 	while (alias != NULL) {
 		if (my_strcmp(alias->bind, command) == 0) {
 			check_gnl(alias->command_bind,
@@ -106,14 +108,14 @@ int	check_gnl(char *name, char **envp, env_st_t *env_st, tree_t* temp)
 	/*if (check_stars(name) == 1) {
 
 	}*/
-        if (check_stars(name) == 1) {
+	if (check_stars(name) == 1) {
 		star_handle(str, envp, env_st);
 		return (0);
 	}
-	if (check_alias_local_var(name, str[0], env_st) == 1) {
+	if (check_alias_local_var(str[0], str[0], env_st) == 1) {
 		return (1);
 	}
-	while (ct < 7) {
+	while (ct < 8) {
 		if (str[0] != NULL
 		&& my_strcmp(str[0], tab_name_b[ct].name) == 0) {
 			(tab_name_b[ct].name_str)(str, envp, env_st);

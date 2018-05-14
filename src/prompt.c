@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2018
+** EPITECH PROJECT, 2019
 ** prompt.c
 ** File description:
 ** the prompte function of the minishell1
@@ -10,15 +10,15 @@
 name_env_t const tab_name_b[] = {{"cd", cd}, {"env", env},
 			{"exit", exit_env}, {"setenv", set_env},
 			{"unsetenv", unset_env}, {"alias", alias},
-			{"echo", echo}, {"repeat", repeat}, {"cat", cat},
-			{"grep", grep}};
+			{"echo", echo}, {"repeat", repeat}, {"which", which},
+			{"cat", cat}, {"grep", grep}};
 
 int	check_bult_in(char *str)
 {
 	char *bul_in[] = {"cd", "env", "exit", "setenv", "unsetenv",
 	"alias", "echo", "repeat"};
 
-	for (int ct = 0; ct != 8; ct ++) {
+	for (int ct = 0; ct != 9; ct ++) {
 		if (my_strcmp(str, bul_in[ct]) == 0)
 			return (ct);
 	}
@@ -29,7 +29,7 @@ int	pipe_check_exec(char **command, char **envp, env_st_t *env_st, tree_t* temp)
 {
 	int ct = 0;
 
-	while (ct < 8) {
+	while (ct < 9) {
 		if (command[0] != NULL
 		&& my_strcmp(command[0], tab_name_b[ct].name) == 0) {
 			dup2(temp->fd_in, 0);
@@ -113,7 +113,7 @@ int	check_gnl(char *name, char **envp, env_st_t *env_st, tree_t* temp)
 	if (check_alias_local_var(str[0], str[0], env_st) == 1) {
 		return (1);
 	}
-	while (ct < 8) {
+	while (ct < 9) {
 		if (str[0] != NULL
 		&& my_strcmp(str[0], tab_name_b[ct].name) == 0) {
 			(tab_name_b[ct].name_str)(str, envp, env_st);

@@ -107,7 +107,11 @@ int	check_gnl(char *name, char **envp, env_st_t *env_st, tree_t* temp)
 	/*if (check_stars(name) == 1) {
 
 	}*/
-	if (check_alias_local_var(name, str[0], env_st) == 1) {
+        if (check_stars(name) == 1) {
+		star_handle(str, envp, env_st);
+		return (0);
+	}
+	if (check_alias_local_var(str[0], env_st) == 1) {
 		return (1);
 	}
 	while (ct < 7) {

@@ -1,0 +1,13 @@
+*~
+*#
+\#*#
+\#*
+*.o
+*.a
+*.out
+*.editorconfig
+*.gcda
+*.gcno
+units
+.vscode
+42sh

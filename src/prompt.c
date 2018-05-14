@@ -84,8 +84,6 @@ int	check_alias_local_var(char *command, char *str, env_st_t *env_st)
 		return (0);
 	if (alias != NULL && error_alias_loop(command, str, env_st) == 1)
 		return (1);
-	if (alias != NULL)
-		printf("WLLOLL   %s\n", command);
 	while (alias != NULL) {
 		if (my_strcmp(alias->bind, command) == 0) {
 			check_gnl(alias->command_bind,

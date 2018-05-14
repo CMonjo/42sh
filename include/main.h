@@ -80,7 +80,8 @@
 	void alias_display(env_st_t *env_st);
 	char *alias_parse_parenthesis(char **tab);
 	int	error_alias_loop(char *first, char *str, env_st_t *env_st);
-
+	int	check_gnl_alias(char *name, char **envp,
+	env_st_t *env_st, tree_t* temp);
 	void error_backstick_quote(char *str, char c, int *ct);
 	void error_parent(char *command);
 	int check_long_sep(char *command);

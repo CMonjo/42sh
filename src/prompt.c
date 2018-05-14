@@ -61,19 +61,32 @@ int	check_stars(char *str)
 	}
 	return (0);
 }
-
-int	check_alias_local_var(char *str, env_st_t *env_st)
+int	check_same_alias(char *command, env_st_t *env_st)
 {
 	alias_t* alias = env_st->alias;
+
+	while (alias != NULL) {
+		if (my_strcmp(alias->bind, command) == 0 && my_strcmp(alias->command_bind, command) == 0)
+			return (1);
+		alias = alias->next;
+	}
+	return (0);
+}
+
+int	check_alias_local_var(char *command, char *str, env_st_t *env_st)
+{
+	alias_t* alias = env_st->alias;
+	int val = 0;
 
 	/*if (str[0] == '$') {
 		//local variables
 	}*/
+	if (check_same_alias(command, env_st) == 1)
+		return (0);
+	if (alias != NULL && error_alias_loop(alias->bind, command, env_st) == 1)
+		return (1);
 	while (alias != NULL) {
-		if (my_strcmp(alias->bind, str) == 0) {
-			//printf("COMMAND EXEC : %s   COMMAND DISPLAY   :   %s\n", alias->command_bind, alias->command_display);
-			if (error_alias_loop(alias->bind, alias->command_bind, env_st) == 1)
-				return (1);
+		if (my_strcmp(alias->bind, command) == 0) {
 			check_gnl(alias->command_bind,
 			env_st->envp_cpy, env_st,
 			my_list_command(alias->command_bind, env_st));
@@ -94,7 +107,7 @@ int	check_gnl(char *name, char **envp, env_st_t *env_st, tree_t* temp)
 	/*if (check_stars(name) == 1) {
 
 	}*/
-	if (check_alias_local_var(str[0], env_st) == 1) {
+	if (check_alias_local_var(name, str[0], env_st) == 1) {
 		return (1);
 	}
 	while (ct < 7) {

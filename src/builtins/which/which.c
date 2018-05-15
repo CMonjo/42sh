@@ -22,6 +22,15 @@ int	which_alias(char *str, env_st_t *env_st)
 	return (0);
 }
 
+int	which_builtin(char *str)
+{
+	if (check_bult_in(str) != -1) {
+		my_printf("%s: shell built-in command.\n", str);
+		return (1);
+	}
+	return (0);
+}
+
 int	which_path(char *str, env_st_t *env_st)
 {
 	if (access(str, F_OK) != -1) {
@@ -104,7 +113,7 @@ int	which(char **arr, char **envp, env_st_t *env_st)
 		return (1);
 	}
 	for (int ct = 1; arr[ct] != NULL; ct ++) {
-		if (which_alias(arr[ct], env_st) != 1)
+		if (which_builtin(arr[ct]) != 1 && which_alias(arr[ct], env_st) != 1)
 			which_command(envp, env_st, arr[ct]);
 	}
 	return (0);

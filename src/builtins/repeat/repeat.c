@@ -29,7 +29,8 @@ int	error_repeat(char **arr, env_st_t *env_st, int tab_len)
 		return (1);
 	}
 	for (int ct = 0; arr[1][ct] != '\0'; ct ++)
-		if (arr[1][ct] < '0' || arr[1][ct] > '9') {
+		if ((arr[1][ct] < '0'
+		|| arr[1][ct] > '9') && arr[1][ct] != '-') {
 			env_st->status = 1;
 			my_printf("repeat: Badly formed number.\n");
 			return (1);
@@ -48,7 +49,7 @@ int	repeat(char **arr, char **envp, env_st_t *env_st)
 		tab_len ++;
 	if (error_repeat(arr, env_st, tab_len) == 1)
 		return (1);
-	if ((nbr = my_getnbr(arr[1])) > INT_MAX)
+	if ((nbr = my_getnbr(arr[1])) > INT_MAX || nbr < 0)
 		return (0);
 	nbr = my_getnbr(arr[1]);
 	command = repeat_command(arr, tab_len);

@@ -13,7 +13,7 @@ int	where_alias(char *str, env_st_t *env_st)
 
 	while (alias != NULL) {
 		if (my_strcmp(alias->bind, str) == 0) {
-			my_printf("%s: 	 aliased to %s\n",
+			my_printf("%s is aliased to %s\n",
 			alias->bind, alias->command_bind);
 			return (1);
 		}
@@ -25,7 +25,7 @@ int	where_alias(char *str, env_st_t *env_st)
 int	where_builtin(char *str)
 {
 	if (check_bult_in(str) != -1) {
-		my_printf("%s: shell built-in command.\n", str);
+		my_printf("%s is a shell built-in\n", str);
 		return (1);
 	}
 	return (0);

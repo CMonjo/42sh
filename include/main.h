@@ -68,6 +68,7 @@
 	} name_env_t;
 
 	//ALIAS
+	int	where(char **arr, char **envp, env_st_t *env_st);
 	int	which(char **arr, char **envp, env_st_t *env_st);
 	int alias(char **array, UNUSED char **envp, env_st_t *env_st);
 	char *alias_parse(char **tab);

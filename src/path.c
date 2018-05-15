@@ -78,7 +78,6 @@ void	check_path_env(char **envp, char *name,
 		if (envp[env_st->ind][ctb] == '\0')
 			ctb --;
 		if (access(str, F_OK) != -1) {
-			printf("PATH : %s\n", str);
 			if (strat_exec(str, envp, str_arr, env_st, temp) == 1)
 				env_st->status = 0;
 			return;

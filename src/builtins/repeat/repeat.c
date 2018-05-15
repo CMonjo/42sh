@@ -49,6 +49,7 @@ int	repeat(char **arr, char **envp, env_st_t *env_st)
 	if (error_repeat(arr, env_st, tab_len) == 1)
 		return (1);
 	if ((nbr = my_getnbr(arr[1])) > INT_MAX)
+		return (0);
 	nbr = my_getnbr(arr[1]);
 	command = repeat_command(arr, tab_len);
 	tree = my_list_command(command[0], env_st);

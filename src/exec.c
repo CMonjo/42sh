@@ -84,6 +84,7 @@ int	exec(char **envp, env_st_t* env_st, char **str, tree_t* temp)
 {
 	int ct = 0;
 	int b = 0;
+
 	while (str[0][ct] != '\0') {
 		if (str[0][ct] == '/')
 			b = 1;

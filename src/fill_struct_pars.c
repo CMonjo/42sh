@@ -117,7 +117,7 @@ char	**my_separator_command(char *av, char *sep)
 	return (command_arr);
 }
 
-tree_t*	my_list_command(char *command, env_st_t* info)
+tree_t*	my_list_command(char *command, env_st_t* info, int fd_in, int fd_out)
 {
 	tree_t* temp = info->tree;
 	char **arr;
@@ -128,10 +128,10 @@ tree_t*	my_list_command(char *command, env_st_t* info)
 	if ((ct = check_sep(word_array(command))) != -1 && ct != -2) {
 		//printf("\n\n\nBOUCOULILAH\n\n\n");
 		arr = my_separator_command(command, (char *)tab_name[ct]);
-		temp = fill_struct_comand((char *)tab_name[ct], 0, 1);
+		temp = fill_struct_comand((char *)tab_name[ct], fd_in, fd_out);
 		//printf("\n\n\nBOUCOULILAH    COMMANDE GAUCHE   '%s'   COMMANDE DROITE   '%s'\n\n\n", arr[1], arr[2]);
-		temp->left = my_list_command(arr[1], info);
-		temp->right = my_list_command(arr[2], info);
+		temp->left = my_list_command(arr[1], info, fd_in, fd_out);
+		temp->right = my_list_command(arr[2], info, fd_in, fd_out);
 		b = 1;
 	}
 	if (ct == -2) {
@@ -139,26 +139,26 @@ tree_t*	my_list_command(char *command, env_st_t* info)
 		return (temp);
 	}
 	if (b == 0) {
-		for (int ct = 0; command[ct] != '\0'; ct ++) {
+		/*for (int ct = 0; command[ct] != '\0'; ct ++) {
 			if (command[ct] == '(') {
 				command_tmp = malloc(sizeof(char) * (my_strlen(command) - 1));
 				remove_parent_command(command_tmp, command, '\0', my_strlen(command) - 2);
 				if ((ct = check_sep(word_array(command_tmp))) != -1 && ct != -2) {
 					//printf("\n\n\nBOUCOULILAH\n\n\n");
 					arr = my_separator_command(command_tmp, (char *)tab_name[ct]);
-					temp = fill_struct_comand((char *)tab_name[ct], 0, 1);
+					temp = fill_struct_comand((char *)tab_name[ct], fd_in, fd_out);
 					//printf("\n\n\nBOUCOULILAH    COMMANDE GAUCHE   '%s'   COMMANDE DROITE   '%s'\n\n\n", arr[1], arr[2]);
-					temp->left = my_list_command(arr[1], info);
-					temp->right = my_list_command(arr[2], info);
+					temp->left = my_list_command(arr[1], info, fd_in, fd_out);
+					temp->right = my_list_command(arr[2], info, fd_in, fd_out);
 					return (temp);
 				}
 				//printf("WALLA COMMANDE :  %s\n", command_tmp);
-				temp = fill_struct_comand(command_tmp, 0, 1);
+				temp = fill_struct_comand(command_tmp, fd_in, fd_out);
 				return (temp);
 			}
 
-		}
-		temp = fill_struct_comand(command, 0, 1);
+		}*/
+		temp = fill_struct_comand(command, fd_in, fd_out);
 	}
 	return (temp);
 }

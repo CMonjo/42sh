@@ -91,7 +91,7 @@ void	my_printf_te(tree_t* temp)
 void	my_printf_history(history_t* temp)
 {
 	while (temp != NULL) {
-		printf("HISTORY : %s\n", temp->command);
+		printf("HISTORY : '%s'\n", temp->command);
 		temp = temp->next;
 	}
 }
@@ -120,7 +120,30 @@ int	check_special_case(char *str)
 	return (1);
 }
 
-int	main_b_tree(char *str, env_st_t *info)
+/*char	*epur_command_sep_one(char *command)
+{
+	char *str;
+	int parent = 0;
+	int len = 0;
+	int ctb = 1;
+
+	for (int ct = 0; command[ct] != '\0'; ct ++)
+		if (command[ct] = '(')
+			parent ++;
+	//my_printf("COMMANDE :   %s    LEN   %d\n", command, my_strlen(command));
+	if (command[0] == '(' && command[my_strlen(command) - 1] == ')') {
+		str = malloc(sizeof(char) * my_strlen(command) - 1);
+		for (int ct = 0; command[ctb] != ')'; ct ++, ctb ++)
+			str[ct] = command[ctb];
+		str[my_strlen(command) - 2] = '\0';
+		my_printf("NOUVELLE COMMANDE   %s\n", str);
+		free(command);
+		return (epur_command_sep_one(str));
+	}
+	return (command);
+}*/
+
+int	main_b_tree(char *str, env_st_t *info, int fd_in, int fd_out)
 {
 	tree_t* temp;
 	char *command;
@@ -140,13 +163,14 @@ int	main_b_tree(char *str, env_st_t *info)
 		return (1);
 	}
 	command = check_command(str, 0);
-	error_parent(command);
 	fill_history(info, command);
+	//command = epur_command_sep_one(command);
+	error_parent(command);
 	//printf("0  %s    1  %s     2     %s\n\n", arr[0], arr[1], arr[2]);
 	/*printf("\n--------------HISTORY----------\n\n");
 	my_printf_history(info->history);
 	printf("\n--------------HISTORY----------\n\n");*/
-	temp = my_list_command(command, info);
+	temp = my_list_command(command, info, fd_in, fd_out);
 	/*printf("\n--------------TREEE----------\n\n");
 	my_printf_te(temp);
 	printf("--------------TREEE-------------\n\n");*/

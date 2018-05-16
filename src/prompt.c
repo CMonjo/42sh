@@ -67,7 +67,8 @@ int	check_same_alias(char *command, env_st_t *env_st)
 	alias_t* alias = env_st->alias;
 
 	while (alias != NULL) {
-		if (my_strcmp(alias->bind, command) == 0 && my_strcmp(alias->command_bind, command) == 0)
+		if (my_strcmp(alias->bind, command) == 0
+		&& my_strcmp(alias->command_bind, command) == 0)
 			return (1);
 		alias = alias->next;
 	}
@@ -104,16 +105,13 @@ int	check_gnl(char *name, char **envp, env_st_t *env_st, tree_t* temp)
 
 	if ((str = word_array(name)) == NULL)
 		return (0);
-	/*if (check_stars(name) == 1) {
-
-	}*/
 	if (check_stars(name) == 1) {
 		star_handle(str, envp, env_st);
 		return (0);
 	}
-	if (check_alias_local_var(str[0], str[0], env_st) == 1) {
+	if (check_alias_local_var(str[0], str[0], env_st) == 1
+	|| error_alias_dangerous(str, env_st) == 1)
 		return (1);
-	}
 	while (ct < 11) {
 		if (str[0] != NULL
 		&& my_strcmp(str[0], tab_name_b[ct].name) == 0) {

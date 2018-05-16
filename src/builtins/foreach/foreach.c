@@ -10,18 +10,53 @@
 int	error (char **arr, env_st_t *env_st)
 {
 	int tab_len = 0;
+	int b = 0;
 
 	for (int ct = 0; arr[ct] != NULL; ct ++)
 		tab_len ++;
 	if (tab_len < 4) {
 		env_st->status = 1;
-		my_printf("foreach: Too few arguments.\n");
+		my_putstr_err(NULL, "foreach: Too few arguments.\n");
 		return (1);
 	}
 	if (arr[2][0] != '(' || arr[tab_len - 1][0] != ')') {
 		env_st->status = 1;
-		my_printf("foreach: Words not parenthesized.\n");
+		my_putstr_err(NULL, "foreach: Words not parenthesized.\n");
 		return (1);
+	}
+	if ((arr[1][0] < 65 ||
+		(arr[1][0] > 90 && arr[1][0] < 97)
+		|| arr[1][0] > 122) && arr[1][0] != '_') {
+		my_putstr_err(NULL,
+		"foreach: Variable name must begin with a letter.\n");
+		env_st->status = 1;
+		return (1);
+	}
+	for (int ct = 0; arr[1][ct] != '\0'; ct ++) {
+		if ((arr[1][ct] > 47 && arr[1][ct] < 58) || arr[1][ct] == '_')
+			b = 1;
+		if (b == 0 && (arr[1][ct] < 65 ||
+		(arr[1][ct] > 90 && arr[1][ct] < 97)
+		|| arr[1][ct] > 122)) {
+			my_putstr_err(NULL, "foreach: Variable name must cont");
+			my_putstr_err(NULL, "ain alphanumeric characters.\n");
+			env_st->status = 1;
+			return (1);
+		}
+		b = 0;
+	}
+	for (int ct = 0; arr[1][ct] != '\0'; ct ++) {
+		if ((arr[1][ct] > 47 && arr[1][ct] < 58) || arr[1][ct] == '_')
+			b = 1;
+		if (b == 0 && (arr[1][ct] < 65 ||
+		(arr[1][ct] > 90 && arr[1][ct] < 97)
+		|| arr[1][ct] > 122)) {
+			my_putstr_err(NULL, "setenv: Variable name must cont");
+			my_putstr_err(NULL, "ain alphanumeric characters.\n");
+			env_st->status = 1;
+			return (1);
+		}
+		b = 0;
 	}
 	return (0);
 }

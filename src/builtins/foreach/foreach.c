@@ -12,11 +12,13 @@ char	**command_exec(char **arr_command, char *new_command)
 	int tab_len = 0;
 	char **new_arr;
 
-	for (int ct = 0; arr_command != NULL && arr_command[ct] != NULL; ct ++) {
+	for (int ct = 0; arr_command != NULL
+	&& arr_command[ct] != NULL; ct ++) {
 		tab_len ++;
 	}
 	new_arr = malloc(sizeof(char *) * (tab_len + 2));
-	for (int ct = 0; arr_command != NULL && arr_command[ct] != NULL; ct ++) {
+	for (int ct = 0; arr_command != NULL
+	&& arr_command[ct] != NULL; ct ++) {
 		new_arr[ct] = my_strdup(arr_command[ct]);
 	}
 	new_arr[tab_len] = my_strdup(new_command);
@@ -38,7 +40,8 @@ void	write_file_foreach(char *file_tmp, char **envp, env_st_t *env_st)
 	word_array(my_strcat("rm ", file_tmp, 0)), temp);
 }
 
-void	exec_command_ele(char **arr_command, int nb_ele, char **envp, env_st_t *env_st)
+void	exec_command_ele(char **arr_command, int nb_ele,
+char **envp, env_st_t *env_st)
 {
 	int fd = 0;
 	char *file_tmp = NULL;
@@ -51,7 +54,8 @@ void	exec_command_ele(char **arr_command, int nb_ele, char **envp, env_st_t *env
 	}
 }
 
-char	**foreach_loop(int fd, char **arr, UNUSED char **envp, env_st_t *env_st)
+char	**foreach_loop(int fd, char **arr,
+UNUSED char **envp, env_st_t *env_st)
 {
 	char *str = malloc(sizeof(char) * 1);
 	int ele = count_ele(arr);

@@ -68,6 +68,8 @@
 	} name_env_t;
 
 	//ALIAS
+	int	end(char **arr, char **envp, env_st_t *env_st);
+	int	end_foreach_while(char **arr, env_st_t *env_st, int b);
 	char	*create_file(void);
 	int	foreach(char **arr, char **envp, env_st_t *env_st);
 	int	where(char **arr, char **envp, env_st_t *env_st);

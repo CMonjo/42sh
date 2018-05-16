@@ -104,12 +104,12 @@ int	foreach(char **arr, char **envp, env_st_t *env_st)
 	if (error(arr, env_st) == 1)
 		return (1);
 	prompt_foreach();
-	while (my_strcmp(str, "end") != 0) {
+	while (end_foreach_while(word_array(str), env_st, 1) != 0) {
 		str = my_getline();
 		if (isatty(0) == 1 && str == NULL) {
 			exit(0);
 		}
-		if (ele > 0 && my_strlen(str) > 0 && my_strcmp(str, "end") != 0) {
+		if (ele > 0 && my_strlen(str) > 0 && end_foreach_while(word_array(str), env_st, 0) != 0) {
 			main_b_tree(str, env_st, 0, fd);
 			arr_command = command_exec(arr_command, str);
 		}
@@ -119,6 +119,7 @@ int	foreach(char **arr, char **envp, env_st_t *env_st)
 	}
 	close(fd);
 	write_file_foreach(file_tmp, envp, env_st);
-	exec_command_ele(arr_command, ele, envp, env_st);
+	if (arr_command != NULL)
+		exec_command_ele(arr_command, ele, envp, env_st);
 	return (0);
 }

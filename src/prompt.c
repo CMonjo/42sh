@@ -11,7 +11,7 @@ name_env_t const tab_name_b[] = {{"cd", cd}, {"env", env},
 			{"exit", exit_env}, {"setenv", set_env},
 			{"unsetenv", unset_env}, {"alias", alias},
 			{"echo", echo}, {"repeat", repeat}, {"which", which},
-			{"where", where}, {"foreach", foreach},
+			{"where", where}, {"foreach", foreach}, {"end", end},
 			{"cat", cat}, {"grep", grep}};
 
 int	check_bult_in(char *str)

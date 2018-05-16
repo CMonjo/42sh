@@ -68,6 +68,17 @@
 	} name_env_t;
 
 	//ALIAS
+	void	prompt_foreach(void);
+	int	count_ele(char **arr);
+	int	error_foreach(char **arr, env_st_t *env_st);
+	int	error_foreach_args(char **arr, env_st_t *env_st, int tab_len);
+	int	error_foreach_alphanumeric(char **arr, env_st_t *env_st);
+	int	where_path(char *str, env_st_t *env_st);
+	int	where_builtin(char *str);
+	int	where_alias(char *str, env_st_t *env_st);
+	int	which_path(char *str, env_st_t *env_st);
+	int	which_builtin(char *str);
+	int	which_alias(char *str, env_st_t *env_st);
 	int	error_alias_dangerous(char **arr, env_st_t *env_st);
 	int	end(char **arr, char **envp, env_st_t *env_st);
 	int	end_foreach_while(char **arr, env_st_t *env_st, int);

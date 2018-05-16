@@ -7,41 +7,7 @@
 
 #include "main.h"
 
-int	where_alias(char *str, env_st_t *env_st)
-{
-	alias_t *alias = env_st->alias;
-
-	while (alias != NULL) {
-		if (my_strcmp(alias->bind, str) == 0) {
-			my_printf("%s is aliased to %s\n",
-			alias->bind, alias->command_bind);
-			return (1);
-		}
-		alias = alias->next;
-	}
-	return (0);
-}
-
-int	where_builtin(char *str)
-{
-	if (check_bult_in(str) != -1) {
-		my_printf("%s is a shell built-in\n", str);
-		return (1);
-	}
-	return (0);
-}
-
-int	where_path(char *str, env_st_t *env_st)
-{
-	if (access(str, F_OK) != -1) {
-		my_printf("%s\n", str);
-		return (0);
-	}
-	env_st->status = 1;
-	return (0);
-}
-
-int	where_check_path_bsc(char **envp, char *name, char **str_arr,
+int	where_check_path_bsc(char **envp, char *name, UNUSED char **str_arr,
 env_st_t* env_st)
 {
 	int ct = 0;

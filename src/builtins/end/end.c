@@ -19,7 +19,7 @@ int	end_foreach_while(char **arr, env_st_t *env_st, int b)
 	return (0);
 }
 
-int	end(char **arr, char **envp, env_st_t *env_st)
+int	end(char **arr, UNUSED char **envp, env_st_t *env_st)
 {
 	if (arr [1] != NULL) {
 		env_st->status = 1;

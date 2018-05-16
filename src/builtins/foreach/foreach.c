@@ -65,16 +65,18 @@ int	count_ele(char **arr)
 {
 	int ele = 0;
 	int b = 0;
+	int nb_parent = 0;
+	int nb_back_parent = 0;
 
-	for (int ct = 0; arr[ct] != NULL; ct ++) {
-		if (b == 1)
-			ele ++;
+	for (int ct = 0; arr[ct] != NULL; ct ++)
 		if (arr[ct][0] == '(')
-			b = 1;
+			nb_parent ++;
+	for (int ct = 3; nb_back_parent != nb_parent; ct ++) {
 		if (arr[ct][0] == ')')
-			return (ele - 1);
+			nb_back_parent ++;
+		ele ++;
 	}
-	return (0);
+	return (ele - 1);
 }
 
 char	**command_exec(char **arr_command, char *new_command)

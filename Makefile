@@ -38,6 +38,7 @@ SRC	=	src/main.c		\
 		src/builtins/cat/cat.c			\
 		src/builtins/which/which.c			\
 		src/builtins/where/where.c			\
+		src/builtins/foreach/foreach.c			\
 		src/builtins/echo/echo.c		\
 		src/builtins/repeat/repeat.c		\
 		src/builtins/grep/grep.c		\

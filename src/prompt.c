@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 20110
+** EPITECH PROJECT, 20111
 ** prompt.c
 ** File description:
 ** the prompte function of the minishell1
@@ -11,14 +11,15 @@ name_env_t const tab_name_b[] = {{"cd", cd}, {"env", env},
 			{"exit", exit_env}, {"setenv", set_env},
 			{"unsetenv", unset_env}, {"alias", alias},
 			{"echo", echo}, {"repeat", repeat}, {"which", which},
-			{"where", where}, {"cat", cat}, {"grep", grep}};
+			{"where", where}, {"foreach", foreach},
+			{"cat", cat}, {"grep", grep}};
 
 int	check_bult_in(char *str)
 {
 	char *bul_in[] = {"cd", "env", "exit", "setenv", "unsetenv",
 	"alias", "echo", "repeat", "which", "where"};
 
-	for (int ct = 0; ct != 10; ct ++) {
+	for (int ct = 0; ct != 11; ct ++) {
 		if (my_strcmp(str, bul_in[ct]) == 0)
 			return (ct);
 	}
@@ -29,7 +30,7 @@ int	pipe_check_exec(char **command, char **envp, env_st_t *env_st, tree_t* temp)
 {
 	int ct = 0;
 
-	while (ct < 10) {
+	while (ct < 11) {
 		if (command[0] != NULL
 		&& my_strcmp(command[0], tab_name_b[ct].name) == 0) {
 			dup2(temp->fd_in, 0);
@@ -88,7 +89,7 @@ int	check_alias_local_var(char *command, char *str, env_st_t *env_st)
 		if (my_strcmp(alias->bind, command) == 0) {
 			check_gnl(alias->command_bind,
 			env_st->envp_cpy, env_st,
-			my_list_command(alias->command_bind, env_st));
+			my_list_command(alias->command_bind, env_st, 0, 1));
 			return (1);
 		}
 		alias = alias->next;
@@ -113,7 +114,7 @@ int	check_gnl(char *name, char **envp, env_st_t *env_st, tree_t* temp)
 	if (check_alias_local_var(str[0], str[0], env_st) == 1) {
 		return (1);
 	}
-	while (ct < 10) {
+	while (ct < 11) {
 		if (str[0] != NULL
 		&& my_strcmp(str[0], tab_name_b[ct].name) == 0) {
 			(tab_name_b[ct].name_str)(str, envp, env_st);

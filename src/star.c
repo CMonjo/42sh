@@ -126,7 +126,7 @@ env_st_t *env_st)
 {
 	tree_t *tree = env_st->tree;
 
-	tree = my_list_command(array[0], env_st);
+	tree = my_list_command(array[0], env_st, 0, 1);
 	if (is_there_changement(array, globuffer.gl_pathv) == 1)
 		pipe_check_exec(globuffer.gl_pathv, env, env_st, tree);
 	else

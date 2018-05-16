@@ -53,7 +53,7 @@ int	repeat(char **arr, char **envp, env_st_t *env_st)
 		return (0);
 	nbr = my_getnbr(arr[1]);
 	command = repeat_command(arr, tab_len);
-	tree = my_list_command(command[0], env_st);
+	tree = my_list_command(command[0], env_st, 0, 1);
 	for (int ct = 0; ct != nbr; ct ++) {
 		exec(envp, env_st, command, tree);
 	}

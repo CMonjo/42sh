@@ -143,7 +143,7 @@ int	check_special_case(char *str)
 	return (command);
 }*/
 
-int	main_b_tree(char *str, env_st_t *info)
+int	main_b_tree(char *str, env_st_t *info, int fd_in, int fd_out)
 {
 	tree_t* temp;
 	char *command;
@@ -170,7 +170,7 @@ int	main_b_tree(char *str, env_st_t *info)
 	/*printf("\n--------------HISTORY----------\n\n");
 	my_printf_history(info->history);
 	printf("\n--------------HISTORY----------\n\n");*/
-	temp = my_list_command(command, info);
+	temp = my_list_command(command, info, fd_in, fd_out);
 	/*printf("\n--------------TREEE----------\n\n");
 	my_printf_te(temp);
 	printf("--------------TREEE-------------\n\n");*/

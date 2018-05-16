@@ -68,6 +68,8 @@
 	} name_env_t;
 
 	//ALIAS
+	char	*create_file(void);
+	int	foreach(char **arr, char **envp, env_st_t *env_st);
 	int	where(char **arr, char **envp, env_st_t *env_st);
 	int	which(char **arr, char **envp, env_st_t *env_st);
 	int alias(char **array, UNUSED char **envp, env_st_t *env_st);
@@ -145,9 +147,9 @@
 	int status(int w, env_st_t* env_st);
 	int exec_red(env_st_t* env_st, char **str, tree_t* temp);
 	int check_gnl(char *name, char **envp, env_st_t *env_st, tree_t* temp);
-	int main_b_tree(char *str, env_st_t *info);
+	int	main_b_tree(char *str, env_st_t *info, int fd_in, int fd_out);
 	int my_strcmp_c(char *s1, char const *s2);
-	tree_t *my_list_command(char *command, env_st_t *info);
+	tree_t*	my_list_command(char *command, env_st_t* info, int fd_in, int fd_out);
 	char **my_separator_command(char *av, char *sep);
 	char *my_second_command(char *av, int len, char sep);
 	tree_t *fill_struct_comand(char *command, int fd_in, int fd_out);

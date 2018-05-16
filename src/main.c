@@ -52,7 +52,7 @@ int	main_loop(char **envp, int end, char *str)
 			exit(0);
 		}
 		if (my_strlen(str) > 0) {
-			main_b_tree(str, env_st);
+			main_b_tree(str, env_st, 0, 1);
 		}
 		else if (isatty(0) != 1)
 			end = !end;

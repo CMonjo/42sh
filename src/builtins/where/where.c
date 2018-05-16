@@ -7,42 +7,8 @@
 
 #include "main.h"
 
-int	where_alias(char *str, env_st_t *env_st)
-{
-	alias_t *alias = env_st->alias;
-
-	while (alias != NULL) {
-		if (my_strcmp(alias->bind, str) == 0) {
-			my_printf("%s is aliased to %s\n",
-			alias->bind, alias->command_bind);
-			return (1);
-		}
-		alias = alias->next;
-	}
-	return (0);
-}
-
-int	where_builtin(char *str)
-{
-	if (check_bult_in(str) != -1) {
-		my_printf("%s is a shell built-in\n", str);
-		return (1);
-	}
-	return (0);
-}
-
-int	where_path(char *str, env_st_t *env_st)
-{
-	if (access(str, F_OK) != -1) {
-		my_printf("%s\n", str);
-		return (0);
-	}
-	env_st->status = 1;
-	return (0);
-}
-
-/*int	check_path_bsc(char **envp, char *name, char **str_arr,
-env_st_t* env_st, tree_t* temp)
+int	where_check_path_bsc(char **envp, char *name, UNUSED char **str_arr,
+env_st_t* env_st)
 {
 	int ct = 0;
 	char *str;
@@ -55,15 +21,12 @@ env_st_t* env_st, tree_t* temp)
 		if (envp[0][ctb] == '\0')
 			ct --;
 		if (access(str, F_OK) != -1) {
-			strat_exec(str, envp, str_arr, env_st, temp);
-			env_st->status = 0;
-			return (0);
+			my_printf("%s\n", str);
 		}
 	}
-	my_putstr_err(str_arr[0], ": Command not found.\n");
 	env_st->status = 1;
 	return (0);
-}*/
+}
 
 void	where_path_command(char **envp, char *name,
 	env_st_t* env_st, char **str_arr)
@@ -72,7 +35,7 @@ void	where_path_command(char **envp, char *name,
 	char *str;
 
 	if (check_val(envp, "PATH", env_st) == 0) {
-		//check_path_bsc(env_st->envp_bsc, name, str_arr, env_st, temp);
+		where_check_path_bsc(env_st->envp_bsc, name, str_arr, env_st);
 		return;
 	}
 	ct = check_same(envp, env_st);
@@ -82,7 +45,6 @@ void	where_path_command(char **envp, char *name,
 			ctb --;
 		if (access(str, F_OK) != -1) {
 			my_printf("%s\n", str);
-			return;
 		}
 	}
 	env_st->status = 1;

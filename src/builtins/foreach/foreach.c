@@ -7,91 +7,24 @@
 
 #include "main.h"
 
-int	error (char **arr, env_st_t *env_st)
-{
-	int tab_len = 0;
-	int b = 0;
-
-	for (int ct = 0; arr[ct] != NULL; ct ++)
-		tab_len ++;
-	if (tab_len < 4) {
-		env_st->status = 1;
-		my_putstr_err(NULL, "foreach: Too few arguments.\n");
-		return (1);
-	}
-	if (arr[2][0] != '(' || arr[tab_len - 1][0] != ')') {
-		env_st->status = 1;
-		my_putstr_err(NULL, "foreach: Words not parenthesized.\n");
-		return (1);
-	}
-	if ((arr[1][0] < 65 ||
-		(arr[1][0] > 90 && arr[1][0] < 97)
-		|| arr[1][0] > 122) && arr[1][0] != '_') {
-		my_putstr_err(NULL,
-		"foreach: Variable name must begin with a letter.\n");
-		env_st->status = 1;
-		return (1);
-	}
-	for (int ct = 0; arr[1][ct] != '\0'; ct ++) {
-		if ((arr[1][ct] > 47 && arr[1][ct] < 58) || arr[1][ct] == '_')
-			b = 1;
-		if (b == 0 && (arr[1][ct] < 65 ||
-		(arr[1][ct] > 90 && arr[1][ct] < 97)
-		|| arr[1][ct] > 122)) {
-			my_putstr_err(NULL, "foreach: Variable name must cont");
-			my_putstr_err(NULL, "ain alphanumeric characters.\n");
-			env_st->status = 1;
-			return (1);
-		}
-		b = 0;
-	}
-	for (int ct = 0; arr[1][ct] != '\0'; ct ++) {
-		if ((arr[1][ct] > 47 && arr[1][ct] < 58) || arr[1][ct] == '_')
-			b = 1;
-		if (b == 0 && (arr[1][ct] < 65 ||
-		(arr[1][ct] > 90 && arr[1][ct] < 97)
-		|| arr[1][ct] > 122)) {
-			my_putstr_err(NULL, "setenv: Variable name must cont");
-			my_putstr_err(NULL, "ain alphanumeric characters.\n");
-			env_st->status = 1;
-			return (1);
-		}
-		b = 0;
-	}
-	return (0);
-}
-
-int	count_ele(char **arr)
-{
-	int ele = 0;
-	int b = 0;
-
-	for (int ct = 0; arr[ct] != NULL; ct ++) {
-		if (b == 1)
-			ele ++;
-		if (arr[ct][0] == '(')
-			b = 1;
-		if (arr[ct][0] == ')')
-			return (ele - 1);
-	}
-	return (0);
-}
-
 char	**command_exec(char **arr_command, char *new_command)
 {
 	int tab_len = 0;
 	char **new_arr;
 
-	for (int ct = 0; arr_command != NULL && arr_command[ct] != NULL; ct ++) {
+	for (int ct = 0; arr_command != NULL
+	&& arr_command[ct] != NULL; ct ++) {
 		tab_len ++;
 	}
 	new_arr = malloc(sizeof(char *) * (tab_len + 2));
-	for (int ct = 0; arr_command != NULL && arr_command[ct] != NULL; ct ++) {
+	for (int ct = 0; arr_command != NULL
+	&& arr_command[ct] != NULL; ct ++) {
 		new_arr[ct] = my_strdup(arr_command[ct]);
 	}
 	new_arr[tab_len] = my_strdup(new_command);
 	new_arr[tab_len + 1] = NULL;
-	//free_tab(arr_command);
+	if (arr_command != NULL)
+		free_tab(arr_command);
 	return (new_arr);
 }
 
@@ -107,13 +40,8 @@ void	write_file_foreach(char *file_tmp, char **envp, env_st_t *env_st)
 	word_array(my_strcat("rm ", file_tmp, 0)), temp);
 }
 
-void	prompt_foreach(void)
-{
-	if (isatty(0) == 1)
-		my_printf("foreach? ");
-}
-
-void	exec_command_ele(char **arr_command, int nb_ele, char **envp, env_st_t *env_st)
+void	exec_command_ele(char **arr_command, int nb_ele,
+char **envp, env_st_t *env_st)
 {
 	int fd = 0;
 	char *file_tmp = NULL;
@@ -126,25 +54,20 @@ void	exec_command_ele(char **arr_command, int nb_ele, char **envp, env_st_t *env
 	}
 }
 
-int	foreach(char **arr, char **envp, env_st_t *env_st)
+char	**foreach_loop(int fd, char **arr,
+UNUSED char **envp, env_st_t *env_st)
 {
 	char *str = malloc(sizeof(char) * 1);
-	int fd = 0;
-	char *file_tmp = NULL;
 	int ele = count_ele(arr);
 	char **arr_command = NULL;
 
-	fd = open((file_tmp = create_file()), O_RDWR | O_CREAT, 0666);
 	str[0] = '\0';
-	if (error(arr, env_st) == 1)
-		return (1);
-	prompt_foreach();
 	while (end_foreach_while(word_array(str), env_st, 1) != 0) {
 		str = my_getline();
-		if (isatty(0) == 1 && str == NULL) {
+		if (isatty(0) == 1 && str == NULL)
 			exit(0);
-		}
-		if (ele > 0 && my_strlen(str) > 0 && end_foreach_while(word_array(str), env_st, 0) != 0) {
+		if (ele > 0 && my_strlen(str) > 0
+		&& end_foreach_while(word_array(str), env_st, 0) != 0) {
 			main_b_tree(str, env_st, 0, fd);
 			arr_command = command_exec(arr_command, str);
 		}
@@ -152,6 +75,21 @@ int	foreach(char **arr, char **envp, env_st_t *env_st)
 			break;
 		prompt_foreach();
 	}
+	return (arr_command);
+}
+
+int	foreach(char **arr, UNUSED char **envp, env_st_t *env_st)
+{
+	int fd = 0;
+	char *file_tmp = NULL;
+	int ele = count_ele(arr);
+	char **arr_command = NULL;
+
+	fd = open((file_tmp = create_file()), O_RDWR | O_CREAT, 0666);
+	if (error_foreach(arr, env_st) == 1)
+		return (1);
+	prompt_foreach();
+	arr_command = foreach_loop(fd, arr, envp, env_st);
 	close(fd);
 	write_file_foreach(file_tmp, envp, env_st);
 	if (arr_command != NULL)

@@ -105,6 +105,8 @@ int	where_command(char **envp, env_st_t* env_st, char *str)
 
 int	where(char **arr, char **envp, env_st_t *env_st)
 {
+	my_printf("TEST\n");
+	return (0)
 	if (arr[1] == NULL) {
 		env_st->status = 1;
 		my_printf("where: Too few arguments.\n");

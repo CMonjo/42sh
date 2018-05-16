@@ -82,7 +82,6 @@ void	where_path_command(char **envp, char *name,
 			ctb --;
 		if (access(str, F_OK) != -1) {
 			my_printf("%s\n", str);
-			return;
 		}
 	}
 	env_st->status = 1;
@@ -105,8 +104,6 @@ int	where_command(char **envp, env_st_t* env_st, char *str)
 
 int	where(char **arr, char **envp, env_st_t *env_st)
 {
-	my_printf("TEST\n");
-	return (0);
 	if (arr[1] == NULL) {
 		env_st->status = 1;
 		my_printf("where: Too few arguments.\n");

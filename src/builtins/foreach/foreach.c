@@ -21,7 +21,8 @@ char	**command_exec(char **arr_command, char *new_command)
 	}
 	new_arr[tab_len] = my_strdup(new_command);
 	new_arr[tab_len + 1] = NULL;
-	free_tab(arr_command);
+	if (arr_command != NULL)
+		free_tab(arr_command);
 	return (new_arr);
 }
 
@@ -56,6 +57,7 @@ char	**foreach_loop(int fd, char **arr, UNUSED char **envp, env_st_t *env_st)
 	int ele = count_ele(arr);
 	char **arr_command = NULL;
 
+	str[0] = '\0';
 	while (end_foreach_while(word_array(str), env_st, 1) != 0) {
 		str = my_getline();
 		if (isatty(0) == 1 && str == NULL)

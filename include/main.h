@@ -68,6 +68,9 @@
 	} name_env_t;
 
 	//ALIAS
+	char	*replace_variable(char *str, char **arr);
+	int	scripting(char **arr,  char **arr_val, char **envp,
+	env_st_t* env_st);
 	void	prompt_foreach(void);
 	int	count_ele(char **arr);
 	int	error_foreach(char **arr, env_st_t *env_st);

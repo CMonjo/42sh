@@ -120,6 +120,7 @@ int	check_gnl(char *name, char **envp, env_st_t *env_st, tree_t* temp)
 		}
 		ct ++;
 	}
+	//if (scripting(str, envp, env_st, temp) == 0)
 	exec(envp, env_st, str, temp);
 	return (0);
 }

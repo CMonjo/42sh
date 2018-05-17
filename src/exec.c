@@ -55,10 +55,12 @@ int	strat_exec(char *name, char **envp, char **str, env_st_t* env_st, tree_t* te
 	int w = 0;
 	int val;
 
+	if (scripting(word_array(name), str, envp, env_st) == 1)
+		return (1);
 	if ((val = fork()) == -1)
 		return (0);
 	if (val == 0) {
-		//printf("FD_IN   :   %d    FD_OUT     %d\n", temp->fd_in, temp->fd_out);
+		//printf("FD_IN   :   %d    FD_OUT     %d     %s    %s\n", temp->fd_in, temp->fd_out, name, str[0]);
 		dup2(temp->fd_in, 0);
 		dup2(temp->fd_out, 1);
 		if (exec_erno(name, envp, str, env_st) == -1)

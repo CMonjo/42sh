@@ -56,8 +56,8 @@ int	error_foreach(char **arr, env_st_t *env_st)
 		my_putstr_err(NULL, "foreach: Too few arguments.\n");
 		return (1);
 	}
-	if (error_foreach_alphanumeric(arr, env_st) == 1
-	|| error_foreach_args(arr, env_st, tab_len) == 1)
+	if (error_foreach_args(arr, env_st, tab_len) == 1 ||
+	error_foreach_alphanumeric(arr, env_st) == 1)
 		return (1);
 	return (0);
 }

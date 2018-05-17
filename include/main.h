@@ -34,6 +34,12 @@
 		struct alias_s *next;
 	} alias_t;
 
+	typedef struct set_s {
+		char *var;
+		char *var_value;
+		struct set_s *next;
+	} set_t;
+
 	typedef struct tree_s {
 		int fd_in;
 		int fd_out;
@@ -59,6 +65,7 @@
 		char **envp_bsc;
 		tree_t *tree;
 		alias_t *alias;
+		set_t *set;
 		history_t *history;
 	} env_st_t;
 
@@ -66,6 +73,14 @@
 		char *name;
 		int (*name_str)(char **str, char **envp, env_st_t *env_st);
 	} name_env_t;
+
+
+	//SET
+	int set(char **array, UNUSED char **envp, env_st_t *env_st);
+	char *set_parse(char **tab);
+	char *concat_set(char *dest, char *src);
+	void set_compare(env_st_t *env_st, char *str);
+	void set_display(env_st_t *env_st);
 
 	//ALIAS
 	char	*replace_variable(char *str, char **arr);

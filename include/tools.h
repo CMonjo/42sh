@@ -100,6 +100,7 @@
 	void flag_has_o(char *str_temp);
 	void flag_has_x(char *str_temp);
 	void flag_has_xx(char *str_temp);
+	char *my_calloc(int nbchars);
 	char	**word_array(char *line);
 	char	*malloc_str(int ct, int b, int ctb, char **str);
 

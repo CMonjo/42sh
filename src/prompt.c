@@ -28,7 +28,7 @@ name_env_t const tab_name_b[] = {
 int	check_bult_in(char *str)
 {
 	char *bul_in[] = {"cd", "env", "exit", "setenv", "unsetenv",
-	"alias", "echo", "repeat", "which", "where", "set, foreach"};
+	"alias", "echo", "repeat", "which", "where", "set", "foreach"};
 
 	for (int ct = 0; ct != 12; ct ++) {
 		if (my_strcmp(str, bul_in[ct]) == 0)

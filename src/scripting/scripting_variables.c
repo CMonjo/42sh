@@ -27,10 +27,10 @@ int	nbr_part_str(char *str, int *ctb)
 	int nbr = 0;
 	int ct_nbr = 0;
 
-	for (int ct = (*ctb); (str[ct] > '0' && str[ct] < '9'); ct ++)
+	for (int ct = (*ctb); (str[ct] >= '0' && str[ct] <= '9'); ct ++)
 		nbr ++;
 	index = malloc(sizeof(char) * (nbr + 1));
-	for (int ct = (*ctb); (str[ct] > '0' && str[ct] < '9'); ct ++, ct_nbr ++)
+	for (int ct = (*ctb); (str[ct] >= '0' && str[ct] <= '9'); ct ++, ct_nbr ++)
 		index[ct_nbr] = str[ct];
 	index[nbr] = '\0';
 	(*ctb) = (*ctb) + nbr;
@@ -62,7 +62,7 @@ char	*load_variable(char *str, char **arr)
 char	*replace_variable(char *str, char **arr)
 {
 	for (int ct = 0; str[ct] != '\0';ct ++) {
-		if (str[ct] == '$' && str[ct + 1] > '0' && str[ct + 1] < '9') {
+		if (str[ct] == '$' && str[ct + 1] >= '0' && str[ct + 1] <= '9') {
 			str = replace_variable(load_variable(str, arr), arr);
 			ct = 0;
 		}

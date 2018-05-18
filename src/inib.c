@@ -15,7 +15,7 @@ char *replace_inib(char *str, int *ct)
 
 	for (int ctb = (*ct); str[ctb] == '\\'; ctb ++)
 		nb_back ++;
-	\//printf("\nNB BACK : %d      CALCUL   :  %d   CT   :   %d\n", nb_back, (nb_back / 2), (*ct));
+	//printf("\nNB BACK : %d      CALCUL   :  %d   CT   :   %d\n", nb_back, (nb_back / 2), (*ct));
 	command = malloc(sizeof(char) * (my_strlen(str) + (nb_back / 2) + 1));
 	for (int ctb = 0; ct_str != (*ct); ctb ++, ct_str ++)
 		command[ct_str] = str[*ct];

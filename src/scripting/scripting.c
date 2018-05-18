@@ -77,7 +77,7 @@ int	check_sheebang_file(char **arr, char *str, int sheebang_len, env_st_t* env_s
 	int file_len = 0;
 	char *check_sheebang_file;
 	int ctb = 0;
-	int fd = 0;
+	//int fd = 0;
 
 	for (int ct = 0; arr[ct] != NULL; ct ++)
 		arr_sheebang ++;
@@ -130,76 +130,6 @@ int	check_sheebang(char *str, char *file, env_st_t* env_st)
 	return (0);
 }
 
-char	*replace_variable_arr(char *str_one, char *str_two, char **arr, int index_arg)
-{
-	int nb_arg = 0;
-
-	for (int ct = 0; arr[ct] != NULL; ct ++)
-		nb_arg ++;
-	if (index_arg >= nb_arg || arr[index_arg][0] == '$')
-		return (my_strcat(str_one, str_two, 0));
-	str_one = my_strcat(str_one, arr[index_arg], 0);
-	return (my_strcat(str_one, str_two, 0));
-}
-
-char	*load_variable(char *str, char **arr, int ct)
-{
-	char *str_one;
-	int len_one = 0;
-	char *index;
-	int nbr = 0;
-	int ct_nbr = 0;
-	char *str_two;
-	int len_two = 0;
-	char *str_three;
-	int len_three = 0;
-
-	for (int ct = 0; str[ct] != '$'; ct ++)
-		len_one ++;
-	str_one = malloc(sizeof(char) * (len_one + 1));
-	for (int ct = 0; str[ct] != '$'; ct ++)
-		str_one[ct] = str[ct];
-	str_one[len_one] = '\0';
-	//printf("ONE   : '%s'\n", str_one);
-	len_one ++;
-	for (int ct = len_one; (str[ct] > '0' && str[ct] < '9'); ct ++)
-		nbr ++;
-	index = malloc(sizeof(char) * (nbr + 1));
-	for (int ct = len_one; (str[ct] > '0' && str[ct] < '9'); ct ++, ct_nbr ++)
-		index[ct_nbr] = str[ct];
-	index[nbr] = '\0';
-	nbr = my_getnbr(index);
-	len_one = len_one + nbr;
-	ct_nbr = 0;
-	//printf("INDEX   : '%s'   LEN  : %d\n", index, len_one);
-	for (int ct = len_one; str[ct] != '\0'; ct ++)
-		len_three ++;
-	str_three = malloc(sizeof(char) * (len_three + 1));
-	for (int ct = len_one; str[ct] != '\0'; ct ++, ct_nbr ++)
-		str_three[ct_nbr] = str[ct];
-	str_three[len_three] = '\0';
-	//printf("THREE   : '%s'\n", str_three);
-	free(str);
-	//printf("STR ONE :  '%s'    NBR  : %d     STR TWO   :   '%s'\n", str_one, nbr, str_three);
-	//str= my_strcat(str_one, arr[nbr], 0);
-	//str = my_strcat(str, str_three, 0);
-	//printf("COMMANDE :  %s\n", str);
-	return (replace_variable_arr(str_one, str_three, arr, nbr));
-}
-
-char	*replace_variable(char *str, char **arr)
-{
-	for (int ct = 0; str[ct] != '\0';ct ++) {
-		if (str[ct] == '$' && str[ct + 1] > '0' && str[ct + 1] < '9') {
-			//printf("-----------  '%s'  -----------\n", str);
-			str = replace_variable(load_variable(str, arr, ct), arr);
-			//printf("----------------------\n");
-			ct = 0;
-		}
-	}
-	return (str);
-}
-
 void	start_exec_script(char **arr, FILE *fd, env_st_t* env_st)
 {
 	int line = 0;
@@ -211,7 +141,6 @@ void	start_exec_script(char **arr, FILE *fd, env_st_t* env_st)
 		str[readed] = '\0';
 		if (my_strlen(str) > 1) {
 			str = replace_variable(str, arr);
-			printf("STR  '%s\n", str);
 			main_b_tree(str, env_st, 0, 1);
 		}
 		line ++;
@@ -220,9 +149,6 @@ void	start_exec_script(char **arr, FILE *fd, env_st_t* env_st)
 
 int	check_elf(char *str, char **arr, FILE *fd, env_st_t* env_st)
 {
-	int len_sheebang = 0;
-	char *sheebang;
-	int ctb = 0;
 	//char *sheebang = malloc(sizeof(char) * (my_strlen(str) - 2));
 
 	if (my_strlen(str) >= 4 && str[1] == 'E'

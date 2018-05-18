@@ -60,6 +60,7 @@ SRC	=	src/main.c		\
 		src/error/error_long_sep.c		\
 		src/error/start_error_sep.c		\
 		src/scripting/scripting.c		\
+		src/scripting/scripting_variables.c		\
 
 OBJ	=	$(SRC:.c=.o)
 

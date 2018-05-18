@@ -83,6 +83,8 @@
 	void set_display(env_st_t *env_st);
 
 	//ALIAS
+	char	*replace_variable_arr(char *str_one, char *str_two,
+	char **arr, int index_arg);
 	char	*replace_variable(char *str, char **arr);
 	int	scripting(char **arr,  char **arr_val, char **envp,
 	env_st_t* env_st);

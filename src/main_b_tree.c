@@ -163,6 +163,8 @@ int	main_b_tree(char *str, env_st_t *info, int fd_in, int fd_out)
 		return (1);
 	}
 	command = check_command(str, 0);
+	command = chang_inib(command);
+	printf("COMMANDE : %s\n", command);
 	fill_history(info, command);
 	//command = epur_command_sep_one(command);
 	error_parent(command);
@@ -171,9 +173,9 @@ int	main_b_tree(char *str, env_st_t *info, int fd_in, int fd_out)
 	my_printf_history(info->history);
 	printf("\n--------------HISTORY----------\n\n");*/
 	temp = my_list_command(command, info, fd_in, fd_out);
-	/*printf("\n--------------TREEE----------\n\n");
+	printf("\n--------------TREEE  ----------\n\n");
 	my_printf_te(temp);
-	printf("--------------TREEE-------------\n\n");*/
+	printf("--------------TREEE-------------\n\n");
 	if (start_error_tree(temp, 0) == 1) {
 		info->status = 1;
 		return (1);

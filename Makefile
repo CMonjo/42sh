@@ -30,6 +30,7 @@ SRC	=	src/main.c		\
 		src/start_sep.c		\
 		src/start_double_sep.c	\
 		src/star.c	\
+		src/inib.c	\
 		src/builtins/env/copy_env.c		\
 		src/builtins/env/unsetenv.c		\
 		src/builtins/env/env_other.c		\

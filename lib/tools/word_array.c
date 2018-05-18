@@ -84,8 +84,6 @@ char	**word_array(char *line)
 			str[ctb] = copy_str_quote(line, &ct, line[ct]);
 			ctb ++;
 		} else if (line[ct] != 32 && line[ct] != 9) {
-			if (line[ct] == '\\')
-				ct ++;
 			str[ctb] = copy_str_arr(line, &ct);
 			ctb ++;
 		} else

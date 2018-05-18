@@ -173,6 +173,8 @@ int	scripting(char **arr, char **arr_val, char **envp, env_st_t* env_st)
 		return (1);
 	fd_script = fdopen(fd, "rw");
 	readed = getline(&str, &size, fd_script);
+	if (readed <= 0)
+		return (0);
 	str[readed - 1] = '\0';
 	if (readed > 1 && check_elf(str, arr_val, fd_script, env_st) == 1)
 		return (1);

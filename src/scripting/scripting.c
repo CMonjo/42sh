@@ -138,7 +138,7 @@ void	start_exec_script(char **arr, FILE *fd, env_st_t* env_st)
 	int readed = 0;
 
 	while ((readed = getline(&str, &size, fd)) > 0) {
-		str[readed] = '\0';
+		str[readed - 1] = '\0';
 		if (my_strlen(str) > 1) {
 			str = replace_variable(str, arr);
 			main_b_tree(str, env_st, 0, 1);

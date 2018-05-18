@@ -46,19 +46,23 @@ char **file, tree_t* temp)
 		fd = open(file[0], O_RDWR | O_APPEND, 0666);
 		temp->left->fd_in = 0;
 		temp->left->fd_out = fd;
-		exec(env_st->envp_cpy, env_st, command, temp->left);
+		pipe_check_exec(command, env_st->envp_cpy, env_st, temp->left);
+		//exec(env_st->envp_cpy, env_st, command, temp->left);
 		close(fd);
 		if (env_st->status == 1)
-			exec(env_st->envp_cpy, env_st, word_array(rm), temp);
+			pipe_check_exec(command, env_st->envp_cpy, env_st, temp->left);
+			//exec(env_st->envp_cpy, env_st, word_array(rm), temp);
 	} else {
 		fd = open(file[0], O_RDWR | O_CREAT, 0666);
 		//printf("RIGHT DOUBLE REDI  :   FD   :   %d    TEMP  %s    TEMP LEFT    %s    FILE :   %s\n", fd, temp->commande_parseur, temp->left->commande_parseur, file[0]);
 		temp->left->fd_in = 0;
 		temp->left->fd_out = fd;
-		exec(env_st->envp_cpy, env_st, command, temp->left);
+		pipe_check_exec(command, env_st->envp_cpy, env_st, temp->left);
+		//exec(env_st->envp_cpy, env_st, command, temp->left);
 		close(fd);
 		if (env_st->status == 1)
-			exec(env_st->envp_cpy, env_st, word_array(rm), temp);
+			pipe_check_exec(command, env_st->envp_cpy, env_st, temp->left);
+			//exec(env_st->envp_cpy, env_st, word_array(rm), temp);
 	}
 }
 
@@ -72,7 +76,8 @@ char **file, tree_t* temp)
 		fd = open(file[0], O_WRONLY | O_APPEND | O_TRUNC);
 		temp->left->fd_in = 0;
 		temp->left->fd_out = fd;
-		exec(env_st->envp_cpy, env_st, command, temp->left);
+		pipe_check_exec(command, env_st->envp_cpy, env_st, temp->left);
+		//exec(env_st->envp_cpy, env_st, command, temp->left);
 		close(fd);
 		if (env_st->status == 1)
 			exec(env_st->envp_cpy, env_st, word_array(rm), temp);
@@ -80,7 +85,8 @@ char **file, tree_t* temp)
 		fd = open(file[0], O_RDWR | O_CREAT, 0666);
 		temp->left->fd_in = 0;
 		temp->left->fd_out = fd;
-		exec(env_st->envp_cpy, env_st, command, temp->left);
+		pipe_check_exec(command, env_st->envp_cpy, env_st, temp->left);
+		//exec(env_st->envp_cpy, env_st, command, temp->left);
 		close(fd);
 		if (env_st->status == 1)
 			exec(env_st->envp_cpy, env_st, word_array(rm), temp);

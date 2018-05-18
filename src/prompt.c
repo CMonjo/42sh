@@ -40,6 +40,8 @@ int	check_bult_in(char *str)
 int	pipe_check_exec(char **command, char **envp, env_st_t *env_st, tree_t* temp)
 {
 	int ct = 0;
+	int fd_save_1 = dup(0);
+	int fd_save = dup(1);
 
 	while (ct < 12) {
 		if (command[0] != NULL
@@ -47,6 +49,8 @@ int	pipe_check_exec(char **command, char **envp, env_st_t *env_st, tree_t* temp)
 			dup2(temp->fd_in, 0);
 			dup2(temp->fd_out, 1);
 			(tab_name_b[ct].name_str)(command, envp, env_st);
+			dup2(fd_save, 1);
+			dup2(fd_save_1, 0);
 			return (0);
 		}
 		ct ++;

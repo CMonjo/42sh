@@ -74,6 +74,16 @@
 		int (*name_str)(char **str, char **envp, env_st_t *env_st);
 	} name_env_t;
 
+	typedef struct if_s {
+		char *name;
+		int (*name_str)(char *str_one, char *str_two);
+	} if_t;
+
+	typedef struct exec_tree_s {
+		char *name;
+		int (*name_str)(env_st_t *env_st, char **command,
+	char **file, tree_t* temp);
+	} exec_tree_t;
 
 	//SET
 	int set(char **array, UNUSED char **envp, env_st_t *env_st);
@@ -83,6 +93,9 @@
 	void set_display(env_st_t *env_st);
 
 	//ALIAS
+	int	if_equal(char *str_one, char *str_two);
+	int	if_build(char **arr, char **envp, env_st_t *env_st);
+	int	jobs(char **arr, char **envp, env_st_t *env_st);
 	char	*chang_inib(char *str);
 	char	*replace_variable_arr(char *str_one, char *str_two,
 	char **arr, int index_arg);

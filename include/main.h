@@ -93,6 +93,10 @@
 	void set_display(env_st_t *env_st);
 
 	//ALIAS
+	int	if_inf(char *str_one, char *str_two);
+	int	if_sup(char *str_one, char *str_two);
+	int	if_equal_inf(char *str_one, char *str_two);
+	int	if_equal_sup(char *str_one, char *str_two);
 	int	if_equal(char *str_one, char *str_two);
 	int	if_build(char **arr, char **envp, env_st_t *env_st);
 	int	jobs(char **arr, char **envp, env_st_t *env_st);

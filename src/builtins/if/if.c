@@ -9,10 +9,10 @@
 
 if_t const tab_if_sep[] = {
 	{"==", if_equal},
-	{">=", if_equal},
-	{"<=", if_equal},
-	{"<", if_equal},
-	{">", if_equal},
+	{">=", if_equal_sup},
+	{"<=", if_equal_inf},
+	{"<", if_inf},
+	{">", if_sup},
 };
 
 char	*if_command(char **arr)
@@ -29,13 +29,6 @@ char	*if_command(char **arr)
 	}
 	//printf("COMMANDE  :%s\n", command);
 	return (command);
-}
-
-int	if_equal(char *str_one, char *str_two)
-{
-	if (my_strcmp(str_one, str_two) != 0)
-		return (1);
-	return (0);
 }
 
 int	error_if_syntax(char **arr, env_st_t *env_st)

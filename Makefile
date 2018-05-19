@@ -33,6 +33,7 @@ SRC	=	src/main.c		\
 		src/inib.c	\
 		src/builtins/jobs/jobs.c		\
 		src/builtins/if/if.c		\
+		src/builtins/if/if_comp.c		\
 		src/builtins/env/copy_env.c		\
 		src/builtins/env/unsetenv.c		\
 		src/builtins/env/env_other.c		\

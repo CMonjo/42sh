@@ -29,11 +29,10 @@ char	**command_exec(char **arr_command, char *new_command)
 }
 
 void	exec_command_ele(char **arr_command, int nb_ele,
-char **envp, env_st_t *env_st)
+UNUSED char **envp, env_st_t *env_st)
 {
-	int fd = 0;
-	char *file_tmp = NULL;
-
+	if (arr_command == NULL)
+		return;
 	for (int ct = 0; ct != nb_ele;ct ++) {
 		for (int ctb = 0; arr_command[ctb] != NULL; ctb ++)
 			main_b_tree(arr_command[ctb], env_st, 0, 1);
@@ -73,7 +72,6 @@ int	foreach(char **arr, UNUSED char **envp, env_st_t *env_st)
 		return (1);
 	prompt_foreach();
 	arr_command = foreach_loop(arr, envp, env_st);
-	if (arr_command != NULL)
-		exec_command_ele(arr_command, ele, envp, env_st);
+	exec_command_ele(arr_command, ele, envp, env_st);
 	return (0);
 }

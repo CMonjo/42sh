@@ -40,8 +40,7 @@ char **envp, env_st_t *env_st)
 	}
 }
 
-char	**foreach_loop(char **arr,
-UNUSED char **envp, env_st_t *env_st)
+char	**foreach_loop(char **arr, char **envp, env_st_t *env_st)
 {
 	char *str = malloc(sizeof(char) * 1);
 	int ele = count_ele(arr);
@@ -56,8 +55,10 @@ UNUSED char **envp, env_st_t *env_st)
 		&& end_foreach_while(word_array(str), env_st, 0) != 0) {
 			arr_command = command_exec(arr_command, str);
 		}
-		else if (isatty(0) != 1)
-			break;
+		else if (my_strlen(str) <= 0 && isatty(0) != 1) {
+			exec_command_ele(arr_command, 1, envp, env_st);
+			exit(0);
+		}
 		prompt_foreach();
 	}
 	return (arr_command);

@@ -35,9 +35,50 @@ void	skip_parent(char **arr, int *ctb)
 	//printf("COMMAND   : %s\n", arr[*ctb]);
 }
 
-int	check_sep(char **arr)
+int	check_sep_bis_second(char **arr)
 {
 	int value = 0;
+	int ct = 0;
+
+	for (int ctb = ct; arr[ctb] != NULL; ctb ++) {
+		if (arr[ctb][0] == '(')
+			skip_parent(arr, &ctb);
+		if (arr[ctb] == NULL)
+			break;
+		if (my_strcmp(arr[ctb], ">>") == 0)
+			return (4);
+	}
+	for (int ctb = ct; arr[ctb] != NULL; ctb ++) {
+		//printf("SEP  :  %s\n", arr[ctb]);
+		if (arr[ctb][0] == '(')
+			skip_parent(arr, &ctb);
+		if (arr[ctb] == NULL)
+			break;
+		if ((value = check_sep_char(arr[ctb])) != -1)
+			return (value);
+	}
+	return (-1);
+}
+
+int	check_sep_bis(char **arr)
+{
+	//int value = 0;
+	int ct = 0;
+
+	for (int ctb = ct; arr[ctb] != NULL; ctb ++) {
+		if (arr[ctb][0] == '(')
+			skip_parent(arr, &ctb);
+		if (arr[ctb] == NULL)
+			break;
+		if (my_strcmp(arr[ctb], ">") == 0)
+			return (7);
+	}
+	return (check_sep_bis_second(arr));
+}
+
+int	check_sep(char **arr)
+{
+	//int value = 0;
 	int ct = 0;
 
 	if (arr == NULL)
@@ -61,7 +102,7 @@ int	check_sep(char **arr)
 	for (int ctb = 0; arr[ctb] != NULL; ctb ++)
 		if (my_strcmp(arr[ctb], "&&") == 0)
 			return (2);*/
-	for (int ctb = ct; arr[ctb] != NULL; ctb ++) {
+	/*for (int ctb = ct; arr[ctb] != NULL; ctb ++) {
 		if (arr[ctb][0] == '(')
 			skip_parent(arr, &ctb);
 		if (arr[ctb] == NULL)
@@ -85,8 +126,9 @@ int	check_sep(char **arr)
 			break;
 		if ((value = check_sep_char(arr[ctb])) != -1)
 			return (value);
-	}
-	return (-1);
+	}*/
+	return (check_sep_bis(arr));
+	//return (-1);
 }
 
 char	*check_command_bis(int ct, char *command, int *b)

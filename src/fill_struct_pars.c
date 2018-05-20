@@ -125,7 +125,7 @@ tree_t*	my_list_command(char *command, env_st_t* info, int fd_in, int fd_out)
 	int ct = 0;
 	char *command_tmp;
 
-	if ((ct = check_sep(word_array(command))) != -1 && ct != -2) {
+	if ((ct = check_sep(word_array(command))) != -1 && ct != -2 && ct != -3) {
 		//printf("\n\n\nBOUCOULILAH\n\n\n");
 		arr = my_separator_command(command, (char *)tab_name[ct]);
 		temp = fill_struct_comand((char *)tab_name[ct], fd_in, fd_out);
@@ -134,15 +134,20 @@ tree_t*	my_list_command(char *command, env_st_t* info, int fd_in, int fd_out)
 		temp->right = my_list_command(arr[2], info, fd_in, fd_out);
 		b = 1;
 	}
+	if (ct == -3) {
+		temp = fill_struct_comand(command, fd_in, fd_out);
+		return (temp);
+	}
 	if (ct == -2) {
 		temp = NULL;
 		return (temp);
 	}
 	if (b == 0) {
-		/*for (int ct = 0; command[ct] != '\0'; ct ++) {
+		for (int ct = 0; command[ct] != '\0'; ct ++) {
 			if (command[ct] == '(') {
 				command_tmp = malloc(sizeof(char) * (my_strlen(command) - 1));
 				remove_parent_command(command_tmp, command, '\0', my_strlen(command) - 2);
+				//printf("COMMANDE AVANT :   %s    REMOVED PARENT :  %s\n", command, command_tmp);
 				if ((ct = check_sep(word_array(command_tmp))) != -1 && ct != -2) {
 					//printf("\n\n\nBOUCOULILAH\n\n\n");
 					arr = my_separator_command(command_tmp, (char *)tab_name[ct]);
@@ -157,7 +162,7 @@ tree_t*	my_list_command(char *command, env_st_t* info, int fd_in, int fd_out)
 				return (temp);
 			}
 
-		}*/
+		}
 		temp = fill_struct_comand(command, fd_in, fd_out);
 	}
 	return (temp);

@@ -40,6 +40,19 @@ int	error_if_syntax(char **arr, env_st_t *env_st)
 	if (b == 0)
 		return (1);
 	if (b == 1) {
+		if (arr[2][0] >= '0' && arr[2][0] <= '9') {
+			for (int ct = 0; arr[2][ct] != '\0'; ct ++)
+				if (arr[2][ct] < '0' || arr[2][ct] > '9') {
+					env_st->status = 1;
+					my_printf("if: Badly formed number.\n");
+					return (1);
+				}
+			main_b_tree(if_command(arr), env_st, 0, 1);
+		} else {
+			env_st->status = 1;
+			my_printf("if: Expression Syntax.\n");
+			return (1);
+		}
 		//LANCER LA FUNC MAIN_B_TREE
 		return (1);
 	}
@@ -74,18 +87,21 @@ int	if_build(char **arr, char **envp, env_st_t *env_st)
 {
 	int b = 0;
 	char *sep = malloc(sizeof(char) * 1);
+	int ct = 3;
 
 	if (error_if(arr, env_st) == 1 || error_if_syntax(arr, env_st) == 1)
 		return (1);
 	if (arr[1][0] != '(')
 		return (0);
 	sep[0] = '\0';
-	for (int ct = 3; arr[ct + 1][0] != ')'; ct ++)
+	while (arr[ct + 1][0] != ')') {
 		sep = my_strcat(sep, arr[ct], 0);
+		ct ++;
+	}
 	//printf("no error    ARR   :   %s\n", sep);
 	for (int ct = 0; ct != 5; ct ++)
 		if (my_strcmp(sep, tab_if_sep[ct].name) == 0) {
-			if ((tab_if_sep[ct].name_str)(arr[2], arr[4]) == 0)
+			if ((tab_if_sep[ct].name_str)(arr[2], arr[ct]) == 0)
 				main_b_tree(if_command(arr), env_st, 0, 1);
 			b ++;
 		}

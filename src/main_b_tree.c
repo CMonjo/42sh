@@ -164,7 +164,7 @@ int	main_b_tree(char *str, env_st_t *info, int fd_in, int fd_out)
 	}
 	command = check_command(str, 0);
 	command = chang_inib(command);
-	printf("COMMANDE : %s\n", command);
+	//printf("COMMANDE : %s\n", command);
 	fill_history(info, command);
 	//command = epur_command_sep_one(command);
 	error_parent(command);

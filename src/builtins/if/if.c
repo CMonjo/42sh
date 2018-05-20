@@ -98,7 +98,7 @@ int	if_build(char **arr, char **envp, env_st_t *env_st)
 		sep = my_strcat(sep, arr[ctb], 0);
 		ctb ++;
 	}
-	printf("no error    SEP   :   %s  CT   :   %d     ARR[ct] :   %s\n", sep, ctb, arr[ctb]);
+	//printf("no error    SEP   :   %s  CT   :   %d     ARR[ct] :   %s\n", sep, ctb, arr[ctb]);
 	for (int ct = 0; ct != 5; ct ++)
 		if (my_strcmp(sep, tab_if_sep[ct].name) == 0) {
 			if ((tab_if_sep[ct].name_str)(arr[2], arr[ctb]) == 0)

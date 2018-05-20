@@ -151,7 +151,7 @@ tree_t*	my_list_command(char *command, env_st_t* info, int fd_in, int fd_out)
 	if ((ct = check_sep(word_array(command))) != -1 && ct != -2 && ct != -3)
 		return (fill_tree_command(command, info, fd_in, fd_out));
 	if (ct == -3)
-		return (fill_struct_comand(command, fd_in, fd_out););
+		return (fill_struct_comand(command, fd_in, fd_out));
 	if (ct == -2)
 		return (NULL);
 	for (int ct = 0; command[ct] != '\0'; ct ++) {

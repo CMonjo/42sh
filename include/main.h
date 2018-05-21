@@ -35,8 +35,8 @@
 	} alias_t;
 
 	typedef struct set_s {
-		char *var;
-		char *var_value;
+		char *name;
+		char *value;
 		struct set_s *next;
 	} set_t;
 
@@ -87,9 +87,8 @@
 
 	//SET
 	int set(char **array, UNUSED char **envp, env_st_t *env_st);
-	char *set_parse(char **tab);
-	char *concat_set(char *dest, char *src);
-	void set_compare(env_st_t *env_st, char *str);
+	void set_parse(env_st_t *env_st, char *);
+	void set_fill(env_st_t *env_st, char *name, char *value);
 	void set_display(env_st_t *env_st);
 
 	//ALIAS
@@ -106,6 +105,23 @@
 	char	*replace_variable(char *str, char **arr);
 	int	scripting(char **arr,  char **arr_val, char **envp,
 	env_st_t* env_st);
+	int alias(char **array, UNUSED char **envp, env_st_t *env_st);
+	char *alias_parse(char **tab);
+	char *alias_check_string(char *long_str, char *parents);
+	void alias_fill(env_st_t *env_st, char **str, char *long_str,
+		char *parenthesis);
+	void alias_compare(env_st_t *env_st, char *str);
+	void alias_add(env_st_t *env_st, char **str, char *long_str,
+		char *parenthesis);
+	alias_t *alias_add_node(char **str, char *long_str,
+		char *parenthesis);
+	void alias_display(env_st_t *env_st);
+	char *alias_parse_parenthesis(char **tab);
+	int	error_alias_loop(char *first, char *str, env_st_t *env_st);
+	int	check_gnl_alias(char *name, char **envp,
+	env_st_t *env_st, tree_t* temp);
+
+	//
 	void	prompt_foreach(void);
 	int	count_ele(char **arr);
 	int	error_foreach(char **arr, env_st_t *env_st);
@@ -124,21 +140,6 @@
 	int	foreach(char **arr, char **envp, env_st_t *env_st);
 	int	where(char **arr, char **envp, env_st_t *env_st);
 	int	which(char **arr, char **envp, env_st_t *env_st);
-	int alias(char **array, UNUSED char **envp, env_st_t *env_st);
-	char *alias_parse(char **tab);
-	char *alias_check_string(char *long_str, char *parents);
-	void alias_fill(env_st_t *env_st, char **str, char *long_str,
-		char *parenthesis);
-	void alias_compare(env_st_t *env_st, char *str);
-	void alias_add(env_st_t *env_st, char **str, char *long_str,
-		char *parenthesis);
-	alias_t *alias_add_node(char **str, char *long_str,
-		char *parenthesis);
-	void alias_display(env_st_t *env_st);
-	char *alias_parse_parenthesis(char **tab);
-	int	error_alias_loop(char *first, char *str, env_st_t *env_st);
-	int	check_gnl_alias(char *name, char **envp,
-	env_st_t *env_st, tree_t* temp);
 	void error_backstick_quote(char *str, char c, int *ct);
 	void error_parent(char *command);
 	int check_long_sep(char *command);

@@ -7,43 +7,38 @@
 
 #include "main.h"
 
-char *concat_set(char *dest, char *src)
-{
-	char *newdest = NULL;
-
-	if (src == NULL)
-		return (dest);
-	newdest = my_calloc(my_strlen(dest) + my_strlen(src) + 1);
-	if (dest != NULL) {
-		for (int i = 0; newdest != NULL && dest[i] != '\0'; i++)
-			newdest[i] = dest[i];
-	}
-	for (int i = 0; newdest != NULL && src[i] != '\0'; i++)
-		newdest[my_strlen(newdest)] = src[i];
-	dest = my_calloc(my_strlen(newdest)+1);
-	for (int i = 0; dest != NULL && newdest[i] != '\0'; i++)
-		dest[i] = newdest[i];
-	free(newdest);
-	return (dest);
-}
-
-char *set_parse(char **tab)
+int	set_isalpha(char const *str)
 {
 	int i = 0;
-	char *dest = NULL;
-	char *tmp = NULL;
 
-	for (; tab[i] != NULL; i++);
-	if (i > 2) {
-		dest = concat_set(dest, tab[2]);
-		i = 3;
-		while (tab[i] != NULL) {
-			tmp = NULL;
-			dest = concat_set(dest, " ");
-			tmp = concat_set(tmp, tab[i]);
-			dest = concat_set(dest, tmp);
-			i++;
-		}
+	if ((str[i] <= 'z' && str[i] >= 'a') ||
+	(str[i] <= 'Z' && str[i] >= 'A'))
+		return (1);
+	else {
+		my_printf("set: Variable name must begin with a letter.\n");
+		return (0);
 	}
-	return(dest);
+}
+
+void set_parse(env_st_t *env_st, char *str)
+{
+	int set = 0;
+	int i = 0;
+	char *set_name = my_calloc(sizeof(char) * (my_strlen(str) + 1));
+	char *set_value = my_calloc(sizeof(char) * (my_strlen(str) + 1));
+
+	for (i = 0; str[i] != 0; i++) {
+		if (str[i] == '=') {
+			set = 1;
+			break;
+		}
+		set_name[i] = str[i];
+	}
+	if (set_isalpha(set_name) == 0)
+		return;
+	if (set == 1) {
+		for (int j = 0, k = i + 1; str[k] != '\0'; k++, j++)
+			set_value[j] = str[k];
+	}
+	set_fill(env_st, set_name, set_value);
 }

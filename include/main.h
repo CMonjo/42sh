@@ -35,8 +35,9 @@
 	} alias_t;
 
 	typedef struct set_s {
-		char *var;
-		char *var_value;
+		char *name;
+		char *value;
+		int active;
 		struct set_s *next;
 	} set_t;
 
@@ -95,10 +96,10 @@
 
 	//SET
 	int set(char **array, UNUSED char **envp, env_st_t *env_st);
-	char *set_parse(char **tab);
-	char *concat_set(char *dest, char *src);
-	void set_compare(env_st_t *env_st, char *str);
+	void set_parse(env_st_t *env_st, char *);
+	void set_fill(env_st_t *env_st, char *name, char *value);
 	void set_display(env_st_t *env_st);
+	int unset(char **array, UNUSED char **envp, env_st_t *env_st);	
 
 	//ALIAS
 	int	if_inf(char *str_one, char *str_two);
@@ -114,6 +115,23 @@
 	char	*replace_variable(char *str, char **arr);
 	int	scripting(char **arr,  char **arr_val, char **envp,
 	env_st_t* env_st);
+	int alias(char **array, UNUSED char **envp, env_st_t *env_st);
+	char *alias_parse(char **tab);
+	char *alias_check_string(char *long_str, char *parents);
+	void alias_fill(env_st_t *env_st, char **str, char *long_str,
+		char *parenthesis);
+	void alias_compare(env_st_t *env_st, char *str);
+	void alias_add(env_st_t *env_st, char **str, char *long_str,
+		char *parenthesis);
+	alias_t *alias_add_node(char **str, char *long_str,
+		char *parenthesis);
+	void alias_display(env_st_t *env_st);
+	char *alias_parse_parenthesis(char **tab);
+	int	error_alias_loop(char *first, char *str, env_st_t *env_st);
+	int	check_gnl_alias(char *name, char **envp,
+	env_st_t *env_st, tree_t* temp);
+
+	//
 	void	prompt_foreach(void);
 	int	count_ele(char **arr);
 	int	error_foreach(char **arr, env_st_t *env_st);
@@ -132,21 +150,6 @@
 	int	foreach(char **arr, char **envp, env_st_t *env_st);
 	int	where(char **arr, char **envp, env_st_t *env_st);
 	int	which(char **arr, char **envp, env_st_t *env_st);
-	int alias(char **array, UNUSED char **envp, env_st_t *env_st);
-	char *alias_parse(char **tab);
-	char *alias_check_string(char *long_str, char *parents);
-	void alias_fill(env_st_t *env_st, char **str, char *long_str,
-		char *parenthesis);
-	void alias_compare(env_st_t *env_st, char *str);
-	void alias_add(env_st_t *env_st, char **str, char *long_str,
-		char *parenthesis);
-	alias_t *alias_add_node(char **str, char *long_str,
-		char *parenthesis);
-	void alias_display(env_st_t *env_st);
-	char *alias_parse_parenthesis(char **tab);
-	int	error_alias_loop(char *first, char *str, env_st_t *env_st);
-	int	check_gnl_alias(char *name, char **envp,
-	env_st_t *env_st, tree_t* temp);
 	void error_backstick_quote(char *str, char c, int *ct);
 	void error_parent(char *command);
 	int check_long_sep(char *command);
@@ -159,6 +162,8 @@
 	void my_pipe(char **command, int fd_in, int fd_out, env_st_t *env_st);
 	int my_first_command_pipe(env_st_t *env_st,
 	char **command_in, tree_t* temp, int *num);
+	int	error_if_syntax_next_next(char **arr, env_st_t *env_st);
+	char	*if_command(char **arr);
 	int my_last_command_pipe(env_st_t *env_st,
 	char **command_out, tree_t* temp, int *num);
 	int my_pipe_start_more(env_st_t *env_st, tree_t* temp,
@@ -265,5 +270,23 @@
 	int check_val(char **envp, char *name, env_st_t* env_st);
 	int check_env(char *envp, char *name);
 	int	error_redi_right_input(tree_t* temp, char *str);
-	void	star_handle(char **array, char **env, env_st_t *env_st);
+	char	**star_handle(char **array, char *str);
+	void	my_bubble(alias_t *current);
+	char	**bracket_handle(char **array, char *str);
+	int	check_bracket_close(char *str, int ct);
+	int	is_there_changement(char **array, char **new);
+	char	**is_the_same(char **array, char *str, int *modif);
+	char	**delete_line(char **array, int i);
+	char	**add_line(char **array, char *str, int i);
+	int	my_arraylen(char **array);
+	int	glob_execution(char **str, char **envp, env_st_t *env_st,
+	char *name);
+	char	**inter_handle(char **array, char *str);
+	int	check_inter(char *str);
+	int	check_bracket(char *str);
+	int	check_stars(char *str);
+	char	**my_arraydup(char **array);
+	int	if_no_equal(char *str_one, char *str_two);
+	int	error_if_syntax(char **arr, env_st_t *env_st);
+
 #endif

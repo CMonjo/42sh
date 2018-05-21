@@ -121,18 +121,6 @@ int	is_there_changement(char **array, char **new)
 	return (0);
 }
 
-void	star_execution(char **array, glob_t globuffer, char **env,
-env_st_t *env_st)
-{
-	tree_t *tree = env_st->tree;
-
-	tree = my_list_command(array[0], env_st, 0, 1);
-	if (is_there_changement(array, globuffer.gl_pathv) == 1)
-		pipe_check_exec(globuffer.gl_pathv, env, env_st, tree);
-	else
-		my_printf("%s: No match.\n", globuffer.gl_pathv[0]);
-}
-
 glob_t	globuffer_arg(glob_t globuffer, char **array, int index)
 {
 	if (index != 0)
@@ -142,11 +130,13 @@ glob_t	globuffer_arg(glob_t globuffer, char **array, int index)
 	return (globuffer);
 }
 
-void	star_handle(char **array, char **env, env_st_t *env_st)
+char	**star_handle(char **array, char *str)
 {
 	int index;
 	glob_t globuffer;
 
+	if (check_stars(str) != 1)
+		return (my_arraydup(array));
 	array = array_star_sort(array);
 	index = arg_nbr(array, 1);
 	globuffer = globuffer_arg(globuffer, array, index);
@@ -160,5 +150,5 @@ void	star_handle(char **array, char **env, env_st_t *env_st)
 	index = arg_nbr(array, 1);
 	for (int i = 0; i != index; i++)
 		globuffer.gl_pathv[i] = array[i];
-	star_execution(array, globuffer, env, env_st);
+	return(my_arraydup(globuffer.gl_pathv));
 }

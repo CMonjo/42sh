@@ -7,7 +7,7 @@
 
 #include "main.h"
 
-void	my_right_red_pipe(char **file, tree_t* temp, char *sep)
+void	my_right_red_pipe(char **file, tree_t* temp, UNUSED char *sep)
 {
 	int fd;
 

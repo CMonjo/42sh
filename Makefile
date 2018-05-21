@@ -30,10 +30,15 @@ SRC	=	src/main.c		\
 		src/start_sep.c		\
 		src/start_double_sep.c	\
 		src/star.c	\
+		src/bracket.c	\
+		src/inter.c	\
 		src/inib.c	\
+		src/my_arraydup.c	\
 		src/builtins/jobs/jobs.c		\
 		src/builtins/if/if.c		\
 		src/builtins/if/if_comp.c		\
+		src/builtins/if/if_comp_next.c		\
+		src/builtins/if/if_next.c		\
 		src/builtins/env/copy_env.c		\
 		src/builtins/env/unsetenv.c		\
 		src/builtins/env/env_other.c		\
@@ -51,8 +56,9 @@ SRC	=	src/main.c		\
 		src/builtins/echo/echo.c		\
 		src/builtins/repeat/repeat.c		\
 		src/builtins/set/set.c		\
-		src/builtins/set/set_display.c		\
 		src/builtins/set/set_parsing.c		\
+		src/builtins/set/set_display.c		\
+		src/builtins/set/unset.c		\
 		src/builtins/grep/grep.c		\
 		src/builtins/alias/alias.c		\
 		src/builtins/alias/alias_parsing.c	\
@@ -65,6 +71,7 @@ SRC	=	src/main.c		\
 		src/error/start_error_sep.c		\
 		src/scripting/scripting.c		\
 		src/scripting/scripting_variables.c		\
+		src/builtins/alias/alias_sort.c		\
 
 OBJ	=	$(SRC:.c=.o)
 

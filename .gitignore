@@ -7,6 +7,7 @@
 *.out
 *.editorconfig
 *.gcda
+.DS_Store
 *.gcno
 units
 .vscode

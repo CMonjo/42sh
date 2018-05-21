@@ -162,7 +162,7 @@ tree_t*	my_list_command(char *command, env_st_t* info, int fd_in, int fd_out)
 	char **arr;
 	int b = 0;
 	int ct = 0;
-	char *command_tmp;
+	//char *command_tmp;
 
 	/*if ((ct = check_sep(word_array(command))) != -1 && ct != -2 && ct != -3) {
 		//printf("\n\n\nBOUCOULILAH\n\n\n");

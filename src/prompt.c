@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 20151
+** EPITECH PROJECT, 2017
 ** prompt.c
 ** File description:
 ** the prompte function of the minishell1
@@ -35,7 +35,7 @@ int	check_bult_in(char *str)
 	"alias", "echo", "repeat", "which", "where", "set",
 	"unset", "foreach", "fg", "bg"};
 
-	for (int ct = 0; ct != 15; ct ++) {
+	for (int ct = 0; ct != 16; ct ++) {
 		if (my_strcmp(str, bul_in[ct]) == 0)
 			return (ct);
 	}
@@ -48,7 +48,7 @@ int	pipe_check_exec(char **command, char **envp, env_st_t *env_st, tree_t* temp)
 	int fd_save_1 = dup(0);
 	int fd_save = dup(1);
 
-	while (ct < 15) {
+	while (ct < 16) {
 		if (command[0] != NULL
 		&& my_strcmp(command[0], tab_name_b[ct].name) == 0) {
 			dup2(temp->fd_in, 0);
@@ -181,7 +181,7 @@ int	check_gnl(char *name, char **envp, env_st_t *env_st, tree_t* temp)
 	if (check_alias_local_var(str[0], str[0], env_st) == 1
 	|| error_alias_dangerous(str, env_st) == 1)
 		return (1);
-	while (ct < 15) {
+	while (ct < 16) {
 		if (str[0] != NULL
 		&& my_strcmp(str[0], tab_name_b[ct].name) == 0) {
 			(tab_name_b[ct].name_str)(str, envp, env_st);

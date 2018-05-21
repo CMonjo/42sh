@@ -47,7 +47,7 @@ char *alias_parse_parenthesis(char **tab)
 		}
 		dest = concat_alias(dest, ")");
 	}
-	return(dest);
+	return (dest);
 }
 
 char *alias_parse(char **tab)
@@ -68,13 +68,13 @@ char *alias_parse(char **tab)
 			i++;
 		}
 	}
-	return(dest);
+	return (dest);
 }
 
 char *alias_check_string(char *long_str, char *parents)
 {
 	if (parents == NULL)
-		return(long_str);
+		return (long_str);
 	else
-		return(parents);
+		return (parents);
 }

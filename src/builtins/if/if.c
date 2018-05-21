@@ -51,6 +51,25 @@ int	error_if(char **arr, env_st_t *env_st)
 	return (0);
 }
 
+int	if_build_next_next(int ct, char **arr, env_st_t *env_st, int ctb)
+{
+	if ((tab_if_sep[ct].name_str)(arr[2], arr[ctb]) == 0)
+		main_b_tree(if_command(arr), env_st, 0, 1);
+}
+
+
+int	if_build_next(char *sep, char **arr, env_st_t *env_st, int ctb)
+{
+	int b = 0;
+
+	for (int ct = 0; ct != 6; ct ++)
+		if (my_strcmp(sep, tab_if_sep[ct].name) == 0) {
+			if_build_next_next(ct, arr, env_st, ctb);
+			b ++;
+	}
+	return (b);
+}
+
 int	if_build(char **arr, char **envp, env_st_t *env_st)
 {
 	int b = 0;
@@ -66,13 +85,7 @@ int	if_build(char **arr, char **envp, env_st_t *env_st)
 		sep = my_strcat(sep, arr[ctb], 0);
 		ctb ++;
 	}
-	//printf("no error    SEP   :   %s  CT   :   %d     ARR[ct] :   %s\n", sep, ctb, arr[ctb]);
-	for (int ct = 0; ct != 6; ct ++)
-		if (my_strcmp(sep, tab_if_sep[ct].name) == 0) {
-			if ((tab_if_sep[ct].name_str)(arr[2], arr[ctb]) == 0)
-				main_b_tree(if_command(arr), env_st, 0, 1);
-			b ++;
-		}
+	b = b + if_build_next(sep, arr, env_st, ctb);
 	if (b == 0) {
 		env_st->status = 1;
 		my_printf("if: Expression Syntax.\n");

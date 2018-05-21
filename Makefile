@@ -30,7 +30,10 @@ SRC	=	src/main.c		\
 		src/start_sep.c		\
 		src/start_double_sep.c	\
 		src/star.c	\
+		src/bracket.c	\
+		src/inter.c	\
 		src/inib.c	\
+		src/my_arraydup.c	\
 		src/builtins/jobs/jobs.c		\
 		src/builtins/if/if.c		\
 		src/builtins/if/if_comp.c		\

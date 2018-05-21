@@ -258,8 +258,22 @@
 	int check_val(char **envp, char *name, env_st_t* env_st);
 	int check_env(char *envp, char *name);
 	int	error_redi_right_input(tree_t* temp, char *str);
-	void	star_handle(char **array, char **env, env_st_t *env_st);
+	char	**star_handle(char **array, char *str);
 	void	my_bubble(alias_t *current);
+	char	**bracket_handle(char **array, char *str);
+	int	check_bracket_close(char *str, int ct);
+	int	is_there_changement(char **array, char **new);
+	char	**is_the_same(char **array, char *str, int *modif);
+	char	**delete_line(char **array, int i);
+	char	**add_line(char **array, char *str, int i);
+	int	my_arraylen(char **array);
+	int	glob_execution(char **str, char **envp, env_st_t *env_st,
+	char *name);
+	char	**inter_handle(char **array, char *str);
+	int	check_inter(char *str);
+	int	check_bracket(char *str);
+	int	check_stars(char *str);
+	char	**my_arraydup(char **array);
 	int	if_no_equal(char *str_one, char *str_two);
 	int	error_if_syntax(char **arr, env_st_t *env_st);
 

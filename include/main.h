@@ -154,6 +154,8 @@
 	void my_pipe(char **command, int fd_in, int fd_out, env_st_t *env_st);
 	int my_first_command_pipe(env_st_t *env_st,
 	char **command_in, tree_t* temp, int *num);
+	int	error_if_syntax_next_next(char **arr, env_st_t *env_st);
+	char	*if_command(char **arr);
 	int my_last_command_pipe(env_st_t *env_st,
 	char **command_out, tree_t* temp, int *num);
 	int my_pipe_start_more(env_st_t *env_st, tree_t* temp,

@@ -258,4 +258,6 @@
 	int check_env(char *envp, char *name);
 	int	error_redi_right_input(tree_t* temp, char *str);
 	void	star_handle(char **array, char **env, env_st_t *env_st);
+	void	my_bubble(alias_t *current);
+
 #endif

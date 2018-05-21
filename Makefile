@@ -65,6 +65,7 @@ SRC	=	src/main.c		\
 		src/error/start_error_sep.c		\
 		src/scripting/scripting.c		\
 		src/scripting/scripting_variables.c		\
+		src/builtins/alias/alias_sort.c		\
 
 OBJ	=	$(SRC:.c=.o)
 

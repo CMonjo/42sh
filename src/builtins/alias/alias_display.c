@@ -32,6 +32,7 @@ void	alias_displaying(alias_t *tmp, int ct)
 			str_bind = my_strcat(str_bind, tmp->bind);
 			str_bind = my_strcat(str_bind, " ");*/
 			my_printf("%s\t%s\n", tmp->bind, tmp->command_display);
+			//my_printf("%s\n", tmp->command_display);
 			//ct ++;
 		}
 		tmp = tmp->next;
@@ -51,6 +52,8 @@ void alias_display(env_st_t *env_st)
 {
 	alias_t *tmp = env_st->alias;
 
+	if (tmp != NULL)
+		my_bubble(tmp);
 	for (int ct = 0; ct != 126; ct ++)
 		alias_displaying(tmp, ct);
 }

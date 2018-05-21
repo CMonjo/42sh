@@ -37,6 +37,7 @@
 	typedef struct set_s {
 		char *name;
 		char *value;
+		int active;
 		struct set_s *next;
 	} set_t;
 
@@ -90,6 +91,7 @@
 	void set_parse(env_st_t *env_st, char *);
 	void set_fill(env_st_t *env_st, char *name, char *value);
 	void set_display(env_st_t *env_st);
+	int unset(char **array, UNUSED char **envp, env_st_t *env_st);	
 
 	//ALIAS
 	int	if_inf(char *str_one, char *str_two);

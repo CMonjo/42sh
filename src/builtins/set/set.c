@@ -13,6 +13,7 @@ set_t *set_add_node(char *name, char *value)
 
 	tmp->name = my_strdup(name);
 	tmp->value = my_strdup(value);
+	tmp->active = 1;
 	tmp->next = NULL;
 	return (tmp);
 }
@@ -36,10 +37,12 @@ void set_fill(env_st_t *env_st, char *name, char *value)
 	while (tmp != NULL) {
 		if (my_strcmp(tmp->name, name) == 0) {
 			tmp->value = my_strdup(value);
+			tmp->active = 1;
 			return;
 		}
 		tmp = tmp->next;
 	}
+
 	set_add(env_st, name, value);
 }
 

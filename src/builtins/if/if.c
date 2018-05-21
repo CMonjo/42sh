@@ -83,7 +83,7 @@ int	error_if(char **arr, env_st_t *env_st)
 	return (0);
 }
 
-int	if_build(char **arr, char **envp, env_st_t *env_st)
+int	if_build(char **arr, UNUSED char **envp, env_st_t *env_st)
 {
 	int b = 0;
 	char *sep = malloc(sizeof(char) * 1);

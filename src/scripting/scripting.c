@@ -8,7 +8,7 @@
 #include "main.h"
 
 int	script_check_path_bsc(char **envp, char *name, UNUSED char **str_arr,
-env_st_t* env_st)
+UNUSED env_st_t* env_st)
 {
 	int ct = 0;
 	char *str;
@@ -48,7 +48,7 @@ int	script_path_command(char **envp, char *name,
 	return (0);
 }
 
-int	script_path(char *str, env_st_t *env_st)
+int	script_path(char *str, UNUSED env_st_t *env_st)
 {
 	if (access(str, F_OK) != -1) {
 		return (1);
@@ -164,7 +164,7 @@ int	check_elf(char *str, char **arr, FILE *fd, env_st_t* env_st)
 	return (1);
 }
 
-int	scripting(char **arr, char **arr_val, char **envp, env_st_t* env_st)
+int	scripting(char **arr, char **arr_val, UNUSED char **envp, UNUSED env_st_t* env_st)
 {
 	int fd = 0;
 	size_t size = 0;

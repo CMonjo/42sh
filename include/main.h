@@ -54,6 +54,13 @@
 		struct history_s *next;
 	} history_t;
 
+	typedef struct job_s {
+		int nbr;
+		int pid;
+		char *command;
+		struct job_s *next;
+	} job_t;
+
 	typedef struct env_st_s {
 		int len_w;
 		int len_h;
@@ -67,6 +74,7 @@
 		alias_t *alias;
 		set_t *set;
 		history_t *history;
+		job_t *job;
 	} env_st_t;
 
 	typedef struct name_env_s {

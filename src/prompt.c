@@ -94,6 +94,26 @@ int	check_same_alias(char *command, env_st_t *env_st)
 	return (0);
 }
 
+/*int	local_var(char *command, char *str, env_st_t *env_st)
+{
+	alias_t* set = env_st->set;
+
+	if (check_same_alias(command, env_st) == 1)
+		return (0);
+	if (alias != NULL && error_alias_loop(command, str, env_st) == 1)
+		return (1);
+	while (set != NULL) {
+		if (my_strcmp(alias->bind, command) == 0) {
+			check_gnl(alias->command_bind,
+			env_st->envp_cpy, env_st,
+			my_list_command(alias->command_bind, env_st, 0, 1));
+			return (1);
+		}
+		alias = alias->next;
+	}
+	return (0);
+}*/
+
 int	check_alias_local_var(char *command, char *str, env_st_t *env_st)
 {
 	alias_t* alias = env_st->alias;
@@ -124,6 +144,7 @@ int	check_gnl(char *name, char **envp, env_st_t *env_st, tree_t* temp)
 
 	if ((str = word_array(name)) == NULL)
 		return (0);
+	//if ()
 	if (check_stars(name) == 1) {
 		star_handle(str, envp, env_st);
 		return (0);
@@ -139,7 +160,6 @@ int	check_gnl(char *name, char **envp, env_st_t *env_st, tree_t* temp)
 		}
 		ct ++;
 	}
-	//if (scripting(str, envp, env_st, temp) == 0)
 	exec(envp, env_st, str, temp);
 	return (0);
 }

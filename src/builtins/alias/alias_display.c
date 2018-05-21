@@ -12,11 +12,6 @@ void	alias_displaying(alias_t *tmp, int ct)
 	while (tmp != NULL) {
 		if (tmp->bind[0] == ct) {
 			my_printf("%s\t%s\n", tmp->bind, tmp->command_display);
-<<<<<<< HEAD
-			//my_printf("%s\n", tmp->command_display);
-			//ct ++;
-=======
->>>>>>> dc235b4b338c80cc4cb1eacab27f15f50f8d6a24
 		}
 		tmp = tmp->next;
 	}

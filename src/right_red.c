@@ -50,7 +50,7 @@ char **file, tree_t* temp)
 		//exec(env_st->envp_cpy, env_st, command, temp->left);
 		close(fd);
 		if (env_st->status == 1)
-			pipe_check_exec(command, env_st->envp_cpy, env_st, temp->left);
+			pipe_check_exec(word_array(rm), env_st->envp_cpy, env_st, temp);
 			//exec(env_st->envp_cpy, env_st, word_array(rm), temp);
 	} else {
 		fd = open(file[0], O_RDWR | O_CREAT, 0666);
@@ -61,7 +61,7 @@ char **file, tree_t* temp)
 		//exec(env_st->envp_cpy, env_st, command, temp->left);
 		close(fd);
 		if (env_st->status == 1)
-			pipe_check_exec(command, env_st->envp_cpy, env_st, temp->left);
+			pipe_check_exec(word_array(rm), env_st->envp_cpy, env_st, temp);
 			//exec(env_st->envp_cpy, env_st, word_array(rm), temp);
 	}
 }

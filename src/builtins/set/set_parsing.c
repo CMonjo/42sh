@@ -7,7 +7,7 @@
 
 #include "main.h"
 
-int	set_isalpha(char const *str)
+int	set_isalpha(env_st_t *env_st, char const *str)
 {
 	int i = 0;
 
@@ -16,6 +16,7 @@ int	set_isalpha(char const *str)
 		return (1);
 	else {
 		my_printf("set: Variable name must begin with a letter.\n");
+		env_st->err = 1;
 		return (0);
 	}
 }
@@ -34,7 +35,7 @@ void set_parse(env_st_t *env_st, char *str)
 		}
 		set_name[i] = str[i];
 	}
-	if (set_isalpha(set_name) == 0)
+	if (set_isalpha(env_st, set_name) == 0)
 		return;
 	if (set == 1) {
 		for (int j = 0, k = i + 1; str[k] != '\0'; k++, j++)

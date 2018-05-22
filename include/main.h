@@ -152,7 +152,7 @@
 	int	where(char **arr, char **envp, env_st_t *env_st);
 	int	which(char **arr, char **envp, env_st_t *env_st);
 	void error_backstick_quote(char *str, char c, int *ct);
-	void error_parent(char *command);
+	int error_parent(char *command);
 	int check_long_sep(char *command);
 	int repeat(char **arr, char **envp, env_st_t *env_st);
 	int echo(char **arr, char **envp, env_st_t *env_st);
@@ -290,5 +290,11 @@
 	int	if_no_equal(char *str_one, char *str_two);
 	int	error_if_syntax(char **arr, env_st_t *env_st);
 	int	exit_command(char **array, char **envp, env_st_t *env_st);
+	char	*too_much_parent(char *str);
+	char	*rm_char(char *str, int ct);
+	int	verif_parent_next(char *str, int ct);
+	int	verif_parent_next_rev(char *str, int ct);
+	int	nb_char_in_str(char *str, char c);
+	int	error_null_parent(char **command);
 
 #endif

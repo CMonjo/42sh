@@ -24,15 +24,15 @@ int	error_null_parent(char **command)
 	return (0);
 }
 
-void	error_parent(char *command)
+int	error_parent(char *command)
 {
 	int parent_left = 0;
 	int parent_right = 0;
 
 	for (int ct = 0; command[ct] != '\0'; ct ++) {
-		if (command[ct] == 41)
+		if (command[ct] == ')')
 			parent_right ++;
-		if (command[ct] == 40)
+		if (command[ct] == '(')
 			parent_left ++;
 		if (command[ct] == 34 || command[ct] == 39) {
 			ct ++;
@@ -40,24 +40,25 @@ void	error_parent(char *command)
 		}
 	}
 	if (parent_left == 0 && parent_right == 0)
-		return;
+		return (0);
 	if (parent_left == 0) {
-		my_printf("Too many %c's.\n", 41);
-		exit(1);
+		my_printf("Too many %c's.\n", ')');
+		return (1);
 	}
 	if (parent_right == 0) {
-		my_printf("Too many %c's.\n", 40);
-		exit(1);
+		my_printf("Too many %c's.\n", '(');
+		return (1);
 	}
 	if ((parent_right / parent_left) == 0) {
-		my_printf("Too many %c's.\n", 40);
-		exit(1);
+		my_printf("Too many %c's.\n", '(');
+		return (1);
 	}
 	if ((parent_left / parent_right) == 0) {
-		my_printf("Too many %c's.\n", 41);
-		exit(1);
+		my_printf("Too many %c's.\n", ')');
+		return (1);
 	}
-	if (error_null_parent(word_array(command)) == 1) {
-		exit(1);
-	}
+//	if (error_null_parent(word_array(command)) == 1) {
+//		return (1);
+//	}
+	return (0);
 }

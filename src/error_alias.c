@@ -23,6 +23,9 @@ int	error_alias_loop(char *first, char *str, env_st_t *env_st)
 
 	while (alias != NULL) {
 		if (my_strcmp(alias->bind, str) == 0
+		&& my_strcmp(alias->command_bind, str) == 0)
+			return (0);
+		if (my_strcmp(alias->bind, str) == 0
 		&& error_alias_loop_detec(first, alias, env_st) == 1)
 			return (1);
 		else if (my_strcmp(alias->bind, str) == 0) {
@@ -42,7 +45,8 @@ int	error_alias_dangerous(char **arr, env_st_t *env_st)
 		tab_len ++;
 	if (tab_len < 3)
 		return (0);
-	if (my_strcmp(arr[0], "alias") == 0 && my_strcmp(arr[1], "alias") == 0) {
+	if (my_strcmp(arr[0], "alias") == 0
+	&& my_strcmp(arr[1], "alias") == 0) {
 		env_st->status = 1;
 		my_putstr_err(NULL, "alias: Too dangerous to alias that.\n");
 		return (1);

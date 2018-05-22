@@ -42,7 +42,6 @@ void set_fill(env_st_t *env_st, char *name, char *value)
 		}
 		tmp = tmp->next;
 	}
-
 	set_add(env_st, name, value);
 }
 

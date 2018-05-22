@@ -9,13 +9,13 @@
 
 void	exit_display(int i, env_st_t *env_st)
 {
-	if (i == 0 && isatty(0))
+	if (i == 0)
 		dprintf(2, "exit\n");
-	if (i == 1 && isatty(0)) {
+	if (i == 1) {
 		dprintf(2, "exit: Badly formed number.\n");
 		env_st->status = 1;
 	}
-	if (i == 2 && isatty(0)) {
+	if (i == 2) {
 		env_st->status = 1;
 		dprintf(2, "exit: Expression Syntax.\n");
 	}

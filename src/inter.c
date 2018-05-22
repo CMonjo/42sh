@@ -53,13 +53,12 @@ char	**array_inter_sort(char **array)
 	return (array);
 }
 
-glob_t	globuffer_arg_inter(glob_t globuffer, char **array, int index)
+void	globuffer_arg_inter(glob_t *globuffer, char **array, int index)
 {
 	if (index != 0)
-		globuffer.gl_offs = arg_nbr_inter(array, 0) + 1;
+		globuffer->gl_offs = arg_nbr_inter(array, 0) + 1;
 	else
-		globuffer.gl_offs = 0;
-	return (globuffer);
+		globuffer->gl_offs = 0;
 }
 
 char	**inter_handle(char **array, char *str)
@@ -71,7 +70,7 @@ char	**inter_handle(char **array, char *str)
 		return (array);
 	array = array_inter_sort(array);
 	index = arg_nbr_inter(array, 1);
-	globuffer = globuffer_arg_inter(globuffer, array, index);
+	globuffer_arg_inter(&globuffer, array, index);
 	for (int i = 0; array[index] != NULL; index++, i++) {
 		if (i == 0)
 			glob(array[index], GLOB_DOOFFS, NULL, &globuffer);

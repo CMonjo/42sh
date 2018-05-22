@@ -121,13 +121,12 @@ int	is_there_changement(char **array, char **new)
 	return (0);
 }
 
-glob_t	globuffer_arg(glob_t globuffer, char **array, int index)
+void	globuffer_arg(glob_t *globuffer, char **array, int index)
 {
 	if (index != 0)
-		globuffer.gl_offs = arg_nbr(array, 0) + 1;
+		globuffer->gl_offs = arg_nbr(array, 0) + 1;
 	else
-		globuffer.gl_offs = 0;
-	return (globuffer);
+		globuffer->gl_offs = 0;
 }
 
 char	**star_handle(char **array, char *str)
@@ -139,7 +138,7 @@ char	**star_handle(char **array, char *str)
 		return (my_arraydup(array));
 	array = array_star_sort(array);
 	index = arg_nbr(array, 1);
-	globuffer = globuffer_arg(globuffer, array, index);
+	globuffer_arg(&globuffer, array, index);
 	for (int i = 0; array[index] != NULL; index++, i++) {
 		if (i == 0)
 			glob(array[index], GLOB_DOOFFS, NULL, &globuffer);

@@ -225,6 +225,7 @@ char	*too_much_parent(char *str)
 	int i = 0;
 	int ct = nb_char_in_str(str, '(');
 
+	(void)i;
 	if (ct == 0 || ct == 1)
 		return (str);
 	while (1 != ct) {

@@ -143,6 +143,98 @@ int	check_special_case(char *str)
 	return (command);
 }*/
 
+int	nb_char_in_str(char *str, char c)
+{
+	int i = 0;
+	int ct = 0;
+
+	while (str[i] != '\0') {
+		if (str[i] == c)
+			ct = ct + 1;
+		i = i + 1;
+	}
+	return (ct);
+}
+
+int	verif_parent_next_rev(char *str, int ct)
+{
+	int ctb = 0;
+	int i = my_strlen(str) - 1;
+
+	while (i != -1) {
+		if (str[i] == ')')
+			ctb = ctb + 1;
+		if (ctb == ct)
+			break;
+		i = i - 1;
+	}
+	return (i);
+}
+
+int	verif_parent_next(char *str, int ct)
+{
+	int ctb = 0;
+	int i = 0;
+
+	while (str[i] != '\0') {
+		if (str[i] == '(')
+			ctb = ctb + 1;
+		if (ctb == ct)
+			break;
+		i = i + 1;
+	}
+	return (i);
+}
+
+char	*rm_char(char *str, int ct)
+{
+	char *dest = malloc(sizeof(char) * (my_strlen(str)));
+	int i = 0;
+	int w = 0;
+
+	while (str[i] != '\0') {
+		if (i != ct) {
+			dest[w] = str[i];
+			w = w + 1;
+		}
+		i = i + 1;
+	}
+	free(str);
+	dest[w] = '\0';
+	return (dest);
+}
+
+char	*verif_parent(char *str, int ct)
+{
+	int a = 0;
+	int b = 0;
+
+	a = verif_parent_next(str, ct);
+	b = verif_parent_next_rev(str, ct);
+	if (str[a + 2] == '(' && str[b - 2] == ')') {
+		str = rm_char(str, a);
+		str = rm_char(str, a);
+		str = rm_char(str, b - 2);
+		str = rm_char(str, b - 3);
+	}
+	return (str);
+}
+
+char	*too_much_parent(char *str)
+{
+	int i = 0;
+	int ct = nb_char_in_str(str, '(');
+
+	if (ct == 0 || ct == 1)
+		return (str);
+	while (1 != ct) {
+		str = verif_parent(str, 1);
+		ct = ct - 1;
+	}
+	my_printf("%s\n", str);
+	return (str);
+}
+
 int	main_b_tree(char *str, env_st_t *info, int fd_in, int fd_out)
 {
 	tree_t* temp;
@@ -168,6 +260,8 @@ int	main_b_tree(char *str, env_st_t *info, int fd_in, int fd_out)
 	fill_history(info, command);
 	//command = epur_command_sep_one(command);
 	error_parent(command);
+//	command = too_much_parent(command);
+	//LAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 	//printf("0  %s    1  %s     2     %s\n\n", arr[0], arr[1], arr[2]);
 	/*printf("\n--------------HISTORY----------\n\n");
 	my_printf_history(info->history);

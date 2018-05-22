@@ -10,7 +10,7 @@
 name_env_t const tab_name_b[] = {
 	{"cd", cd},
 	{"env", env},
-	{"exit", exit_env},
+	{"exit", exit_command},
 	{"setenv", set_env},
 	{"unsetenv", unset_env},
 	{"alias", alias},
@@ -42,7 +42,8 @@ int	check_bult_in(char *str)
 	return (-1);
 }
 
-int	pipe_check_exec(char **command, char **envp, env_st_t *env_st, tree_t* temp)
+int	pipe_check_exec(char **command, char **envp, env_st_t *env_st,
+tree_t* temp)
 {
 	int ct = 0;
 	int fd_save_1 = dup(0);
@@ -96,33 +97,10 @@ int	check_same_alias(char *command, env_st_t *env_st)
 	return (0);
 }
 
-/*int	local_var(char *command, char *str, env_st_t *env_st)
-{
-	alias_t* set = env_st->set;
-
-	if (check_same_alias(command, env_st) == 1)
-		return (0);
-	if (alias != NULL && error_alias_loop(command, str, env_st) == 1)
-		return (1);
-	while (set != NULL) {
-		if (my_strcmp(alias->bind, command) == 0) {
-			check_gnl(alias->command_bind,
-			env_st->envp_cpy, env_st,
-			my_list_command(alias->command_bind, env_st, 0, 1));
-			return (1);
-		}
-		alias = alias->next;
-	}
-	return (0);
-}*/
-
 int	check_alias_local_var(char *command, char *str, env_st_t *env_st)
 {
 	alias_t* alias = env_st->alias;
 
-	/*if (str[0] == '$') {
-		//local variables
-	}*/
 	if (check_same_alias(command, env_st) == 1)
 		return (0);
 	if (alias != NULL && error_alias_loop(command, str, env_st) == 1)
@@ -183,8 +161,10 @@ int	glob_execution(char **str, char **envp, env_st_t *env_st, char *name)
 	tree = my_list_command(array[0], env_st, 0, 1);
 	if (is_there_changement(str, array) == 1)
 		pipe_check_exec(array, envp, env_st, tree);
-	else
-		my_printf("%s: No match.\n", array[0]);
+	else {
+		env_st->status = 1;
+		dprintf(2, "%s: No match.\n", array[0]);
+	}
 	free (array);
 	return (0);
 }
@@ -196,8 +176,8 @@ int	check_gnl(char *name, char **envp, env_st_t *env_st, tree_t* temp)
 
 	if ((str = word_array(name)) == NULL)
 		return (0);
-	//if ()
-	if (check_stars(name) == 1 || check_bracket(name) == 1 || check_inter(name) == 1)
+	if (check_stars(name) == 1 || check_bracket(name) == 1 ||
+	check_inter(name) == 1)
 		return (glob_execution(str, envp, env_st, name));
 	if (check_alias_local_var(str[0], str[0], env_st) == 1
 	|| error_alias_dangerous(str, env_st) == 1)

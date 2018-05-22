@@ -151,19 +151,25 @@ int	main_b_tree(char *str, env_st_t *info, int fd_in, int fd_out)
 
 	if ((arr = word_array(str)) == NULL)
 		return (0);
-	if (check_special_case(str) == 1) {
+	if (check_special_case(str) == 1 || check_long_sep(str) == 1) {
 		command = check_command(str, 0);
 		fill_history(info, command);
 		return (0);
 	}
 	//printf("STRR   :    %s\n", str);
-	if (check_long_sep(str) == 1) {
+	/*if (check_long_sep(str) == 1) {
+		command = check_command(str, 0);
+		fill_history(info, command);
+		return (1);
+	}*/
+	command = check_command(str, 0);
+	command = chang_inib(command);
+	if (variable_error(command, info) == 1) {
 		command = check_command(str, 0);
 		fill_history(info, command);
 		return (1);
 	}
-	command = check_command(str, 0);
-	command = chang_inib(command);
+	command = variable(command, info);
 	//printf("COMMANDE : %s\n", command);
 	fill_history(info, command);
 	//command = epur_command_sep_one(command);
@@ -173,7 +179,6 @@ int	main_b_tree(char *str, env_st_t *info, int fd_in, int fd_out)
 	if (error_null_parent(word_array(command)) == 1) {
 		return (1);
 	}
-	//LAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 	//printf("0  %s    1  %s     2     %s\n\n", arr[0], arr[1], arr[2]);
 	/*printf("\n--------------HISTORY----------\n\n");
 	my_printf_history(info->history);

@@ -30,6 +30,9 @@ SRC	=	src/main.c		\
 		src/start_sep.c		\
 		src/start_double_sep.c	\
 		src/star.c	\
+		src/variables.c	\
+		src/variables_string.c	\
+		src/error_variables.c	\
 		src/bracket.c	\
 		src/inter.c	\
 		src/inib.c	\

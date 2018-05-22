@@ -102,6 +102,12 @@
 	int unset(char **array, UNUSED char **envp, env_st_t *env_st);
 
 	//ALIAS
+	char	*find_local_var(char *str, env_st_t *env_st);
+	char	*variable(char *str, env_st_t *env_st);
+	int	variable_error(char *str, env_st_t *env_st);
+	char	*second_string(char *str, int *ct);
+	char	*first_string(char *str, int *ct);
+	char	*variable_name_string(char *str, int *ct);
 	int	error_if_syntax_next(char **arr, env_st_t *env_st);
 	int	if_inf(char *str_one, char *str_two);
 	int	if_sup(char *str_one, char *str_two);

@@ -69,6 +69,7 @@
 		int ind;
 		int cd_abl;
 		int status;
+		int err;
 		char **envp_cpy;
 		char **envp_bsc;
 		tree_t *tree;

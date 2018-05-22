@@ -33,6 +33,7 @@ SRC	=	src/main.c		\
 		src/bracket.c	\
 		src/inter.c	\
 		src/inib.c	\
+		src/exit.c	\
 		src/my_arraydup.c	\
 		src/builtins/jobs/jobs.c		\
 		src/builtins/if/if.c		\

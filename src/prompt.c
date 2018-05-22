@@ -10,7 +10,7 @@
 name_env_t const tab_name_b[] = {
 	{"cd", cd},
 	{"env", env},
-	{"exit", exit_env},
+	{"exit", exit_command},
 	{"setenv", set_env},
 	{"unsetenv", unset_env},
 	{"alias", alias},

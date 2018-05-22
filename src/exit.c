@@ -9,7 +9,7 @@
 
 void	exit_display(int i, env_st_t *env_st)
 {
-	if (i == 0)
+	if (i == 0 && isatty(0))
 		dprintf(2, "exit\n");
 	if (i == 1) {
 		dprintf(2, "exit: Badly formed number.\n");

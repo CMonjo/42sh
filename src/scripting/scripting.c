@@ -110,16 +110,14 @@ int	check_sheebang(char *str, char *file, env_st_t* env_st)
 	char *sheebang;
 	int ctb = 0;
 	int start = 1;
-	//char *sheebang = malloc(sizeof(char) * (my_strlen(str) - 2));
 
 	if (my_strlen(str) > 2 && str[1] == '!')
 		start ++;
 	for (int ct = start; str[ct] != '\0' && str[ct] != ' '; ct ++)
 		len_sheebang ++;
 	sheebang = malloc(sizeof(char) * (len_sheebang + 1));
-	for (int ct = start; str[ct] != '\0' && str[ct] != ' '; ct ++, ctb ++) {
+	for (int ct = start; str[ct] != '\0' && str[ct] != ' '; ct ++, ctb ++)
 		sheebang[ctb] = str[ct];
-	}
 	sheebang[len_sheebang] = '\0';
 	if (access(sheebang, F_OK) == -1) {
 		my_printf("%s: Command not found.\n", file);
@@ -164,7 +162,8 @@ int	check_elf(char *str, char **arr, FILE *fd, env_st_t* env_st)
 	return (1);
 }
 
-int	scripting(char **arr, char **arr_val, UNUSED char **envp, UNUSED env_st_t* env_st)
+int	scripting(char **arr, char **arr_val,
+UNUSED char **envp, UNUSED env_st_t* env_st)
 {
 	int fd = 0;
 	size_t size = 0;

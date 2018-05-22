@@ -55,6 +55,7 @@ int	if_build_next_next(int ct, char **arr, env_st_t *env_st, int ctb)
 {
 	if ((tab_if_sep[ct].name_str)(arr[2], arr[ctb]) == 0)
 		main_b_tree(if_command(arr), env_st, 0, 1);
+	return (0);
 }
 
 
@@ -70,7 +71,7 @@ int	if_build_next(char *sep, char **arr, env_st_t *env_st, int ctb)
 	return (b);
 }
 
-int	if_build(char **arr, char **envp, env_st_t *env_st)
+int	if_build(char **arr, UNUSED char **envp, env_st_t *env_st)
 {
 	int b = 0;
 	char *sep = malloc(sizeof(char) * 1);

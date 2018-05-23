@@ -20,7 +20,7 @@ void set_display(env_st_t *env_st)
 {
 	set_t *tmp = env_st->set;
 
-	if (env_st->history->next != NULL)
+	if (isatty(0) == 1 && env_st->history->next != NULL)
 		my_printf("_\t%s\n\n", env_st->history->next->command);
 	else
 		my_printf("_\n");

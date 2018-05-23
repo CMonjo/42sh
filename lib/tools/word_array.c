@@ -88,23 +88,24 @@ int	empty_str(char *str)
 
 char	**word_array(char *line)
 {
-	int ct = 0;
 	int ctb = 0;
 	char **str;
 
 	if (line == NULL || empty_str(line) == 0)
 		return (NULL);
 	str = malloc(sizeof(char *) * (len_str(line) + 1));
-	while (line[ct] != '\0') {
-		if (line[ct] != 32 && line[ct] != 9) {
+	for (int ct = 0; line[ct] != '\0'; ct ++) {
+		if (line[ct] != 32 && line[ct] != 9
+		&& line[ct] != 39 && line[ct] != 34) {
 			str[ctb] = copy_str_arr(line, &ct);
 			ctb ++;
 		}
 		if (line[ct] == 39 || line[ct] == 34) {
 			str[ctb] = copy_str_quote(line, &ct, line[ct]);
 			ctb ++;
-		} else if (line[ct] != '\0')
-			ct ++;
+		}
+		if (line[ct] == '\0')
+			break;
 	}
 	str[ctb] = NULL;
 	return (str);

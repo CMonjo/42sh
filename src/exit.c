@@ -21,6 +21,22 @@ void	exit_display(int i, env_st_t *env_st)
 	}
 }
 
+int	is_this_nbr(char *str)
+{
+	int i = 0;
+	int verif = 0;
+
+	for (; str[i] != '\0'; i++, verif = 0) {
+		if (str[i] == '-' && i != 0)
+			return (0);
+		if (str[i] == '-')
+			verif = 1;
+		if ((str[i] < '0' || str[i] > '9') && verif == 0)
+			return (0);
+	}
+	return (1);
+}
+
 int	is_there_alpha(char *str)
 {
 	int i = 0;
@@ -50,7 +66,7 @@ int	exit_command(char **array, UNUSED char **envp, env_st_t *env_st)
 		exit (0);
 	}
 	if ((array[1][0] >= '0' && array[1][0] <= '9') ||
-		is_there_alpha(array[1]) == 2) {
+		is_there_alpha(array[1]) == 2 || is_this_nbr(array[1]) == 0) {
 		exit_display(1, env_st);
 		return (0);
 	}

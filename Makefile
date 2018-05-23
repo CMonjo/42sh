@@ -79,6 +79,7 @@ SRC	=	src/main.c		\
 		src/builtins/alias/alias_sort.c		\
 		src/verif_parent.c			\
 		src/verif_parent_next.c			\
+		src/select_env.c			\
 
 OBJ	=	$(SRC:.c=.o)
 

@@ -7,6 +7,20 @@
 
 #include "main.h"
 
+int set_deep(char *str)
+{
+	int i = 1;
+
+	if (str[0] != '=')
+		return (1);
+	while (str[i] != '\0') {
+		if (!(str[i] >= 48 && str[i] <= 57))
+			return (1);
+		i += 1;
+	}
+	return (0);
+}
+
 int	set_isalpha(env_st_t *env_st, char const *str)
 {
 	int i = 0;
@@ -17,6 +31,7 @@ int	set_isalpha(env_st_t *env_st, char const *str)
 	else {
 		my_printf("set: Variable name must begin with a letter.\n");
 		env_st->err = 1;
+		env_st->status = 1;
 		return (0);
 	}
 }

@@ -7,7 +7,6 @@
 
 #include "main.h"
 
-
 int	is_there_bracket(char *str)
 {
 	int i = 0;

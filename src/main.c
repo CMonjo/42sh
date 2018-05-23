@@ -17,10 +17,12 @@ env_st_t	*init_env_struct(char **envp)
 	new_node->unset = 0;
 	new_node->cd_abl = 0;
 	new_node->status = 0;
+	new_node->err = 0;
 	new_node->tree = NULL;
 	new_node->history = NULL;
 	new_node->job = NULL;
 	new_node->alias = NULL;
+	new_node->set = NULL;
 	new_node->envp_bsc = create_env();
 	if (envp[0] == NULL) {
 		new_node->envp_cpy = create_env();

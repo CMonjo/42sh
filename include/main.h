@@ -31,6 +31,7 @@
 		char *bind;
 		char *command_bind;
 		char *command_display;
+		int active;
 		struct alias_s *next;
 	} alias_t;
 
@@ -69,6 +70,7 @@
 		int ind;
 		int cd_abl;
 		int status;
+		int err;
 		char **envp_cpy;
 		char **envp_bsc;
 		tree_t *tree;
@@ -99,9 +101,16 @@
 	void set_parse(env_st_t *env_st, char *);
 	void set_fill(env_st_t *env_st, char *name, char *value);
 	void set_display(env_st_t *env_st);
+	int unalias(char **array, UNUSED char **envp, env_st_t *env_st);
 	int unset(char **array, UNUSED char **envp, env_st_t *env_st);
 
 	//ALIAS
+	char	*find_local_var(char *str, env_st_t *env_st);
+	char	*variable(char *str, env_st_t *env_st);
+	int	variable_error(char *str, env_st_t *env_st);
+	char	*second_string(char *str, int *ct);
+	char	*first_string(char *str, int *ct);
+	char	*variable_name_string(char *str, int *ct);
 	int	error_if_syntax_next(char **arr, env_st_t *env_st);
 	int	if_inf(char *str_one, char *str_two);
 	int	if_sup(char *str_one, char *str_two);
@@ -296,5 +305,6 @@
 	int	verif_parent_next_rev(char *str, int ct);
 	int	nb_char_in_str(char *str, char c);
 	int	error_null_parent(char **command);
+	char	*select_env(char **env, char *str);
 
 #endif

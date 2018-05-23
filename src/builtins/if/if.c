@@ -58,7 +58,6 @@ int	if_build_next_next(int ct, char **arr, env_st_t *env_st, int ctb)
 	return (0);
 }
 
-
 int	if_build_next(char *sep, char **arr, env_st_t *env_st, int ctb)
 {
 	int b = 0;

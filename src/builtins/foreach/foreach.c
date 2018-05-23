@@ -28,18 +28,29 @@ char	**command_exec(char **arr_command, char *new_command)
 	return (new_arr);
 }
 
-void	exec_command_ele(char **arr_command, int nb_ele,
-UNUSED char **envp, env_st_t *env_st)
+void	exec_command_ele(char **arr_command, int nb_ele, char **foreach, env_st_t *env_st)
 {
+	char *var = my_strdup(foreach[1]);
+	char *command;
+	int ctb = 3;
+
 	if (arr_command == NULL)
 		return;
-	for (int ct = 0; ct != nb_ele;ct ++) {
+	for (int ct = 0; ct != nb_ele; ct ++, ctb ++) {
+		command = my_strcat("set ", var, 0);
+		command = my_strcat(command, "=", 0);
+		command = my_strcat(command, foreach[ctb], 0);
+		//printf("COMAND :   %s    FOREACH   :    %s\n", command, foreach[ctb]);
+		set(word_array(command), env_st->envp_cpy, env_st);
 		for (int ctb = 0; arr_command[ctb] != NULL; ctb ++)
 			main_b_tree(arr_command[ctb], env_st, 0, 1);
+		free(command);
 	}
+	free(var);
+	free_tab(foreach);
 }
 
-char	**foreach_loop(char **arr, char **envp, env_st_t *env_st)
+char	**foreach_loop(char **arr, UNUSED char **envp, env_st_t *env_st)
 {
 	char *str = malloc(sizeof(char) * 1);
 	int ele = count_ele(arr);
@@ -55,7 +66,7 @@ char	**foreach_loop(char **arr, char **envp, env_st_t *env_st)
 			arr_command = command_exec(arr_command, str);
 		}
 		else if (my_strlen(str) <= 0 && isatty(0) != 1) {
-			exec_command_ele(arr_command, 1, envp, env_st);
+			exec_command_ele(arr_command, 1, arr, env_st);
 			exit(0);
 		}
 		prompt_foreach();
@@ -72,6 +83,6 @@ int	foreach(char **arr, UNUSED char **envp, env_st_t *env_st)
 		return (1);
 	prompt_foreach();
 	arr_command = foreach_loop(arr, envp, env_st);
-	exec_command_ele(arr_command, ele, envp, env_st);
+	exec_command_ele(arr_command, ele, arr, env_st);
 	return (0);
 }

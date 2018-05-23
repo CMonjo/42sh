@@ -30,6 +30,9 @@ SRC	=	src/main.c		\
 		src/start_sep.c		\
 		src/start_double_sep.c	\
 		src/star.c	\
+		src/variables.c	\
+		src/variables_string.c	\
+		src/error_variables.c	\
 		src/bracket.c	\
 		src/inter.c	\
 		src/inib.c	\
@@ -61,6 +64,7 @@ SRC	=	src/main.c		\
 		src/builtins/set/set_display.c		\
 		src/builtins/set/unset.c		\
 		src/builtins/grep/grep.c		\
+		src/builtins/alias/unalias.c		\
 		src/builtins/alias/alias.c		\
 		src/builtins/alias/alias_parsing.c	\
 		src/builtins/alias/alias_display.c	\
@@ -75,6 +79,7 @@ SRC	=	src/main.c		\
 		src/builtins/alias/alias_sort.c		\
 		src/verif_parent.c			\
 		src/verif_parent_next.c			\
+		src/select_env.c			\
 
 OBJ	=	$(SRC:.c=.o)
 

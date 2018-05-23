@@ -169,11 +169,11 @@ int	main_b_tree(char *str, env_st_t *info, int fd_in, int fd_out)
 		fill_history(info, command);
 		return (1);
 	}
-	command = variable(command, info);
-	//printf("COMMANDE : %s\n", command);
 	fill_history(info, command);
+	command = variable(command, info);
+	//printf("COMMANDE : '%s'\n", command);
 	//command = epur_command_sep_one(command);
-	if (error_parent(command) == 1)
+	if (word_array(command) == NULL || error_parent(command) == 1)
 		return (1);
 	command = too_much_parent(command);
 	if (error_null_parent(word_array(command)) == 1) {

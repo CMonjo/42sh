@@ -21,17 +21,26 @@ void	exit_display(int i, env_st_t *env_st)
 	}
 }
 
+int	is_there_nbr(char *str)
+{
+	for (int i = 0; str[i] != '\0'; i++)
+		if (str[i] >= 0 || str[i] <= 9)
+			return (1);
+	return (0);
+}
+
 int	is_this_nbr(char *str)
 {
 	int i = 0;
 	int verif = 0;
+	int nbr = is_there_nbr(str);
 
 	for (; str[i] != '\0'; i++, verif = 0) {
-		if (str[i] == '-' && i != 0)
+		if (str[i] == '-' && i != 0 && nbr == 1)
 			return (0);
 		if (str[i] == '-')
 			verif = 1;
-		if ((str[i] < '0' || str[i] > '9') && verif == 0)
+		if ((str[i] < '0' || str[i] > '9') && verif == 0 && nbr == 1)
 			return (0);
 	}
 	return (1);

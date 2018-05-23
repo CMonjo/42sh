@@ -10,9 +10,8 @@
 void	alias_displaying(alias_t *tmp, int ct)
 {
 	while (tmp != NULL) {
-		if (tmp->bind[0] == ct) {
+		if (tmp->bind[0] == ct && tmp->active == 1)
 			my_printf("%s\t%s\n", tmp->bind, tmp->command_display);
-		}
 		tmp = tmp->next;
 	}
 }

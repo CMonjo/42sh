@@ -22,6 +22,8 @@ int	find_local_var_error(char *str, env_st_t *env_st, int *b)
 			return (0);
 		set = set->next;
 	}
+	if (select_env(env_st->envp_cpy, str) != NULL)
+		return (0);
 	(*b) = 1;
 	env_st->status = 1;
 	my_putstr_err(str, ": Undefined variable.\n");

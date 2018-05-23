@@ -16,8 +16,9 @@ char	*find_local_var(char *str, env_st_t *env_st)
 			return (set->value);
 		set = set->next;
 	}
-	if (check_val(env_st->envp_cpy, str, env_st) == 0)
-		exit(5);
+	if (select_env(env_st->envp_cpy, str) != NULL) {
+		return (select_env(env_st->envp_cpy, str));
+	}
 	return (NULL);
 }
 

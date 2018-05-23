@@ -50,7 +50,7 @@ char	*after_egal(char *str)
 	return (dest);
 }
 
-char	*select_env(char **env, char str)
+char	*select_env(char **env, char *str)
 {
 	int i = 0;
 

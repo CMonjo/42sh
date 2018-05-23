@@ -23,7 +23,7 @@ void set_display(env_st_t *env_st)
 	if (isatty(0) == 1 && env_st->history->next != NULL)
 		my_printf("_\t%s\n\n", env_st->history->next->command);
 	else
-		my_printf("_\n");
+		my_printf("_ \n");
 	for (int ct = 0; ct != 126; ct++)
 		set_displaying(tmp, ct);
 }

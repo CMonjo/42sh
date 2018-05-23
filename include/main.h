@@ -305,5 +305,6 @@
 	int	verif_parent_next_rev(char *str, int ct);
 	int	nb_char_in_str(char *str, char c);
 	int	error_null_parent(char **command);
+	char	*select_env(char **env, char str);
 
 #endif

@@ -70,7 +70,7 @@ int	len_str(char *str)
 int	empty_str(char *str)
 {
 	int ct = 0;
-	int len = 1;
+	int len = 0;
 	int b = 0;
 
 	while (str[ct] != '\0') {
@@ -92,7 +92,7 @@ char	**word_array(char *line)
 	int ctb = 0;
 	char **str;
 
-	if (empty_str(line) == 0)
+	if (line == NULL || empty_str(line) == 0)
 		return (NULL);
 	str = malloc(sizeof(char *) * (len_str(line) + 1));
 	while (line[ct] != '\0') {

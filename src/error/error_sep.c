@@ -125,7 +125,8 @@ int	error_pipe_redic(tree_t* temp, char *str)
 
 	if (error_pipe_redic_first(temp, str) == 1)
 		return (1);
-	arr = word_array(temp->right->commande_parseur);
+	if ((arr = word_array(temp->right->commande_parseur)) == NULL)
+		exit(3);
 	if (my_strcmp_c(str, tab_name[5]) == 0 && check_sep_char(arr[0]) != -1
 	&& temp->right->left == NULL) {
 		my_printf("Invalid null command.\n");

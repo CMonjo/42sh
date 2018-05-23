@@ -64,6 +64,7 @@ SRC	=	src/main.c		\
 		src/builtins/set/set_display.c		\
 		src/builtins/set/unset.c		\
 		src/builtins/grep/grep.c		\
+		src/builtins/alias/unalias.c		\
 		src/builtins/alias/alias.c		\
 		src/builtins/alias/alias_parsing.c	\
 		src/builtins/alias/alias_display.c	\

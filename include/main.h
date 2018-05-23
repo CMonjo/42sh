@@ -31,6 +31,7 @@
 		char *bind;
 		char *command_bind;
 		char *command_display;
+		int active;
 		struct alias_s *next;
 	} alias_t;
 
@@ -100,6 +101,7 @@
 	void set_parse(env_st_t *env_st, char *);
 	void set_fill(env_st_t *env_st, char *name, char *value);
 	void set_display(env_st_t *env_st);
+	int unalias(char **array, UNUSED char **envp, env_st_t *env_st);
 	int unset(char **array, UNUSED char **envp, env_st_t *env_st);
 
 	//ALIAS

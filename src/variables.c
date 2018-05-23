@@ -16,6 +16,8 @@ char	*find_local_var(char *str, env_st_t *env_st)
 			return (set->value);
 		set = set->next;
 	}
+	if (check_val(env_st->envp_cpy, str, env_st) == 0)
+		exit(5);
 	return (NULL);
 }
 
@@ -28,15 +30,12 @@ char	*change_variable(char *str, int *ct, env_st_t *env_st)
 	char *command;
 	char *command_dest;
 
-	printf("STR_ONE  :  '%s'   NAMEVAR : '%s'   STR_TWO   :   '%s'\n", str_one, name_var, str_two);
+	//printf("STR_ONE  :  '%s'   NAMEVAR : '%s'   STR_TWO   :   '%s'\n", str_one, name_var, str_two);
 	(*ct) = ctp + my_strlen(find_local_var(name_var, env_st)) - 1;
 	command = find_local_var(name_var, env_st);
 	command_dest = my_strcat(str_one, command, 0);
-	free(str_one);
 	command_dest = my_strcat(command_dest, str_two, 0);
-	free(str_two);
-	free(str);
-	printf("COMMANDE  :  %s    CT  :   %d    LEN   :   %d\n", command_dest, (*ct), my_strlen(command_dest));
+	//printf("COMMANDE  :  %s    CT  :   %d    LEN   :   %d\n", command_dest, (*ct), my_strlen(command_dest));
 	return (command_dest);
 }
 

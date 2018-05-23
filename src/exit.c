@@ -51,7 +51,7 @@ int	is_there_alpha(char *str)
 	int i = 0;
 
 	while (str[i] != '\0') {
-		if (str[i] == '-' && str[i + 1] == '-')
+		if (str[i] == '-' && str[i + 1] == '-' && is_there_nbr(str) == 1)
 			return (2);
 		if (str[i] < 45 || (str[i] > 45 && str[i] < 48) ||
 			(str[i] > 57 && str[i] < 65) ||

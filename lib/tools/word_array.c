@@ -9,25 +9,18 @@
 
 char	*copy_str_arr(char *line, int *ct)
 {
-	int ctp = *ct;
 	int len = 0;
 	char *str;
+	int ctp = 0;
 
-	while (line[ctp] != 32 && line[ctp] != 9 && line[ctp] != '\0') {
+	for (int ctp = *ct; line[ctp] != 32 && line[ctp] != 9
+	&& line[ctp] != '\0' && line[ctp] != 39 && line[ctp] != 34; ctp ++)
 		len ++;
-		ctp ++;
-	}
-	ctp = 0;
 	str = malloc(sizeof(char) * (len + 1));
-	while (line[*ct] != 32 && line[*ct] != 9 && line[*ct] != '\0') {
+	for (; line[*ct] != 32 && line[*ct] != 9 && line[*ct] != '\0'
+	&& line[*ct] != 39 && line[*ct] != 34; (*ct) ++, ctp ++)
 		str[ctp] = line[*ct];
-		ctp ++;
-		(*ct) ++;
-	}
 	str[ctp] = '\0';
-	len = 0;
-	ctp = 0;
-	ct --;
 	return (str);
 }
 
@@ -36,12 +29,14 @@ char	*copy_str_quote(char *line, int *ct, char c)
 	int len = 2;
 	char *str;
 
-	for (int ctb = ((*ct) + 1); line[ctb] != c; ctb ++)
+	for (int ctb = ((*ct) + 1); line[ctb] != c
+	&& line[ctb] != '\0'; ctb ++)
 		len ++;
 	str = malloc(sizeof(char) * (len + 1));
 	str[0] = line[*ct];
 	(*ct) ++;
-	for (int ctb = 1; line[*ct] != c; ctb ++, (*ct) ++)
+	for (int ctb = 1; line[*ct] != c
+	&& line[*ct] != '\0'; ctb ++, (*ct) ++)
 		str[ctb] = line[*ct];
 	str[len - 1] = line[*ct];
 	str[len] = '\0';
@@ -49,10 +44,33 @@ char	*copy_str_quote(char *line, int *ct, char c)
 	return (str);
 }
 
-int	epur_str(char *str)
+int	len_str(char *str)
 {
 	int ct = 0;
-	int len = 0;
+	int len = 1;
+	int b = 0;
+
+	while (str[ct] != '\0') {
+		if (str[ct] == 39 || str[ct] == 34) {
+			len ++;
+			pass_quotes(str, &ct, str[ct]);
+		}
+
+		if (b == 0 && (str[ct] == 32 || str[ct] == 9)) {
+			len ++;
+			b = 1;
+		}
+		if (str[ct] != 32 && str[ct] != 9)
+			b = 0;
+		ct ++;
+	}
+	return (len);
+}
+
+int	empty_str(char *str)
+{
+	int ct = 0;
+	int len = 1;
 	int b = 0;
 
 	while (str[ct] != '\0') {
@@ -61,7 +79,7 @@ int	epur_str(char *str)
 		}
 		if (str[ct] != 32 && str[ct] != 9) {
 			len ++;
-			b =0;
+			b = 0;
 		}
 		ct ++;
 	}
@@ -70,23 +88,22 @@ int	epur_str(char *str)
 
 char	**word_array(char *line)
 {
-	int len = 0;
 	int ct = 0;
 	int ctb = 0;
 	char **str;
 
-	if ((len = epur_str(line)) == 0)
+	if (empty_str(line) == 0)
 		return (NULL);
-	str = malloc(sizeof(char *) * (len + 1));
-	len = 0;
+	str = malloc(sizeof(char *) * (len_str(line) + 1));
 	while (line[ct] != '\0') {
+		if (line[ct] != 32 && line[ct] != 9) {
+			str[ctb] = copy_str_arr(line, &ct);
+			ctb ++;
+		}
 		if (line[ct] == 39 || line[ct] == 34) {
 			str[ctb] = copy_str_quote(line, &ct, line[ct]);
 			ctb ++;
-		} else if (line[ct] != 32 && line[ct] != 9) {
-			str[ctb] = copy_str_arr(line, &ct);
-			ctb ++;
-		} else
+		} else if (line[ct] != '\0')
 			ct ++;
 	}
 	str[ctb] = NULL;

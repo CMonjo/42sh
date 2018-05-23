@@ -69,9 +69,10 @@ tree_t* temp)
 void	pass_quotes(char *str, int *ct, char quote)
 {
 	(*ct) ++;
-	while (str[*ct] != quote)
+	while (str[*ct] != quote && str[*ct] != '\0')
 		(*ct) ++;
-	(*ct) ++;
+	//if (str[*ct] == '\0')
+	//	(*ct) ++;
 }
 
 int	check_stars(char *str)

@@ -306,5 +306,6 @@
 	int	nb_char_in_str(char *str, char c);
 	int	error_null_parent(char **command);
 	char	*select_env(char **env, char *str);
+	void	pass_quotes(char *str, int *ct, char quote);
 
 #endif

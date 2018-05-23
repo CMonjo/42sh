@@ -83,6 +83,8 @@ int	foreach(char **arr, UNUSED char **envp, env_st_t *env_st)
 		return (1);
 	prompt_foreach();
 	arr_command = foreach_loop(arr, envp, env_st);
+	if (isatty(0) == 1 && ele > 0)
+		my_printf("\n");
 	exec_command_ele(arr_command, ele, arr, env_st);
 	return (0);
 }

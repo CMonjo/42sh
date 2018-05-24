@@ -7,10 +7,23 @@
 
 #include "main.h"
 
+int	check_value(char *str)
+{
+	char *value_var[] = {"$", "?"};
+
+	for (int ct = 0; ct != 2; ct ++) {
+		if (my_strcmp(str, value_var[ct]) == 0)
+			return (ct);
+	}
+	return (-1);
+}
+
 int	find_local_var_error(char *str, env_st_t *env_st, int *b)
 {
 	set_t* set = env_st->set;
 
+	if (check_value(str) != -1)
+		return (0);
 	if (set == NULL && select_env(env_st->envp_cpy, str) == NULL) {
 		env_st->status = 1;
 		my_putstr_err(str, ": Undefined variable.\n");

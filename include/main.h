@@ -71,6 +71,7 @@
 		int cd_abl;
 		int status;
 		int err;
+		int set_array;
 		char **envp_cpy;
 		char **envp_bsc;
 		tree_t *tree;
@@ -98,7 +99,7 @@
 
 	//SET
 	int set(char **array, UNUSED char **envp, env_st_t *env_st);
-	void set_parse(env_st_t *env_st, char *);
+	void set_parse(env_st_t *env_st, char *, char *);
 	void set_fill(env_st_t *env_st, char *name, char *value);
 	void set_display(env_st_t *env_st);
 	int unalias(char **array, UNUSED char **envp, env_st_t *env_st);

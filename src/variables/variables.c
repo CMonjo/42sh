@@ -7,10 +7,19 @@
 
 #include "main.h"
 
+variables_t const tab_name_var[] = {
+	{"?", value_return},
+	{"$", get_pid},
+};
+
 char	*find_local_var(char *str, env_st_t *env_st)
 {
 	set_t* set = env_st->set;
 
+	for (int ct = 0; ct < 2; ct ++)
+		if (str != NULL
+		&& my_strcmp(str, tab_name_var[ct].name) == 0)
+			return ((tab_name_var[ct].name_str)(str, env_st));
 	while (set != NULL) {
 		if (set->active == 1 && my_strcmp(set->name, str) == 0)
 			return (set->value);

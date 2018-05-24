@@ -91,6 +91,11 @@
 		int (*name_str)(char *str_one, char *str_two);
 	} if_t;
 
+	typedef struct variables_s {
+		char *name;
+		char *(*name_str)(char *str, env_st_t *env_st);
+	} variables_t;
+
 	typedef struct exec_tree_s {
 		char *name;
 		int (*name_str)(env_st_t *env_st, char **command,
@@ -111,6 +116,9 @@
 	void set_parse_spaces(env_st_t *env_st, char *str, char *spaced);
 
 	//ALIAS
+	char	*get_pid(char *str, env_st_t *env_st);
+	char	*value_return(char *str, env_st_t *env_st);
+	void	fill_history(env_st_t *info, char *str);
 	char	*find_local_var(char *str, env_st_t *env_st);
 	char	*variable(char *str, env_st_t *env_st);
 	int	variable_error(char *str, env_st_t *env_st);

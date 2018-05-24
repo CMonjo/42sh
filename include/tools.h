@@ -30,6 +30,7 @@
 		int (*flag_c_p)(char *str, int ctp, char *temp, char *str_temp);
 	} flag_char_t;
 
+	char	*int_to_char(int nb);
 	void free_tab(char **tab);
 	void my_putchar(char c);
 	int my_put_nbr(int nb);

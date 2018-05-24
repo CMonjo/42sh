@@ -104,6 +104,11 @@
 	void set_display(env_st_t *env_st);
 	int unset(char **array, UNUSED char **envp, env_st_t *env_st);
 	void set_check_array(env_st_t *, char **, int);
+	void set_add(env_st_t *env_st, char *name, char *value);
+	int set_isalpha(env_st_t *env_st, char const *str);
+	int set_deep(char *str);
+	char *set_parsing_spaced(char *set_value, char *str);
+	void set_parse_spaces(env_st_t *env_st, char *str, char *spaced);
 
 	//ALIAS
 	char	*find_local_var(char *str, env_st_t *env_st);

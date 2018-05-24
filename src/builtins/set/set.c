@@ -7,31 +7,6 @@
 
 #include "main.h"
 
-int set_deep(char *str);
-
-set_t *set_add_node(char *name, char *value)
-{
-	set_t *tmp = malloc(sizeof(set_t));
-
-	tmp->name = my_strdup(name);
-	tmp->value = my_strdup(value);
-	tmp->active = 1;
-	tmp->next = NULL;
-	return (tmp);
-}
-
-void set_add(env_st_t *env_st, char *name, char *value)
-{
-	set_t *new = set_add_node(name, value);
-
-	if (env_st->set == NULL)
-		env_st->set = new;
-	else {
-		new->next = env_st->set;
-		env_st->set = new;
-	}
-}
-
 void set_fill(env_st_t *env_st, char *name, char *value)
 {
 	set_t *tmp = env_st->set;

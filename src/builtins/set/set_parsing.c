@@ -7,60 +7,25 @@
 
 #include "main.h"
 
-int set_deep(char *str)
+char *set_w_full(char *set_value, char *str, int i)
 {
-	int i = 1;
-
-	if (str[0] != '=')
-		return (1);
-	while (str[i] != '\0') {
-		if (!(str[i] >= 48 && str[i] <= 57))
-			return (1);
-		i += 1;
-	}
-	return (0);
-}
-
-int	set_isalpha(env_st_t *env_st, char const *str)
-{
-	if ((str[0] <= 'z' && str[0] >= 'a') || (str[0] <= 'Z' && str[0] >= 'A')
-	|| str[0] == 39 || str[0] == 34 || str[0] == ' ' || str[0] == '\0')
-		return (1);
-	else {
-		my_printf("set: Variable name must begin with a letter.\n");
-		env_st->err = 1;
-		env_st->status = 1;
-		return (0);
-	}
-}
-
-char *set_parsing_value(env_st_t *env_st, char *set_value, char *str, char *quote, int i)
-{
-	if (quote != NULL && (quote[0] == 39 || quote[0] == 34)) {
-		for (int i = 0, j = 0; quote[i] != '\0'; i++) {
-			if (quote[i] != 39 && quote[i] != 34) {
-				set_value[j] = quote[i];
-				j++;
-			}
-		}
-		env_st->set_array = 1;
-	} else {
-		for (int j = 0, k = i + 1; str[k] != '\0'; k++, j++) {
-			if (str[k] != 39 && str[k] != 34)
-				set_value[j] = str[k];
-		}
+	for (int j = 0, k = i + 1; str[i] != '\0'
+	&& str[k] != '\0'; k++, j++) {
+		if (str[k] != 39 && str[k] != 34)
+			set_value[j] = str[k];
 	}
 	return (set_value);
 }
 
-char *set_parsing_spaced(char *set_value, char *str)
+char *set_w_quotes(env_st_t *env_st, char *set_value, char *quote)
 {
-	for (int i = 0, j = 0; str[i] != '\0'; i++) {
-		if (str[i] != 39 && str[i] != 34) {
-			set_value[j] = str[i];
+	for (int i = 0, j = 0; quote[i] != '\0'; i++) {
+		if (quote[i] != 39 && quote[i] != 34) {
+			set_value[j] = quote[i];
 			j++;
 		}
 	}
+	env_st->set_array = 1;
 	return (set_value);
 }
 
@@ -81,23 +46,10 @@ void set_parse(env_st_t *env_st, char *str, char *quote)
 	}
 	if (set_isalpha(env_st, set_name) == 0)
 		return;
-	if (set == 1)
-		set_value = my_strdup(set_parsing_value(env_st, set_value, str, quote, i));
-	set_fill(env_st, set_name, set_value);
-}
-
-void set_parse_spaces(env_st_t *env_st, char *str, char *spaced)
-{
-	int i = 0;
-	char *set_name = my_calloc(sizeof(char) * (my_strlen(str) + 1));
-	char *set_value = my_calloc(sizeof(char) *
-	(my_strlen(str) + my_strlen(spaced) + 1));
-
-	for (i = 0; str[i] != 0; i++)
-		set_name[i] = str[i];
-	if (set_isalpha(env_st, set_name) == 0)
-		return;
-	set_value = my_strdup(set_parsing_spaced(set_value, spaced));
+	if (set == 1 && quote != NULL && (quote[0] == 39 || quote[0] == 34))
+		set_value = my_strdup(set_w_quotes(env_st, set_value, quote));
+	else
+		set_value = my_strdup(set_w_full(set_value, str, i));
 	set_fill(env_st, set_name, set_value);
 }
 

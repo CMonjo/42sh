@@ -143,6 +143,14 @@ int	check_special_case(char *str)
 	return (command);
 }*/
 
+void	pass_alias_unalias(char **arr, int *ct)
+{
+	(*ct) ++;
+	while (arr[*ct] != NULL && check_bult_in(arr[*ct]) == -1
+	&& check_sep_char(arr[*ct]) == -1)
+		(*ct) ++;
+}
+
 int	main_b_tree(char *str, env_st_t *info, int fd_in, int fd_out)
 {
 	tree_t* temp;
@@ -187,6 +195,18 @@ int	main_b_tree(char *str, env_st_t *info, int fd_in, int fd_out)
 	/*printf("\n--------------TREEE  ----------\n\n");
 	my_printf_te(temp);
 	printf("--------------TREEE-------------\n\n");*/
+	if ((arr = word_array(command)) == NULL)
+		return (0);
+	for (int ct = 0; arr[ct] != NULL; ct ++) {
+		if (my_strcmp(arr[ct], "alias") == 0
+		|| my_strcmp(arr[ct], "unalias") == 0)
+			pass_alias_unalias(arr, &ct);
+		if (arr[ct] == NULL)
+			break;
+		if (info->alias != NULL
+		&& error_alias_loop(arr[ct], arr[ct], info) == 1)
+			return (1);
+	}
 	if (start_error_tree(temp, 0) == 1) {
 		info->status = 1;
 		return (1);

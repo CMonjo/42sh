@@ -12,7 +12,7 @@ char	*find_local_var(char *str, env_st_t *env_st)
 	set_t* set = env_st->set;
 
 	while (set != NULL) {
-		if (my_strcmp(set->name, str) == 0)
+		if (set->active == 1 && my_strcmp(set->name, str) == 0)
 			return (set->value);
 		set = set->next;
 	}

@@ -102,8 +102,8 @@
 	void set_parse(env_st_t *env_st, char *, char *);
 	void set_fill(env_st_t *env_st, char *name, char *value);
 	void set_display(env_st_t *env_st);
-	int unalias(char **array, UNUSED char **envp, env_st_t *env_st);
 	int unset(char **array, UNUSED char **envp, env_st_t *env_st);
+	void set_check_array(env_st_t *, char **, int);
 
 	//ALIAS
 	char	*find_local_var(char *str, env_st_t *env_st);
@@ -132,6 +132,7 @@
 	void alias_fill(env_st_t *env_st, char **str, char *long_str,
 		char *parenthesis);
 	void alias_compare(env_st_t *env_st, char *str);
+	int unalias(char **array, UNUSED char **envp, env_st_t *env_st);
 	void alias_add(env_st_t *env_st, char **str, char *long_str,
 		char *parenthesis);
 	alias_t *alias_add_node(char **str, char *long_str,

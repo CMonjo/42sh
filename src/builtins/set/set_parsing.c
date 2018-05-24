@@ -23,10 +23,8 @@ int set_deep(char *str)
 
 int	set_isalpha(env_st_t *env_st, char const *str)
 {
-	int i = 0;
-
-	if ((str[i] <= 'z' && str[i] >= 'a') ||
-	(str[i] <= 'Z' && str[i] >= 'A'))
+	if ((str[0] <= 'z' && str[0] >= 'a') || (str[0] <= 'Z' && str[0] >= 'A')
+	|| str[0] == 39 || str[0] == 34 || str[0] == ' ' || str[0] == '\0')
 		return (1);
 	else {
 		my_printf("set: Variable name must begin with a letter.\n");
@@ -36,12 +34,43 @@ int	set_isalpha(env_st_t *env_st, char const *str)
 	}
 }
 
-void set_parse(env_st_t *env_st, char *str)
+char *set_parsing_value(env_st_t *env_st, char *set_value, char *str, char *quote, int i)
+{
+	if (quote != NULL && (quote[0] == 39 || quote[0] == 34)) {
+		for (int i = 0, j = 0; quote[i] != '\0'; i++) {
+			if (quote[i] != 39 && quote[i] != 34) {
+				set_value[j] = quote[i];
+				j++;
+			}
+		}
+		env_st->set_array = 1;
+	} else {
+		for (int j = 0, k = i + 1; str[k] != '\0'; k++, j++) {
+			if (str[k] != 39 && str[k] != 34)
+				set_value[j] = str[k];
+		}
+	}
+	return (set_value);
+}
+
+char *set_parsing_spaced(char *set_value, char *str)
+{
+	for (int i = 0, j = 0; str[i] != '\0'; i++) {
+		if (str[i] != 39 && str[i] != 34) {
+			set_value[j] = str[i];
+			j++;
+		}
+	}
+	return (set_value);
+}
+
+void set_parse(env_st_t *env_st, char *str, char *quote)
 {
 	int set = 0;
 	int i = 0;
 	char *set_name = my_calloc(sizeof(char) * (my_strlen(str) + 1));
-	char *set_value = my_calloc(sizeof(char) * (my_strlen(str) + 1));
+	char *set_value = my_calloc(sizeof(char) *
+	(my_strlen(str) + my_strlen(quote) + 1));
 
 	for (i = 0; str[i] != 0; i++) {
 		if (str[i] == '=') {
@@ -52,9 +81,32 @@ void set_parse(env_st_t *env_st, char *str)
 	}
 	if (set_isalpha(env_st, set_name) == 0)
 		return;
-	if (set == 1) {
-		for (int j = 0, k = i + 1; str[k] != '\0'; k++, j++)
-			set_value[j] = str[k];
-	}
+	if (set == 1)
+		set_value = my_strdup(set_parsing_value(env_st, set_value, str, quote, i));
 	set_fill(env_st, set_name, set_value);
+}
+
+void set_parse_spaces(env_st_t *env_st, char *str, char *spaced)
+{
+	int i = 0;
+	char *set_name = my_calloc(sizeof(char) * (my_strlen(str) + 1));
+	char *set_value = my_calloc(sizeof(char) *
+	(my_strlen(str) + my_strlen(spaced) + 1));
+
+	for (i = 0; str[i] != 0; i++)
+		set_name[i] = str[i];
+	if (set_isalpha(env_st, set_name) == 0)
+		return;
+	set_value = my_strdup(set_parsing_spaced(set_value, spaced));
+	set_fill(env_st, set_name, set_value);
+}
+
+void set_check_array(env_st_t *env_st, char **array, int i)
+{
+	if (array[i + 1] != NULL && array[i + 1][0] == '=') {
+		set_parse_spaces(env_st, array[i], array[i + 2]);
+		env_st->set_array = 2;
+	}
+	else
+		set_parse(env_st, array[i], array[i + 1]);
 }

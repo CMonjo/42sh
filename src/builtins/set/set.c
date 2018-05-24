@@ -57,8 +57,12 @@ int set(char **array, UNUSED char **envp, env_st_t *env_st)
 	if (array[1] == NULL)
 		set_display(env_st);
 	else {
-		for (int i = 1; array[i] != NULL && env_st->err == 0; i++)
-			set_parse(env_st, array[i]);
+		for (int i = 1; array[i] != NULL && env_st->err == 0; i++) {
+			if (env_st->set_array != 0)
+				env_st->set_array--;
+			else
+				set_check_array(env_st, array, i);
+		}
 	}
 	env_st->err = 0;
 	return (0);

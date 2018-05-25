@@ -19,13 +19,14 @@ SRC	=	src/main.c		\
 		src/pipe_plus.c		\
 		src/exec_red.c		\
 		src/exec_path_red.c	\
-		src/prompt.c		\
+		src/check_exec.c		\
 		src/path.c		\
 		src/main_b_tree.c	\
 		src/set_n_check.c	\
 		src/fill_struct_pars.c	\
 		src/epur_command.c	\
 		src/check_command.c	\
+		src/check_command_bis.c	\
 		src/right_red.c		\
 		src/left_red.c		\
 		src/my_getline.c		\
@@ -41,7 +42,7 @@ SRC	=	src/main.c		\
 		src/variables/variables_string.c	\
 		src/error/error_variables.c	\
 		src/my_arraydup.c	\
-		src/builtins/builtins.c				\
+		src/builtins/builtins/builtins.c				\
 		src/builtins/history/history_struct.c		\
 		src/builtins/jobs/jobs.c		\
 		src/builtins/if/if.c		\
@@ -95,9 +96,9 @@ SRC	=	src/main.c		\
 		src/globbing/bracket.c	\
 		src/globbing/inter.c	\
 		src/globbing/star.c	\
-		src/yes.c				\
+		src/builtins/yes/yes.c				\
 		src/rm_first_arr.c			\
-		src/check_gnl.c				\
+		src/check_built_pass.c				\
 
 OBJ	=	$(SRC:.c=.o)
 

@@ -34,7 +34,7 @@ void	check_path_pip(char **envp, char *name,
 	}
 }
 
-void	my_printf_tree(tree_t* temp, env_st_t *env_st)
+void	start_fill_tree(tree_t* temp, env_st_t *env_st)
 {
 	char **arr;
 	int boul = 0;
@@ -50,9 +50,9 @@ void	my_printf_tree(tree_t* temp, env_st_t *env_st)
 	if (boul == 0)
 		check_gnl(temp->commande_parseur, env_st->envp_cpy, env_st, temp);
 	if (temp->left != NULL)
-		my_printf_tree(temp->left, env_st);
+		start_fill_tree(temp->left, env_st);
 	if (temp->right != NULL)
-		my_printf_tree(temp->right, env_st);
+		start_fill_tree(temp->right, env_st);
 }
 
 /*void	my_printf_te(tree_t* temp)
@@ -80,6 +80,27 @@ int	check_special_case(char *str)
 		if (arr[0][ct] != ';' && arr[0][ct] != '&')
 			return (0);
 	return (1);
+}
+
+int	error_main_b_tree(char **arr, env_st_t *info, tree_t* temp)
+{
+	if ((arr = word_array(command)) == NULL)
+		return (1);
+	for (int ct = 0; arr[ct] != NULL; ct ++) {
+		if (my_strcmp(arr[ct], "alias") == 0
+		|| my_strcmp(arr[ct], "unalias") == 0)
+			pass_alias_unalias(arr, &ct);
+		if (arr[ct] == NULL)
+			break;
+		if (info->alias != NULL
+		&& error_alias_loop(arr[ct], arr[ct], info) == 1)
+			return (1);
+	}
+	if (start_error_tree(temp, 0) == 1 || start_error_tree(temp, 1) == 1) {
+		info->status = 1;
+		return (1);
+	}
+	return (0);
 }
 
 int	main_b_tree(char *str, env_st_t *info, int fd_in, int fd_out)
@@ -123,22 +144,8 @@ int	main_b_tree(char *str, env_st_t *info, int fd_in, int fd_out)
 	/*printf("\n--------------TREEE  ----------\n\n");
 	my_printf_te(temp);
 	printf("--------------TREEE-------------\n\n");*/
-	if ((arr = word_array(command)) == NULL)
-		return (0);
-	for (int ct = 0; arr[ct] != NULL; ct ++) {
-		if (my_strcmp(arr[ct], "alias") == 0
-		|| my_strcmp(arr[ct], "unalias") == 0)
-			pass_alias_unalias(arr, &ct);
-		if (arr[ct] == NULL)
-			break;
-		if (info->alias != NULL
-		&& error_alias_loop(arr[ct], arr[ct], info) == 1)
-			return (1);
-	}
-	if (start_error_tree(temp, 0) == 1 || start_error_tree(temp, 1) == 1) {
-		info->status = 1;
+	if (error_main_b_tree(arr, info, temp) == 1)
 		return (1);
-	}
-	my_printf_tree(temp, info);
+	start_fill_tree(temp, info);
 	return (0);
 }

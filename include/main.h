@@ -117,6 +117,8 @@
 	void my_bubble_set(set_t *current);
 
 	//ALIAS
+	int	check_sep_bis_second(char **arr);
+	void	skip_parent(char **arr, int *ctb);
 	int	check_alias_local_var(char *command,
 	char *str, env_st_t *env_st);
 	void	pass_alias_unalias(char **arr, int *ct);

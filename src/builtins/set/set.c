@@ -27,18 +27,22 @@ void set_fill(env_st_t *env_st, char *name, char *value)
 	set_add(env_st, name, value);
 }
 
+void set_initialize(env_st_t *env_st, char **array)
+{
+	for (int i = 1; array[i] != NULL && env_st->err == 0; i++) {
+		if (env_st->set_array != 0)
+			env_st->set_array--;
+		else
+			set_check_array(env_st, array, i);
+	}
+}
+
 int set(char **array, UNUSED char **envp, env_st_t *env_st)
 {
 	if (array[1] == NULL)
 		set_display(env_st);
-	else {
-		for (int i = 1; array[i] != NULL && env_st->err == 0; i++) {
-			if (env_st->set_array != 0)
-				env_st->set_array--;
-			else
-				set_check_array(env_st, array, i);
-		}
-	}
+	else
+		set_initialize(env_st, array);
 	env_st->err = 0;
 	return (0);
 }

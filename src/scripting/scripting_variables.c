@@ -30,7 +30,8 @@ int	nbr_part_str(char *str, int *ctb)
 	for (int ct = (*ctb); (str[ct] >= '0' && str[ct] <= '9'); ct ++)
 		nbr ++;
 	index = malloc(sizeof(char) * (nbr + 1));
-	for (int ct = (*ctb); (str[ct] >= '0' && str[ct] <= '9'); ct ++, ct_nbr ++)
+	for (int ct = (*ctb); (str[ct] >= '0'
+	&& str[ct] <= '9'); ct ++, ct_nbr ++)
 		index[ct_nbr] = str[ct];
 	index[nbr] = '\0';
 	(*ctb) = (*ctb) + nbr;
@@ -48,7 +49,6 @@ char	*load_variable(char *str, char **arr)
 
 	str_one = first_part_str(str, &len_one);
 	nbr = nbr_part_str(str, &len_one);
-	//printf("INDEX   : '%s'   LEN  : %d\n", index, len_one);
 	for (int ct = len_one; str[ct] != '\0'; ct ++)
 		len_three ++;
 	str_three = malloc(sizeof(char) * (len_three + 1));
@@ -62,7 +62,8 @@ char	*load_variable(char *str, char **arr)
 char	*replace_variable(char *str, char **arr)
 {
 	for (int ct = 0; str[ct] != '\0';ct ++) {
-		if (str[ct] == '$' && str[ct + 1] >= '0' && str[ct + 1] <= '9') {
+		if (str[ct] == '$' && str[ct + 1] >= '0'
+		&& str[ct + 1] <= '9') {
 			str = replace_variable(load_variable(str, arr), arr);
 			ct = 0;
 		}

@@ -7,7 +7,7 @@
 
 CC	=	gcc
 
-CFLAGS	=	-Wall -Wextra -W -I ../../include/
+CFLAGS	=	-g3 -Wall -Wextra -W -I ../../include/
 
 SRC	=	$(wildcard *.c)
 

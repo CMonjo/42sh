@@ -9,9 +9,10 @@
 
 int	check_sep_char(char *str)
 {
-	for (int ct = 1; tab_name[ct] != NULL; ct ++)
+	for (int ct = 1; tab_name[ct] != NULL; ct ++) {
 		if (my_strcmp_c(str, tab_name[ct]) == 0)
 			return (ct);
+	}
 	return (-1);
 }
 
@@ -92,12 +93,6 @@ int	check_sep(char **arr)
 		if (my_strcmp(arr[ctb], ";") == 0)
 			return (0);
 	}
-	/*for (int ctb = 0; arr[ctb] != NULL; ctb ++)
-		if (my_strcmp(arr[ctb], "||") == 0)
-			return (1);
-	for (int ctb = 0; arr[ctb] != NULL; ctb ++)
-		if (my_strcmp(arr[ctb], "&&") == 0)
-			return (2);*/
 	return (check_sep_bis(arr));
 }
 

@@ -7,12 +7,21 @@
 
 #include "main.h"
 
+variables_t const tab_name_var[] = {
+	{"?", value_return},
+	{"$", get_pid},
+};
+
 char	*find_local_var(char *str, env_st_t *env_st)
 {
 	set_t* set = env_st->set;
 
+	for (int ct = 0; ct < 2; ct ++)
+		if (str != NULL
+		&& my_strcmp(str, tab_name_var[ct].name) == 0)
+			return ((tab_name_var[ct].name_str)(str, env_st));
 	while (set != NULL) {
-		if (my_strcmp(set->name, str) == 0)
+		if (set->active == 1 && my_strcmp(set->name, str) == 0)
 			return (set->value);
 		set = set->next;
 	}
@@ -31,12 +40,10 @@ char	*change_variable(char *str, int *ct, env_st_t *env_st)
 	char *command;
 	char *command_dest;
 
-	//printf("STR_ONE  :  '%s'   NAMEVAR : '%s'   STR_TWO   :   '%s'\n", str_one, name_var, str_two);
 	(*ct) = ctp + my_strlen(find_local_var(name_var, env_st)) - 1;
 	command = find_local_var(name_var, env_st);
 	command_dest = my_strcat(str_one, command, 0);
 	command_dest = my_strcat(command_dest, str_two, 0);
-	//printf("COMMANDE  :  %s    CT  :   %d    LEN   :   %d\n", command_dest, (*ct), my_strlen(command_dest));
 	return (command_dest);
 }
 

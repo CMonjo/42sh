@@ -34,27 +34,6 @@ void	check_path_pip(char **envp, char *name,
 	}
 }
 
-int	exit_value(char *command_in, char *command_out)
-{
-	char **arr = word_array(command_in);
-	char **arr_two = word_array(command_out);
-	int val = 0;
-
-	for (int ct = 0; arr[ct] != NULL; ct ++) {
-		if (my_strcmp(arr[ct], "exit") == 0 && arr[ct + 1] == NULL)
-			val = 0;
-		if (my_strcmp(arr[ct], "exit") == 0 && arr[ct + 1] != NULL)
-			val = my_getnbr(arr[ct + 1]);
-	}
-	for (int ct = 0; arr_two[ct] != NULL; ct ++) {
-		if (my_strcmp(arr[ct], "exit") == 0 && arr[ct + 1] == NULL)
-			val = 0;
-		if (my_strcmp(arr[ct], "exit") == 0 && arr[ct + 1] != NULL)
-			val = my_getnbr(arr[ct + 1]);
-	}
-	return (val);
-}
-
 void	my_printf_tree(tree_t* temp, env_st_t *env_st)
 {
 	char **arr;
@@ -88,23 +67,6 @@ void	my_printf_te(tree_t* temp)
 		my_printf_te(temp->right);
 }
 
-void	my_printf_history(history_t* temp)
-{
-	while (temp != NULL) {
-		printf("HISTORY : '%s'\n", temp->command);
-		temp = temp->next;
-	}
-}
-
-void	fill_history(env_st_t *info, char *str)
-{
-	history_t* new_ele = malloc(sizeof(history_t));
-
-	new_ele->command = my_strdup(str);
-	new_ele->next = info->history;
-	info->history = new_ele;
-}
-
 int	check_special_case(char *str)
 {
 	char **arr = word_array(str);
@@ -120,28 +82,13 @@ int	check_special_case(char *str)
 	return (1);
 }
 
-/*char	*epur_command_sep_one(char *command)
+void	pass_alias_unalias(char **arr, int *ct)
 {
-	char *str;
-	int parent = 0;
-	int len = 0;
-	int ctb = 1;
-
-	for (int ct = 0; command[ct] != '\0'; ct ++)
-		if (command[ct] = '(')
-			parent ++;
-	//my_printf("COMMANDE :   %s    LEN   %d\n", command, my_strlen(command));
-	if (command[0] == '(' && command[my_strlen(command) - 1] == ')') {
-		str = malloc(sizeof(char) * my_strlen(command) - 1);
-		for (int ct = 0; command[ctb] != ')'; ct ++, ctb ++)
-			str[ct] = command[ctb];
-		str[my_strlen(command) - 2] = '\0';
-		my_printf("NOUVELLE COMMANDE   %s\n", str);
-		free(command);
-		return (epur_command_sep_one(str));
-	}
-	return (command);
-}*/
+	(*ct) ++;
+	while (arr[*ct] != NULL && check_bult_in(arr[*ct]) == -1
+	&& check_sep_char(arr[*ct]) == -1)
+		(*ct) ++;
+}
 
 int	main_b_tree(char *str, env_st_t *info, int fd_in, int fd_out)
 {
@@ -156,14 +103,10 @@ int	main_b_tree(char *str, env_st_t *info, int fd_in, int fd_out)
 		fill_history(info, command);
 		return (0);
 	}
-	//printf("STRR   :    %s\n", str);
-	/*if (check_long_sep(str) == 1) {
-		command = check_command(str, 0);
-		fill_history(info, command);
-		return (1);
-	}*/
 	command = check_command(str, 0);
+	//printf("COMMANDE AVANt : : '%s'\n", command);
 	command = chang_inib(command);
+	//printf("COMMANDE APRES : '%s'\n", command);
 	if (variable_error(command, info) == 1) {
 		command = check_command(str, 0);
 		fill_history(info, command);
@@ -176,6 +119,7 @@ int	main_b_tree(char *str, env_st_t *info, int fd_in, int fd_out)
 	if (word_array(command) == NULL || error_parent(command) == 1)
 		return (1);
 	command = too_much_parent(command);
+	//printf("COMMANDE : '%s'\n", command);
 	if (error_null_parent(word_array(command)) == 1) {
 		return (1);
 	}
@@ -187,11 +131,19 @@ int	main_b_tree(char *str, env_st_t *info, int fd_in, int fd_out)
 	/*printf("\n--------------TREEE  ----------\n\n");
 	my_printf_te(temp);
 	printf("--------------TREEE-------------\n\n");*/
-	if (start_error_tree(temp, 0) == 1) {
-		info->status = 1;
-		return (1);
+	if ((arr = word_array(command)) == NULL)
+		return (0);
+	for (int ct = 0; arr[ct] != NULL; ct ++) {
+		if (my_strcmp(arr[ct], "alias") == 0
+		|| my_strcmp(arr[ct], "unalias") == 0)
+			pass_alias_unalias(arr, &ct);
+		if (arr[ct] == NULL)
+			break;
+		if (info->alias != NULL
+		&& error_alias_loop(arr[ct], arr[ct], info) == 1)
+			return (1);
 	}
-	if (start_error_tree(temp, 1) == 1) {
+	if (start_error_tree(temp, 0) == 1 || start_error_tree(temp, 1) == 1) {
 		info->status = 1;
 		return (1);
 	}

@@ -69,9 +69,8 @@ tree_t* temp)
 void	pass_quotes(char *str, int *ct, char quote)
 {
 	(*ct) ++;
-	while (str[*ct] != quote)
+	while (str[*ct] != quote && str[*ct] != '\0')
 		(*ct) ++;
-	(*ct) ++;
 }
 
 int	check_stars(char *str)
@@ -90,7 +89,7 @@ int	check_same_alias(char *command, env_st_t *env_st)
 	alias_t* alias = env_st->alias;
 
 	while (alias != NULL) {
-		if (my_strcmp(alias->bind, command) == 0
+		if (alias->active == 1 && my_strcmp(alias->bind, command) == 0
 		&& my_strcmp(alias->command_bind, command) == 0)
 			return (1);
 		alias = alias->next;
@@ -107,7 +106,7 @@ int	check_alias_local_var(char *command, char *str, env_st_t *env_st)
 	if (alias != NULL && error_alias_loop(command, str, env_st) == 1)
 		return (1);
 	while (alias != NULL) {
-		if (my_strcmp(alias->bind, command) == 0) {
+		if (alias->active == 1 && my_strcmp(alias->bind, command) == 0) {
 			check_gnl(alias->command_bind,
 			env_st->envp_cpy, env_st,
 			my_list_command(alias->command_bind, env_st, 0, 1));

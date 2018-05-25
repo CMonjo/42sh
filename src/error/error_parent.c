@@ -16,7 +16,8 @@ int	error_null_parent(char **command)
 			return (1);
 		}
 		if (command[ct][0] == '('
-		&& command[ct + 1] != NULL && check_sep_char(command[ct + 1]) != -1) {
+		&& command[ct + 1] != NULL
+		&& check_sep_char(command[ct + 1]) != -1) {
 			my_printf("Badly placed ()'s.\n");
 			return (1);
 		}

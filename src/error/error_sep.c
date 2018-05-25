@@ -39,40 +39,6 @@ int	error_and_or(tree_t* temp, char *str)
 	return (0);
 }
 
-int	error_pipe_redic_second(tree_t* temp, char *str)
-{
-	char **arr;
-
-	if (temp->right != NULL && error_and_or(temp, str) == 1)
-		return (1);
-	if (temp == NULL || temp->right == NULL || temp->left == NULL)
-		return (0);
-	arr = word_array(temp->right->commande_parseur);
-	if (temp->right->right != NULL) {
-		if (my_strcmp_c(str, tab_name[5]) == 0
-		&& (my_strcmp(">", arr[0]) == 0
-		|| my_strcmp(">>", arr[0]) == 0)
-		&& (my_strcmp("<", arr[0]) == 0
-		|| my_strcmp("<<", arr[0]) == 0) == 0) {
-			my_printf("Ambiguous input redirect.\n");
-			return (1);
-		}
-	}
-	if (temp->right->right != NULL) {
-		if ((my_strcmp_c(str, ">") == 0 || my_strcmp(str, ">>") == 0)
-		&& (my_strcmp_c(arr[0], ">") == 0 || my_strcmp(arr[0], ">>") == 0)) {
-			my_printf("Ambiguous output redirect.\n");
-			return (1);
-		}
-	}
-	if (my_strcmp_c(str, "||") == 0 && my_strcmp_c(arr[0], "&&") == 0
-	&& temp->right->left == NULL) {
-		my_printf("Invalid null command.\n");
-		return (1);
-	}
-	return (0);
-}
-
 int	error_pipe_redic_bis(tree_t* temp, char *str, char **arr)
 {
 	if ((my_strcmp_c(str, tab_name[7]) == 0
@@ -88,7 +54,8 @@ int	error_pipe_redic_bis(tree_t* temp, char *str, char **arr)
 		return (1);
 	}
 
-	if ((my_strcmp_c(str, tab_name[5]) == 0) && (my_strcmp("<", arr[0]) == 0
+	if ((my_strcmp_c(str, tab_name[5]) == 0)
+	&& (my_strcmp("<", arr[0]) == 0
 	|| my_strcmp("<<", arr[0]) == 0)) {
 		my_printf("Ambiguous input redirect.\n");
 		return (1);
@@ -106,7 +73,8 @@ int	error_pipe_redic_first(tree_t* temp, char *str)
 		return (1);
 	}
 	if ((my_strcmp_c(str, tab_name[2]) == 0
-	|| my_strcmp_c(str, "||") == 0 || my_strcmp_c(str, "&&") == 0) && temp->right == NULL) {
+	|| my_strcmp_c(str, "||") == 0 || my_strcmp_c(str, "&&") == 0)
+	&& temp->right == NULL) {
 		my_printf("Invalid null command.\n");
 		return (1);
 	}
@@ -125,7 +93,8 @@ int	error_pipe_redic(tree_t* temp, char *str)
 
 	if (error_pipe_redic_first(temp, str) == 1)
 		return (1);
-	arr = word_array(temp->right->commande_parseur);
+	if ((arr = word_array(temp->right->commande_parseur)) == NULL)
+		exit(3);
 	if (my_strcmp_c(str, tab_name[5]) == 0 && check_sep_char(arr[0]) != -1
 	&& temp->right->left == NULL) {
 		my_printf("Invalid null command.\n");

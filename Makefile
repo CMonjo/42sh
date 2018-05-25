@@ -12,8 +12,9 @@ CFLAGS	=	-I./include -W -Wall -Wextra
 CFLAGS +=	-g3
 
 SRC	=	src/main.c		\
-		src/error_alias.c		\
+		src/error/error_alias.c		\
 		src/exec.c		\
+		src/exec_status.c		\
 		src/pipe.c		\
 		src/pipe_plus.c		\
 		src/exec_red.c		\
@@ -30,14 +31,16 @@ SRC	=	src/main.c		\
 		src/start_sep.c		\
 		src/start_double_sep.c	\
 		src/star.c	\
-		src/variables.c	\
-		src/variables_string.c	\
-		src/error_variables.c	\
+		src/variables/variables.c	\
+		src/variables/variables_spe.c	\
+		src/variables/variables_string.c	\
+		src/error/error_variables.c	\
 		src/bracket.c	\
 		src/inter.c	\
 		src/inib.c	\
 		src/exit.c	\
 		src/my_arraydup.c	\
+		src/history/history_struct.c		\
 		src/builtins/jobs/jobs.c		\
 		src/builtins/if/if.c		\
 		src/builtins/if/if_comp.c		\
@@ -62,14 +65,18 @@ SRC	=	src/main.c		\
 		src/builtins/set/set.c		\
 		src/builtins/set/set_parsing.c		\
 		src/builtins/set/set_display.c		\
+		src/builtins/set/set_utils.c		\
+		src/builtins/set/set_spaced.c		\
 		src/builtins/set/unset.c		\
 		src/builtins/grep/grep.c		\
+		src/builtins/grep/grep_bis.c		\
 		src/builtins/alias/unalias.c		\
 		src/builtins/alias/alias.c		\
 		src/builtins/alias/alias_parsing.c	\
 		src/builtins/alias/alias_display.c	\
 		src/builtins/exit/exit.c		\
 		src/error/error_sep.c			\
+		src/error/error_sep_bis.c			\
 		src/error/error_parent.c		\
 		src/error/error_quotes.c		\
 		src/error/error_long_sep.c		\

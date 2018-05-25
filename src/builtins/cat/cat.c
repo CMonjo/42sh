@@ -19,12 +19,32 @@ char	*cat_file(FILE *fd)
 		grep_file = my_strcat(grep_file, file, 0);
 	return (grep_file);
 }
-int	cat(char **arr, UNUSED char **envp, UNUSED env_st_t *env_st)
+
+int	cat_bis(char **arr, UNUSED char **envp, UNUSED env_st_t *env_st)
 {
-	int tab_len = 0;
 	char *grep_file_dis;
 	char *grep_file_more = "\0";
 	FILE *fd;
+
+	for (int ct = 1; arr[ct] != NULL; ct ++) {
+		if ((fd = fopen(arr[ct], "rw")) != NULL)
+			grep_file_dis = cat_file(fd);
+		else {
+			grep_file_dis = my_strcat(grep_file_dis, "cat: ", 0);
+			grep_file_dis = my_strcat(grep_file_dis, arr[ct], 0);
+			grep_file_dis = my_strcat(grep_file_dis
+			, ": No such file or directory.\n", 0);
+		}
+		grep_file_more = my_strcat(grep_file_more, grep_file_dis, 0);
+	}
+	if (grep_file_more[0] != '\0')
+		my_printf("%s", grep_file_more);
+	return (0);
+}
+
+int	cat(char **arr, UNUSED char **envp, UNUSED env_st_t *env_st)
+{
+	int tab_len = 0;
 
 	while (arr[tab_len] != NULL)
 		tab_len ++;
@@ -32,17 +52,6 @@ int	cat(char **arr, UNUSED char **envp, UNUSED env_st_t *env_st)
 		my_printf("Please put a file and something to find.\n");
 		return (1);
 	}
-	for (int ct = 1; arr[ct] != NULL; ct ++) {
-		if ((fd = fopen(arr[ct], "rw")) != NULL)
-			grep_file_dis = cat_file(fd);
-		else {
-			grep_file_dis = my_strcat(grep_file_dis, "cat: ", 0);
-			grep_file_dis = my_strcat(grep_file_dis, arr[ct], 0);
-			grep_file_dis = my_strcat(grep_file_dis, ": No such file or directory.\n", 0);
-		}
-		grep_file_more = my_strcat(grep_file_more, grep_file_dis, 0);
-	}
-	if (grep_file_more[0] != '\0')
-		my_printf("%s", grep_file_more);
+	cat_bis(arr, envp, env_st);
 	return (0);
 }

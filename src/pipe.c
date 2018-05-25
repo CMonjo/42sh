@@ -16,7 +16,7 @@ char **command_in, char **command_out, tree_t* temp)
 	char **arr2;
 
 	if (pipe(num) == -1)
-		my_printf("Broken pipe.\n");
+		exit(1);
 	//dprintf(2, "FD_IN  :   %d    FD_OUT :   %d\n", temp->fd_in, temp->fd_out);
 	if ((child = fork()) == 0) {
 		temp->left->fd_in = temp->fd_in;

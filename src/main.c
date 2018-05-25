@@ -18,6 +18,7 @@ env_st_t	*init_env_struct(char **envp)
 	new_node->cd_abl = 0;
 	new_node->status = 0;
 	new_node->err = 0;
+	new_node->set_array = 0;
 	new_node->tree = NULL;
 	new_node->history = NULL;
 	new_node->job = NULL;

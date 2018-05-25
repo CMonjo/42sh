@@ -24,7 +24,8 @@ int	start_error_tree(tree_t* temp, int b)
 	char **arr;
 	int val = 0;
 
-	arr = word_array(temp->commande_parseur);
+	if ((arr = word_array(temp->commande_parseur)) == NULL)
+		exit(1);
 	for (int ct = 0; ct != 8; ct ++) {
 		if (error_redi_right_input(temp, arr[0]) == 1
 		|| (val = start_error_sep(temp, arr, ct, b)) == 1)

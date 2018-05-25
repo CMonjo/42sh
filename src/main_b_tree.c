@@ -55,7 +55,7 @@ void	my_printf_tree(tree_t* temp, env_st_t *env_st)
 		my_printf_tree(temp->right, env_st);
 }
 
-void	my_printf_te(tree_t* temp)
+/*void	my_printf_te(tree_t* temp)
 {
 	char **arr = NULL;
 
@@ -65,7 +65,7 @@ void	my_printf_te(tree_t* temp)
 		my_printf_te(temp->left);
 	if (temp->right != NULL)
 		my_printf_te(temp->right);
-}
+}*/
 
 int	check_special_case(char *str)
 {
@@ -80,14 +80,6 @@ int	check_special_case(char *str)
 		if (arr[0][ct] != ';' && arr[0][ct] != '&')
 			return (0);
 	return (1);
-}
-
-void	pass_alias_unalias(char **arr, int *ct)
-{
-	(*ct) ++;
-	while (arr[*ct] != NULL && check_bult_in(arr[*ct]) == -1
-	&& check_sep_char(arr[*ct]) == -1)
-		(*ct) ++;
 }
 
 int	main_b_tree(char *str, env_st_t *info, int fd_in, int fd_out)

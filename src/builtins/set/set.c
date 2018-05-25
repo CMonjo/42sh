@@ -48,9 +48,10 @@ void set_initialize(env_st_t *env_st, char **array)
 
 int set(char **array, UNUSED char **envp, env_st_t *env_st)
 {
-	if (array[1] == NULL)
+	if (array[1] == NULL) {
+		env_st->status = 0;
 		set_display(env_st);
-	else
+	} else
 		set_initialize(env_st, array);
 	env_st->err = 0;
 	return (0);

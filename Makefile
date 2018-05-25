@@ -28,10 +28,13 @@ SRC	=	src/main.c		\
 		src/check_command.c	\
 		src/right_red.c		\
 		src/left_red.c		\
+		src/my_getline.c		\
 		src/start_sep.c		\
 		src/start_double_sep.c	\
+		src/start_double_sep_and_or.c	\
 		src/exit.c	\
 		src/inib.c	\
+		src/check_alias.c	\
 		src/is_there_star.c	\
 		src/variables/variables.c	\
 		src/variables/variables_spe.c	\

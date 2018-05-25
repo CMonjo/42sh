@@ -46,8 +46,9 @@ int set_deep(char *str)
 
 int	set_isalpha(env_st_t *env_st, char const *str)
 {
-	if ((str[0] <= 'z' && str[0] >= 'a') || (str[0] <= 'Z' && str[0] >= 'A')
-	|| str[0] == 39 || str[0] == 34 || str[0] == ' ' || str[0] == '\0')
+	if ((str[0] <= 'z' && str[0] >= 'a') || (str[0] <= 'Z'
+	&& str[0] >= 'A') || str[0] == 39 || str[0] == 34 ||
+	str[0] == ' ' || str[0] == '\0')
 		return (1);
 	else {
 		my_printf("set: Variable name must begin with a letter.\n");

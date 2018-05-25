@@ -64,6 +64,7 @@ SRC	=	src/main.c		\
 		src/builtins/set/set_parsing.c		\
 		src/builtins/set/set_display.c		\
 		src/builtins/set/set_utils.c		\
+		src/builtins/set/set_sort.c		\
 		src/builtins/set/set_spaced.c		\
 		src/builtins/set/unset.c		\
 		src/builtins/grep/grep.c		\

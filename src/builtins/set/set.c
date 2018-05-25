@@ -27,6 +27,15 @@ void set_fill(env_st_t *env_st, char *name, char *value)
 	set_add(env_st, name, value);
 }
 
+void set_check_array(env_st_t *env_st, char **array, int i)
+{
+	if (array[i + 1] != NULL && array[i + 1][0] == '=') {
+		set_parse_spaces(env_st, array[i], array[i + 2]);
+		env_st->set_array = 2;
+	} else
+		set_parse(env_st, array[i], array[i + 1]);
+}
+
 void set_initialize(env_st_t *env_st, char **array)
 {
 	for (int i = 1; array[i] != NULL && env_st->err == 0; i++) {

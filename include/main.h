@@ -114,6 +114,7 @@
 	int set_deep(char *str);
 	char *set_parsing_spaced(char *set_value, char *str);
 	void set_parse_spaces(env_st_t *env_st, char *str, char *spaced);
+	void my_bubble_set(set_t *current);
 
 	//ALIAS
 	int	cat_bis(char **arr,

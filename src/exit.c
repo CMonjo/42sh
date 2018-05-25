@@ -24,23 +24,17 @@ void	exit_display(int i, env_st_t *env_st)
 int	is_there_nbr(char *str)
 {
 	for (int i = 0; str[i] != '\0'; i++)
-		if (str[i] >= 0 && str[i] <= 9)
+		if (str[i] >= '0' && str[i] <= '9')
 			return (1);
 	return (0);
 }
 
 int	is_this_nbr(char *str)
 {
-	int i = 0;
-	int verif = 0;
-	int nbr = is_there_nbr(str);
-
-	for (; str[i] != '\0'; i++, verif = 0) {
-		if (str[i] == '-' && i != 0 && nbr == 1)
-			return (0);
-		if (str[i] == '-')
-			verif = 1;
-		if ((str[i] < '0' || str[i] > '9') && verif == 0 && nbr == 1)
+	for (int i = 0; str[i] != '\0'; i++) {
+		if (i == 0 && str[i] == '-')
+			continue;
+		if (!(str[i] >= '0' && str[i] <= '9'))
 			return (0);
 	}
 	return (1);
@@ -70,12 +64,12 @@ int	exit_command(char **array, UNUSED char **envp, env_st_t *env_st)
 		exit_display(0, env_st);
 		env_st->status = 0;
 		exit (0);
-	} else if (is_there_alpha(array[1]) == 0) {
+	} else if (is_this_nbr(array[1]) == 1) {
 		exit_display(0, env_st);
 		env_st->status = (unsigned char)my_getnbr(array[1]);
 		exit ((unsigned char)my_getnbr(array[1]));
 	}
-	if (is_there_alpha(array[1]) == 2) {
+	if (is_there_nbr(array[1]) == 1) {
 		exit_display(1, env_st);
 		return (0);
 	}

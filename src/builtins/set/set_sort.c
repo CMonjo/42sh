@@ -53,14 +53,15 @@ set_t	*swap_bubble_set(set_t *current)
 
 void	my_bubble_set(set_t *current)
 {
-	printf("rentre\n");
+	set_t *tmp = current;
+
 	if (sort_or_not_set(current) == 0)
 		return;
-	while (current->next != NULL) {
-		if (sort_alpha_set(current, current->next) == 1) {
-			current = swap_bubble_set(current);
+	while (tmp->next != NULL) {
+		if (sort_alpha_set(tmp, tmp->next) == 1) {
+			tmp = swap_bubble_set(tmp);
 		}
-		current = current->next;
+		tmp = tmp->next;
 	}
-
+	my_bubble_set(current);
 }

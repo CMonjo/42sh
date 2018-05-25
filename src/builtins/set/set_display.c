@@ -27,5 +27,5 @@ void set_display(env_st_t *env_st)
 	if (tmp != NULL)
 		my_bubble_set(tmp);
 	for (int ct = 0; ct != 126; ct ++)
-		set_displaying(tmp, 0);
+		set_displaying(tmp, ct);
 }

@@ -35,8 +35,8 @@ int	error_foreach_args(char **arr, env_st_t *env_st, int tab_len)
 		return (1);
 	}
 	if ((arr[1][0] < 65 ||
-		(arr[1][0] > 90 && arr[1][0] < 97)
-		|| arr[1][0] > 122) && arr[1][0] != '_') {
+	(arr[1][0] > 90 && arr[1][0] < 97)
+	|| arr[1][0] > 122) && arr[1][0] != '_') {
 		my_putstr_err(NULL,
 		"foreach: Variable name must begin with a letter.\n");
 		env_st->status = 1;

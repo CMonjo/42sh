@@ -9,11 +9,10 @@
 
 int	checking_alpha(char **str, int ct, int *b)
 {
-	if (str[1][ct] > 47 && str[1][ct] < 58) {
+	if (str[1][ct] > 47 && str[1][ct] < 58)
 		*b = 1;
-	}
 	if (*b == 1 && ((str[1][ct] > 64 && str[1][ct] < 91)
-		|| (str[1][ct] > 96 && str[1][ct] < 123))) {
+	|| (str[1][ct] > 96 && str[1][ct] < 123))) {
 		my_printf("exit: Badly formed number.\n");
 		return (-1);
 	}

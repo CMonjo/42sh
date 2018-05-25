@@ -28,8 +28,8 @@ env_st_t* env_st)
 	return (0);
 }
 
-void	where_path_command(char **envp, char *name,
-	env_st_t* env_st, char **str_arr)
+void where_path_command(char **envp, char *name,
+env_st_t* env_st, char **str_arr)
 {
 	int ct = 0;
 	char *str;

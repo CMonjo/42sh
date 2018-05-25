@@ -25,10 +25,9 @@ char	*if_command(char **arr)
 		ct ++;
 	command = my_strdup(arr[ct + 1]);
 	for (int ctb = ct + 2; arr[ctb] != NULL; ctb ++) {
-		command = my_strcat(command, " ",0);
+		command = my_strcat(command, " ", 0);
 		command = my_strcat(command, arr[ctb], 0);
 	}
-	//printf("COMMANDE  :%s\n", command);
 	return (command);
 }
 

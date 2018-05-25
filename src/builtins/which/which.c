@@ -29,8 +29,8 @@ env_st_t* env_st)
 	return (0);
 }
 
-void	which_path_command(char **envp, char *name,
-	env_st_t* env_st, char **str_arr)
+void which_path_command(char **envp, char *name,
+env_st_t* env_st, char **str_arr)
 {
 	int ct = 0;
 	char *str;
@@ -76,7 +76,8 @@ int	which(char **arr, char **envp, env_st_t *env_st)
 		return (1);
 	}
 	for (int ct = 1; arr[ct] != NULL; ct ++) {
-		if (which_builtin(arr[ct]) != 1 && which_alias(arr[ct], env_st) != 1)
+		if (which_builtin(arr[ct]) != 1 &&
+		which_alias(arr[ct], env_st) != 1)
 			which_command(envp, env_st, arr[ct]);
 	}
 	return (0);

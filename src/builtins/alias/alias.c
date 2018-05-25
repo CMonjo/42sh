@@ -17,7 +17,7 @@ alias_t *alias_add_node(char **str, char *long_str, char *parents)
 	my_strdup(alias_check_string(long_str, parents));
 	tmp->active = 1;
 	tmp->next = NULL;
-	return(tmp);
+	return (tmp);
 }
 
 void alias_add(env_st_t *env_st, char **str, char *long_str, char *parents)

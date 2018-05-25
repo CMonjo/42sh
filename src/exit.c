@@ -51,7 +51,7 @@ int	is_there_alpha(char *str)
 	int i = 0;
 
 	while (str[i] != '\0') {
-		if (str[i] == '-' && str[i + 1] == '-' &&
+		if ((str[i] == '-' && str[i + 1] == '-') ||
 		is_there_nbr(str) == 1)
 			return (2);
 		if (str[i] < 45 || (str[i] > 45 && str[i] < 48) ||
@@ -66,17 +66,16 @@ int	is_there_alpha(char *str)
 
 int	exit_command(char **array, UNUSED char **envp, env_st_t *env_st)
 {
-	if (array[1] != NULL && is_there_alpha(array[1]) == 0) {
-		exit_display(0, env_st);
-		env_st->status = (unsigned char)my_getnbr(array[1]);
-		exit ((unsigned char)my_getnbr(array[1]));
-	} else if (array[1] == NULL) {
+	if (array[1] == NULL) {
 		exit_display(0, env_st);
 		env_st->status = 0;
 		exit (0);
+	} else if (is_there_alpha(array[1]) == 0) {
+		exit_display(0, env_st);
+		env_st->status = (unsigned char)my_getnbr(array[1]);
+		exit ((unsigned char)my_getnbr(array[1]));
 	}
-	if ((array[1][0] >= '0' && array[1][0] <= '9') ||
-		is_there_alpha(array[1]) == 2 || is_this_nbr(array[1]) == 0) {
+	if (is_there_alpha(array[1]) == 2) {
 		exit_display(1, env_st);
 		return (0);
 	}

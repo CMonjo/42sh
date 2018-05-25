@@ -91,6 +91,7 @@ SRC	=	src/main.c		\
 		src/globbing/star.c	\
 		src/yes.c				\
 		src/rm_first_arr.c			\
+		src/builtins.c				\
 
 OBJ	=	$(SRC:.c=.o)
 

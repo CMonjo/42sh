@@ -332,5 +332,7 @@
 	int	error_and_or(tree_t* temp, char *str);
 	char	**array_star_sort(char **array);
 	int	is_there_star(char *str);
+	int	builtins(UNUSED char **arr, UNUSED char **envp,
+	UNUSED env_st_t *env_st);
 
 #endif

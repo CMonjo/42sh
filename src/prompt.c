@@ -25,6 +25,7 @@ name_env_t const tab_name_b[] = {
 	{"bg", jobs},
 	{"fg", jobs},
 	{"if", if_build},
+	{"builtins", builtins},
 	{"yes", yes},
 	{"end", end},
 	{"cat", cat},
@@ -35,9 +36,9 @@ int	check_bult_in(char *str)
 {
 	char *bul_in[] = {"cd", "env", "exit", "setenv", "unsetenv",
 	"alias", "unalias", "echo", "repeat", "which", "where", "set",
-	"unset", "foreach", "yes", "fg", "bg", "if"};
+	"unset", "foreach", "yes", "fg", "bg", "if", "builtins"};
 
-	for (int ct = 0; ct != 18; ct ++) {
+	for (int ct = 0; ct != 19; ct ++) {
 		if (my_strcmp(str, bul_in[ct]) == 0)
 			return (ct);
 	}
@@ -51,7 +52,7 @@ tree_t* temp)
 	int fd_save_1 = dup(0);
 	int fd_save = dup(1);
 
-	while (ct < 18) {
+	while (ct < 19) {
 		if (command[0] != NULL
 		&& my_strcmp(command[0], tab_name_b[ct].name) == 0) {
 			dup2(temp->fd_in, 0);
@@ -120,7 +121,7 @@ int	check_gnl(char *name, char **envp, env_st_t *env_st, tree_t* temp)
 	if (check_alias_local_var(str[0], str[0], env_st) == 1
 	|| error_alias_dangerous(str, env_st) == 1)
 		return (1);
-	while (ct < 18) {
+	while (ct < 19) {
 		if (str[0] != NULL
 		&& my_strcmp(str[0], tab_name_b[ct].name) == 0) {
 			(tab_name_b[ct].name_str)(str, envp, env_st);

@@ -10,7 +10,7 @@
 void	alias_displaying(alias_t *tmp, int ct)
 {
 	while (tmp != NULL) {
-		if (tmp->bind[0] == ct && tmp->active == 1)
+		if (tmp->active == 1 && tmp->bind[0] == ct)
 			my_printf("%s\t%s\n", tmp->bind, tmp->command_display);
 		tmp = tmp->next;
 	}
@@ -31,7 +31,7 @@ void alias_compare(env_st_t *env_st, char *str)
 	alias_t *tmp = env_st->alias;
 
 	while (tmp != NULL) {
-		if (my_strcmp(tmp->bind, str) == 0) {
+		if (my_strcmp(tmp->bind, str) == 0 && tmp->active == 1) {
 			my_printf("%s\n", tmp->command_display);
 			break;
 		}

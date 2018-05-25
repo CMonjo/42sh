@@ -325,6 +325,7 @@
 	int	error_null_parent(char **command);
 	char	*select_env(char **env, char *str);
 	void	pass_quotes(char *str, int *ct, char quote);
+	int	yes(char **str, UNUSED char **envp, UNUSED env_st_t *env_st);
 	int	grep_bis(char **arr, UNUSED char **envp,
 	UNUSED env_st_t *env_st, int tab_len);
 	char	*grep_file(char *path, char *find, int boul, FILE *fd);

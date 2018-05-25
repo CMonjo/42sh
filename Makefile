@@ -89,6 +89,7 @@ SRC	=	src/main.c		\
 		src/globbing/bracket.c	\
 		src/globbing/inter.c	\
 		src/globbing/star.c	\
+		src/yes.c				\
 
 OBJ	=	$(SRC:.c=.o)
 

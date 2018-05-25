@@ -38,7 +38,7 @@ SRC	=	src/main.c		\
 		src/variables/variables_string.c	\
 		src/error/error_variables.c	\
 		src/my_arraydup.c	\
-		src/history/history_struct.c		\
+		src/builtins/history/history_struct.c		\
 		src/builtins/jobs/jobs.c		\
 		src/builtins/if/if.c		\
 		src/builtins/if/then.c		\

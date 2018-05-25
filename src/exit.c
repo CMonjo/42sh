@@ -24,7 +24,7 @@ void	exit_display(int i, env_st_t *env_st)
 int	is_there_nbr(char *str)
 {
 	for (int i = 0; str[i] != '\0'; i++)
-		if (str[i] >= '0' && str[i] <= '9')
+		if ((str[i] >= '0' && str[i] <= '9') || str[0] == '-')
 			return (1);
 	return (0);
 }

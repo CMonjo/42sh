@@ -41,6 +41,7 @@ SRC	=	src/main.c		\
 		src/history/history_struct.c		\
 		src/builtins/jobs/jobs.c		\
 		src/builtins/if/if.c		\
+		src/builtins/if/then.c		\
 		src/builtins/if/if_comp.c		\
 		src/builtins/if/if_comp_next.c		\
 		src/builtins/if/if_next.c		\
@@ -91,6 +92,9 @@ SRC	=	src/main.c		\
 		src/globbing/inter.c	\
 		src/globbing/star.c	\
 		src/yes.c				\
+		src/rm_first_arr.c			\
+		src/builtins.c				\
+		src/check_gnl.c				\
 
 OBJ	=	$(SRC:.c=.o)
 

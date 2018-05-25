@@ -7,6 +7,18 @@
 
 #include "main.h"
 
+int	end_if_while(char **arr, env_st_t *env_st)
+{
+	if (arr != NULL && (my_strcmp(arr[0], "endif") == 0
+	|| (my_strcmp(arr[0], "else") == 0 && arr[1] == NULL)))
+		return (1);
+	if (arr != NULL && my_strcmp(arr[0], "else") == 0) {
+		main_b_tree(rm_first_arr(arr), env_st, 0, 1);
+		return (1);
+	}
+	return (0);
+}
+
 int	end_foreach_while(char **arr, env_st_t *env_st, int b)
 {
 	if (arr == NULL || my_strcmp(arr[0], "end") != 0)

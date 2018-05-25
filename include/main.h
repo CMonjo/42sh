@@ -117,6 +117,10 @@
 	void my_bubble_set(set_t *current);
 
 	//ALIAS
+	char	**then_loop(char **arr, UNUSED char **envp, env_st_t *env_st);
+	void	prompt_if(void);
+	int	end_if_while(char **arr, env_st_t *env_st);
+	char	*rm_first_arr(char **arr);
 	int	cat_bis(char **arr,
 	UNUSED char **envp, UNUSED env_st_t *env_st);
 	char	*get_pid(char *str, env_st_t *env_st);
@@ -333,5 +337,11 @@
 	int	error_and_or(tree_t* temp, char *str);
 	char	**array_star_sort(char **array);
 	int	is_there_star(char *str);
+	int	builtins(UNUSED char **arr, UNUSED char **envp,
+	UNUSED env_st_t *env_st);
+	int	check_alias_local_var(char *command,
+	char *str, env_st_t *env_st);
+	int	check_gnl_next(char **str, char **envp, env_st_t *env_st);
+
 
 #endif

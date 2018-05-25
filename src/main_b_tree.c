@@ -82,8 +82,10 @@ int	check_special_case(char *str)
 	return (1);
 }
 
-int	error_main_b_tree(char **arr, env_st_t *info, tree_t* temp)
+int	error_main_b_tree(char *command, env_st_t *info, tree_t* temp)
 {
+	char **arr;
+
 	if ((arr = word_array(command)) == NULL)
 		return (1);
 	for (int ct = 0; arr[ct] != NULL; ct ++) {
@@ -144,7 +146,7 @@ int	main_b_tree(char *str, env_st_t *info, int fd_in, int fd_out)
 	/*printf("\n--------------TREEE  ----------\n\n");
 	my_printf_te(temp);
 	printf("--------------TREEE-------------\n\n");*/
-	if (error_main_b_tree(arr, info, temp) == 1)
+	if (error_main_b_tree(command, info, temp) == 1)
 		return (1);
 	start_fill_tree(temp, info);
 	return (0);

@@ -104,7 +104,9 @@ int	main_b_tree(char *str, env_st_t *info, int fd_in, int fd_out)
 		return (0);
 	}
 	command = check_command(str, 0);
+	//printf("COMMANDE AVANt : : '%s'\n", command);
 	command = chang_inib(command);
+	//printf("COMMANDE APRES : '%s'\n", command);
 	if (variable_error(command, info) == 1) {
 		command = check_command(str, 0);
 		fill_history(info, command);
@@ -117,6 +119,7 @@ int	main_b_tree(char *str, env_st_t *info, int fd_in, int fd_out)
 	if (word_array(command) == NULL || error_parent(command) == 1)
 		return (1);
 	command = too_much_parent(command);
+	//printf("COMMANDE : '%s'\n", command);
 	if (error_null_parent(word_array(command)) == 1) {
 		return (1);
 	}

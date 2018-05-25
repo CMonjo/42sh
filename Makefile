@@ -14,6 +14,7 @@ CFLAGS +=	-g3
 SRC	=	src/main.c		\
 		src/error/error_alias.c		\
 		src/exec.c		\
+		src/exec_status.c		\
 		src/pipe.c		\
 		src/pipe_plus.c		\
 		src/exec_red.c		\
@@ -68,12 +69,14 @@ SRC	=	src/main.c		\
 		src/builtins/set/set_spaced.c		\
 		src/builtins/set/unset.c		\
 		src/builtins/grep/grep.c		\
+		src/builtins/grep/grep_bis.c		\
 		src/builtins/alias/unalias.c		\
 		src/builtins/alias/alias.c		\
 		src/builtins/alias/alias_parsing.c	\
 		src/builtins/alias/alias_display.c	\
 		src/builtins/exit/exit.c		\
 		src/error/error_sep.c			\
+		src/error/error_sep_bis.c			\
 		src/error/error_parent.c		\
 		src/error/error_quotes.c		\
 		src/error/error_long_sep.c		\

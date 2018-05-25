@@ -116,6 +116,8 @@
 	void set_parse_spaces(env_st_t *env_st, char *str, char *spaced);
 
 	//ALIAS
+	int	cat_bis(char **arr,
+	UNUSED char **envp, UNUSED env_st_t *env_st);
 	char	*get_pid(char *str, env_st_t *env_st);
 	char	*value_return(char *str, env_st_t *env_st);
 	void	fill_history(env_st_t *info, char *str);
@@ -239,7 +241,8 @@
 	int check_gnl(char *name, char **envp, env_st_t *env_st, tree_t* temp);
 	int	main_b_tree(char *str, env_st_t *info, int fd_in, int fd_out);
 	int my_strcmp_c(char *s1, char const *s2);
-	tree_t*	my_list_command(char *command, env_st_t* info, int fd_in, int fd_out);
+	tree_t*	my_list_command(char *command, env_st_t* info,
+	int fd_in, int fd_out);
 	char **my_separator_command(char *av, char *sep);
 	char *my_second_command(char *av, int len, char sep);
 	tree_t *fill_struct_comand(char *command, int fd_in, int fd_out);
@@ -322,5 +325,9 @@
 	int	error_null_parent(char **command);
 	char	*select_env(char **env, char *str);
 	void	pass_quotes(char *str, int *ct, char quote);
+	int	grep_bis(char **arr, UNUSED char **envp,
+	UNUSED env_st_t *env_st, int tab_len);
+	char	*grep_file(char *path, char *find, int boul, FILE *fd);
+	int	error_and_or(tree_t* temp, char *str);
 
 #endif

@@ -338,5 +338,9 @@
 	int	is_there_star(char *str);
 	int	builtins(UNUSED char **arr, UNUSED char **envp,
 	UNUSED env_st_t *env_st);
+	int	check_alias_local_var(char *command,
+	char *str, env_st_t *env_st);
+	int	check_gnl_next(char **str, char **envp, env_st_t *env_st);
+
 
 #endif

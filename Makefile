@@ -93,6 +93,7 @@ SRC	=	src/main.c		\
 		src/yes.c				\
 		src/rm_first_arr.c			\
 		src/builtins.c				\
+		src/check_gnl.c				\
 
 OBJ	=	$(SRC:.c=.o)
 

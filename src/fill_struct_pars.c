@@ -66,29 +66,6 @@ void	remove_parent_command(char *command, char *av, char sep, int len)
 	command[len] = '\0';
 }
 
-char	*my_second_command(char *av, int len, char sep)
-{
-	int len_2 = 0;
-	int ctb = 0;
-	char *command_two;
-
-	for (int ct = 0; av[ct] != sep; ct ++) {
-		if (av[ct] == '(') {
-			len = len + 3;
-			break;
-		}
-	}
-	for (int ct = len; av[ct] != '\0'; ct ++)
-		len_2 ++;
-	command_two = malloc(sizeof(char) * (len_2 + 1));
-	for (int ct = len; av[ct] != '\0'; ct ++, ctb ++) {
-		command_two[ctb] = av[ct];
-	}
-	command_two[len_2] = '\0';
-	//printf("COMMANDE RIGHT   :    %s\n", command_two);
-	return (command_two);
-}
-
 char	**my_separator_command(char *av, char *sep)
 {
 	char *command;

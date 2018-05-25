@@ -43,8 +43,8 @@ char	*after_egal(char *str)
 	i = i + 1;
 	while (str[i] != '\0') {
 		dest[w] = str[i];
-		i = i + 1;
-		w = w + 1;
+		i+= 1;
+		w += 1;
 	}
 	dest[w] = '\0';
 	return (dest);
@@ -57,7 +57,7 @@ char	*select_env(char **env, char *str)
 	while (env[i] != NULL) {
 		if (comp_str_env(env[i], str) == 0)
 			return (after_egal(env[i]));
-		i = i + 1;
+		i += 1;
 	}
 	return (NULL);
 }

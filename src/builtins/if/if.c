@@ -28,7 +28,7 @@ char	*if_command(char **arr)
 		command = my_strcat(command, " ",0);
 		command = my_strcat(command, arr[ctb], 0);
 	}
-	printf("COMMANDE  :%s\n", command);
+	//printf("COMMANDE  :%s\n", command);
 	return (command);
 }
 

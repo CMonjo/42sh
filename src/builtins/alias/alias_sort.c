@@ -56,13 +56,15 @@ alias_t	*swap_bubble(alias_t *current)
 
 void	my_bubble(alias_t *current)
 {
-	if (sort_or_not(current) == 0)
-		return;
-	while (current->next != NULL) {
-		if (sort_alpha(current, current->next) == 1) {
-			current = swap_bubble(current);
-		}
-		current = current->next;
-	}
+	alias_t *tmp = current;
 
+	if (sort_or_not(tmp) == 0)
+		return;
+	while (tmp->next != NULL) {
+		if (sort_alpha(tmp, tmp->next) == 1) {
+			tmp = swap_bubble(tmp);
+		}
+		tmp = tmp->next;
+	}
+	my_bubble(current);
 }

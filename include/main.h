@@ -329,5 +329,7 @@
 	UNUSED env_st_t *env_st, int tab_len);
 	char	*grep_file(char *path, char *find, int boul, FILE *fd);
 	int	error_and_or(tree_t* temp, char *str);
+	char	**array_star_sort(char **array);
+	int	is_there_star(char *str);
 
 #endif

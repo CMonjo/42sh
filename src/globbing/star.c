@@ -7,24 +7,6 @@
 
 #include "main.h"
 
-int	is_there_star(char *str)
-{
-	int i = 0;
-
-	for (; str[i] != '\0'; i++)
-		if (str[i] == '*')
-			return (1);
-	return (0);
-}
-
-int	my_arraylen(char **array)
-{
-	int i = 0;
-
-	for (; array != NULL && array[i] != NULL; i++);
-	return (i);
-}
-
 int	arg_nbr(char **array, int test)
 {
 	int c = 0;
@@ -39,57 +21,6 @@ int	arg_nbr(char **array, int test)
 	if (test == 0)
 		return (c);
 	return (i);
-}
-
-char	**add_line(char **array, char *str, int i)
-{
-	char **new = malloc(sizeof(char *) * my_arraylen(array) + 2);
-	int u = 0;
-	int c = 0;
-
-	for (; c != i; c++, u++)
-		new[u] = array[c];
-	new[u] = my_strdup(str);
-	u++;
-	for (; array != NULL && array[c] != NULL; c++, u++)
-		new[u] = array[c];
-	new[u] = NULL;
-	return (new);
-}
-
-char	**delete_line(char **array, int i)
-{
-	char **new = malloc(sizeof(char *) * (my_arraylen(array)));
-	int u = 0;
-	int c = 0;
-
-	for (; c != i; c++, u++)
-		new[u] = array[c];
-	c++;
-	for (; array[c] != NULL; c++, u++)
-		new[u] = array[c];
-	new[u] = NULL;
-	return (new);
-}
-
-char	**array_star_sort(char **array)
-{
-	int checkpoint = 0;
-	char *tmp;
-
-	for (int i = 0; array[i] != NULL; i++) {
-		if (is_there_star(array[i]) == 1)
-			checkpoint = 1;
-		if (checkpoint == 1 && is_there_star(array[i]) == 0) {
-			tmp = my_strdup(array[i]);
-			array = delete_line(array, i);
-			array = add_line(array, tmp, 1);
-			free (tmp);
-			i = -1;
-			checkpoint = 0;
-		}
-	}
-	return (array);
 }
 
 char	**is_the_same(char **array, char *str, int *modif)

@@ -30,15 +30,13 @@ SRC	=	src/main.c		\
 		src/left_red.c		\
 		src/start_sep.c		\
 		src/start_double_sep.c	\
-		src/star.c	\
+		src/exit.c	\
+		src/inib.c	\
+		src/is_there_star.c	\
 		src/variables/variables.c	\
 		src/variables/variables_spe.c	\
 		src/variables/variables_string.c	\
 		src/error/error_variables.c	\
-		src/bracket.c	\
-		src/inter.c	\
-		src/inib.c	\
-		src/exit.c	\
 		src/my_arraydup.c	\
 		src/history/history_struct.c		\
 		src/builtins/jobs/jobs.c		\
@@ -87,6 +85,10 @@ SRC	=	src/main.c		\
 		src/verif_parent.c			\
 		src/verif_parent_next.c			\
 		src/select_env.c			\
+		src/globbing/glob_execution.c	\
+		src/globbing/bracket.c	\
+		src/globbing/inter.c	\
+		src/globbing/star.c	\
 
 OBJ	=	$(SRC:.c=.o)
 

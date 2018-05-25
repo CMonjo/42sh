@@ -116,6 +116,10 @@
 	void set_parse_spaces(env_st_t *env_st, char *str, char *spaced);
 
 	//ALIAS
+	char	**then_loop(char **arr, UNUSED char **envp, env_st_t *env_st);
+	void	prompt_if(void);
+	int	end_if_while(char **arr, env_st_t *env_st);
+	char	*rm_first_arr(char **arr);
 	int	cat_bis(char **arr,
 	UNUSED char **envp, UNUSED env_st_t *env_st);
 	char	*get_pid(char *str, env_st_t *env_st);

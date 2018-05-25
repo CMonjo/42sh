@@ -28,7 +28,7 @@ char	*if_command(char **arr)
 		command = my_strcat(command, " ",0);
 		command = my_strcat(command, arr[ctb], 0);
 	}
-	//printf("COMMANDE  :%s\n", command);
+	printf("COMMANDE  :%s\n", command);
 	return (command);
 }
 
@@ -53,8 +53,14 @@ int	error_if(char **arr, env_st_t *env_st)
 
 int	if_build_next_next(int ct, char **arr, env_st_t *env_st, int ctb)
 {
-	if ((tab_if_sep[ct].name_str)(arr[2], arr[ctb]) == 0)
+	if ((tab_if_sep[ct].name_str)(arr[2], arr[ctb]) == 0) {
+		if (my_strcmp(arr[6], "then") == 0)
+			return (0);
 		main_b_tree(if_command(arr), env_st, 0, 1);
+	} else if (my_strcmp(arr[6], "then") == 0) {
+		prompt_if();
+		then_loop(arr, env_st->envp_cpy, env_st);
+	}
 	return (0);
 }
 
@@ -66,7 +72,7 @@ int	if_build_next(char *sep, char **arr, env_st_t *env_st, int ctb)
 		if (my_strcmp(sep, tab_if_sep[ct].name) == 0) {
 			if_build_next_next(ct, arr, env_st, ctb);
 			b ++;
-	}
+		}
 	return (b);
 }
 

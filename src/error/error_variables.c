@@ -31,7 +31,7 @@ int	find_local_var_error(char *str, env_st_t *env_st, int *b)
 		return (1);
 	}
 	while (set != NULL) {
-		if (my_strcmp(set->name, str) == 0)
+		if (set->active == 1 && my_strcmp(set->name, str) == 0)
 			return (0);
 		set = set->next;
 	}

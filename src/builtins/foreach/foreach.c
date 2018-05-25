@@ -28,7 +28,8 @@ char	**command_exec(char **arr_command, char *new_command)
 	return (new_arr);
 }
 
-void	exec_command_ele(char **arr_command, int nb_ele, char **foreach, env_st_t *env_st)
+void	exec_command_ele(char **arr_command,
+int nb_ele, char **foreach, env_st_t *env_st)
 {
 	char *var = my_strdup(foreach[1]);
 	char *command;
@@ -40,7 +41,6 @@ void	exec_command_ele(char **arr_command, int nb_ele, char **foreach, env_st_t *
 		command = my_strcat("set ", var, 0);
 		command = my_strcat(command, "=", 0);
 		command = my_strcat(command, foreach[ctb], 0);
-		//printf("COMAND :   %s    FOREACH   :    %s\n", command, foreach[ctb]);
 		set(word_array(command), env_st->envp_cpy, env_st);
 		for (int ctb = 0; arr_command[ctb] != NULL; ctb ++)
 			main_b_tree(arr_command[ctb], env_st, 0, 1);

@@ -72,11 +72,12 @@ char	*my_second_command(char *av, int len, char sep)
 	int ctb = 0;
 	char *command_two;
 
-	for (int ct = 0; av[ct] != sep; ct ++)
+	for (int ct = 0; av[ct] != sep; ct ++) {
 		if (av[ct] == '(') {
 			len = len + 3;
 			break;
 		}
+	}
 	for (int ct = len; av[ct] != '\0'; ct ++)
 		len_2 ++;
 	command_two = malloc(sizeof(char) * (len_2 + 1));
@@ -139,18 +140,9 @@ tree_t* fill_tree_parent_command(char *command, env_st_t* info, int fd_in, int f
 
 	command_tmp = malloc(sizeof(char) * (my_strlen(command) - 1));
 	remove_parent_command(command_tmp, command, '\0', my_strlen(command) - 2);
-				//printf("COMMANDE AVANT :   %s    REMOVED PARENT :  %s\n", command, command_tmp);
+	//printf("COMMANDE TA MERE LA PUTE ANTOINE : '%s'\n", command_tmp);
 	if ((ct = check_sep(word_array(command_tmp))) != -1 && ct != -2)
 		return (fill_tree_command(command_tmp, info, fd_in, fd_out));
-	/*//printf("\n\n\nBOUCOULILAH\n\n\n");
-	arr = my_separator_command(command_tmp, (char *)tab_name[ct]);
-	temp = fill_struct_comand((char *)tab_name[ct], fd_in, fd_out);
-	//printf("\n\n\nBOUCOULILAH    COMMANDE GAUCHE   '%s'   COMMANDE DROITE   '%s'\n\n\n", arr[1], arr[2]);
-	temp->left = my_list_command(arr[1], info, fd_in, fd_out);
-	temp->right = my_list_command(arr[2], info, fd_in, fd_out);
-	return (temp);
-	}*/
-	//printf("WALLA COMMANDE :  %s\n", command_tmp);
 	temp = fill_struct_comand(command_tmp, fd_in, fd_out);
 	return (temp);
 }
@@ -166,9 +158,12 @@ tree_t*	my_list_command(char *command, env_st_t* info, int fd_in, int fd_out)
 		return (fill_struct_comand(command, fd_in, fd_out));
 	if (ct == -2)
 		return (NULL);
-	for (int ct = 0; command[ct] != '\0'; ct ++)
+	for (int ct = 0; command[ct] != '\0'; ct ++) {
+		if (command[ct] == '\'' || command[ct] == '\"')
+			pass_quotes(command, &ct, command[ct]);
 		if (command[ct] == '(')
 			return (fill_tree_parent_command(command, info, fd_in, fd_out));
+	}
 	temp = fill_struct_comand(command, fd_in, fd_out);
 	return (temp);
 }

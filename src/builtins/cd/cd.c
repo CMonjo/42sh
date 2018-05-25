@@ -82,6 +82,7 @@ int	cd(char **str, char **envp, env_st_t *env_st)
 	int cd_min = 0;
 
 	if (str[0] != NULL && my_strlen(str[1]) > 255) {
+		env_st->status = 1;
 		my_putstr_err(str[1], ": File name too long.\n");
 		return (1);
 	}

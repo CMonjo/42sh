@@ -77,7 +77,6 @@ int	check_sheebang_file(char **arr, char *str, int sheebang_len, env_st_t* env_s
 	int file_len = 0;
 	char *check_sheebang_file;
 	int ctb = 0;
-	//int fd = 0;
 
 	for (int ct = 0; arr[ct] != NULL; ct ++)
 		arr_sheebang ++;
@@ -95,11 +94,6 @@ int	check_sheebang_file(char **arr, char *str, int sheebang_len, env_st_t* env_s
 			str, check_sheebang_file);
 			return (0);
 		}
-		/*if ((fd = open(check_sheebang_file, O_RDWR, 0666)) == -1) {
-			my_printf("%s: «%s»: No such file or directory.\n",
-			str, check_sheebang_file);
-			return (0);
-		}*/
 	}
 	return (0);
 }
@@ -123,7 +117,8 @@ int	check_sheebang(char *str, char *file, env_st_t* env_st)
 		my_printf("%s: Command not found.\n", file);
 		return (1);
 	}
-	if (check_sheebang_file(word_array(str), str, len_sheebang + start, env_st) == 1)
+	if (check_sheebang_file(word_array(str), str,
+	len_sheebang + start, env_st) == 1)
 		return (1);
 	return (0);
 }
@@ -147,8 +142,6 @@ void	start_exec_script(char **arr, FILE *fd, env_st_t* env_st)
 
 int	check_elf(char *str, char **arr, FILE *fd, env_st_t* env_st)
 {
-	//char *sheebang = malloc(sizeof(char) * (my_strlen(str) - 2));
-
 	if (my_strlen(str) >= 4 && str[1] == 'E'
 	&& str[2] == 'L' && str[3] == 'F')
 		return (0);

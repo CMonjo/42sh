@@ -41,13 +41,16 @@ alias_t	*swap_bubble(alias_t *current)
 	char *tmp_bind = current->bind;
 	char *tmp_command_bind = current->command_bind;
 	char *tmp_command_display = current->command_display;
+	int tmp_active = current->active;
 
 	current->bind = current->next->bind;
 	current->command_bind = current->next->command_bind;
 	current->command_display = current->next->command_display;
+	current->active = current->next->active;
 	current->next->bind = tmp_bind;
 	current->next->command_bind = tmp_command_bind;
 	current->next->command_display = tmp_command_display;
+	current->next->active = tmp_active;
 	return (current);
 }
 

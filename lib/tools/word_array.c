@@ -55,7 +55,6 @@ int	len_str(char *str)
 			len ++;
 			pass_quotes(str, &ct, str[ct]);
 		}
-
 		if (b == 0 && (str[ct] == 32 || str[ct] == 9)) {
 			len ++;
 			b = 1;

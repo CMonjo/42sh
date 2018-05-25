@@ -7,12 +7,12 @@
 
 #include "main.h"
 
-char	*value_return(char *str, env_st_t *env_st)
+char	*value_return(UNUSED char *str, env_st_t *env_st)
 {
 	return (int_to_char(env_st->status));
 }
 
-char	*get_pid(char *str, env_st_t *env_st)
+char	*get_pid(UNUSED char *str, UNUSED env_st_t *env_st)
 {
 	return (int_to_char(getpid()));
 }

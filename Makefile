@@ -38,6 +38,7 @@ SRC	=	src/main.c		\
 		src/variables/variables_string.c	\
 		src/error/error_variables.c	\
 		src/my_arraydup.c	\
+		src/builtins/builtins.c				\
 		src/builtins/history/history_struct.c		\
 		src/builtins/jobs/jobs.c		\
 		src/builtins/if/if.c		\
@@ -93,7 +94,6 @@ SRC	=	src/main.c		\
 		src/globbing/star.c	\
 		src/yes.c				\
 		src/rm_first_arr.c			\
-		src/builtins.c				\
 		src/check_gnl.c				\
 
 OBJ	=	$(SRC:.c=.o)

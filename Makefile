@@ -88,6 +88,7 @@ SRC	=	src/main.c		\
 		src/verif_parent_next.c			\
 		src/select_env.c			\
 		src/yes.c				\
+		src/rm_first_arr.c			\
 
 OBJ	=	$(SRC:.c=.o)
 

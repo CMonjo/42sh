@@ -39,7 +39,7 @@ void	start_exec_script(char **arr, FILE *fd, env_st_t* env_st)
 	int readed = 0;
 
 	while ((readed = getline(&str, &size, fd)) > 0) {
-		str[readed - 1] = '\0';
+		str[readed] = '\0';
 		if (my_strlen(str) > 1) {
 			str = replace_variable(str, arr);
 			main_b_tree(str, env_st, 0, 1);
@@ -55,7 +55,7 @@ int	check_elf(char *str, char **arr, FILE *fd, env_st_t* env_st)
 		return (0);
 	else if (str[0] == '#' && check_sheebang(str, arr[0], env_st) == 1)
 		return (1);
-	if (my_strlen(str) > 1 && str[0] != '#') {
+	if (my_strlen(str) >= 1 && str[0] != '#') {
 		str = replace_variable(str, arr);
 		main_b_tree(str, env_st, 0, 1);
 	}

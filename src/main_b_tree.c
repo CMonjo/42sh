@@ -96,9 +96,6 @@ int	main_b_tree(char *str, env_st_t *info, int fd_in, int fd_out)
 	command = too_much_parent(command);
 	if (error_null_parent(word_array(command)) == 1)
 		return (1);
-	/*printf("\n--------------HISTORY----------\n\n");
-	my_printf_history(info->history);
-	printf("\n--------------HISTORY----------\n\n");*/
 	temp = my_list_command(command, info, fd_in, fd_out);
 	/*printf("\n--------------TREEE  ----------\n\n");
 	my_printf_te(temp);

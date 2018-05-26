@@ -53,7 +53,7 @@ int	flag_unsg_short(va_list ap, int ct, char *str, char *str_temp)
 
 	while (str_temp[ctp] != '\0') {
 		ctp ++;
-		if (str_temp[ctp] >= 48 || str_temp[ctp]  <= 57)
+		if (str_temp[ctp] >= 48 || str_temp[ctp] <= 57)
 			nbr = nbr * 10 + (str_temp[ctp] - 48);
 	}
 	flag_nbr_disp(nbr, len_f);

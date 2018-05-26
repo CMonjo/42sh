@@ -23,7 +23,7 @@ void removed_alias(env_st_t *env_st, char *str)
 int unalias(char **array, UNUSED char **envp, env_st_t *env_st)
 {
 	if (array[1] == NULL)
-		printf("unalias: Too few arguments.\n");
+		my_printf("unalias: Too few arguments.\n");
 	else {
 		for (int i = 1; array[i] != NULL; i++)
 			removed_alias(env_st, array[i]);

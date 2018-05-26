@@ -67,9 +67,8 @@ char **file, tree_t* temp)
 	fd = open((file_tmp = create_file()), O_RDWR | O_CREAT, 0666);
 	while (my_strcmp(str, file[0]) != 0) {
 		str = my_getline();
-		if (isatty(0) == 1 && str == NULL) {
+		if (isatty(0) == 1 && str == NULL)
 			exit(0);
-		}
 		if (my_strlen(str) > 0 && my_strcmp(str, file[0]) != 0) {
 			write(fd, str, my_strlen(str));
 			write(fd, "\n", 1);

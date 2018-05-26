@@ -98,12 +98,10 @@ char	**word_array(char *line)
 		&& line[ct] != 39 && line[ct] != 34) {
 			str[ctb] = copy_str_arr(line, &ct);
 			ctb ++;
-		}
-		if (line[ct] == 39 || line[ct] == 34) {
+		} if (line[ct] == 39 || line[ct] == 34) {
 			str[ctb] = copy_str_quote(line, &ct, line[ct]);
 			ctb ++;
-		}
-		if (line[ct] == '\0')
+		} if (line[ct] == '\0')
 			break;
 	}
 	str[ctb] = NULL;

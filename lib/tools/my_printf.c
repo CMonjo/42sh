@@ -7,25 +7,46 @@
 
 #include "tools.h"
 
-spec_t const tab_spec[] = {{'c', flag_c}, {'x', flag_x},
-			{'X', flag_xx}, {'o', flag_o},
-			{'u', flag_unsg_l}, {'d', flag_long},
-			{'i', flag_long},
-			{'S', flag_ss}, {'p', flag_p}, {'s', flag_s},
-			{'b', flag_b}};
+spec_t const tab_spec[] = {
+	{'c', flag_c},
+	{'x', flag_x},
+	{'X', flag_xx},
+	{'o', flag_o},
+	{'u', flag_unsg_l},
+	{'d', flag_long},
+	{'i', flag_long},
+	{'S', flag_ss},
+	{'p', flag_p},
+	{'s', flag_s},
+	{'b', flag_b},
+};
 
-length_t const tab_len[] = {{"lld", flag_long_long}, {"lli", flag_long_long},
-			{"llu", flag_unsg_ll},
-			{"llo", flag_ll_o}, {"llx", flag_ll_x},
-			{"llX", flag_ll_xx}, {"ld", flag_long},
-			{"li", flag_long}, {"lu", flag_unsg_l},
-			{"lo", flag_o}, {"lx", flag_x}, {"lX", flag_xx},
-			{"hhd", flag_hh_d}, {"hhi", flag_hh_d},
-			{"hhu", flag_hh_u}, {"hho", flag_hh_o},
-			{"hhx", flag_hh_x}, {"hhX", flag_hh_xx},
-			{"hd", flag_h_nbr}, {"hi", flag_h_nbr},
-			{"hu", flag_unsg_short}, {"ho", flag_o},
-			{"hx", flag_x}, {"hX", flag_xx}};
+length_t const tab_len[] = {
+	{"lld", flag_long_long},
+	{"lli", flag_long_long},
+	{"llu", flag_unsg_ll},
+	{"llo", flag_ll_o},
+	{"llx", flag_ll_x},
+	{"llX", flag_ll_xx},
+	{"ld", flag_long},
+	{"li", flag_long},
+	{"lu", flag_unsg_l},
+	{"lo", flag_o},
+	{"lx", flag_x},
+	{"lX", flag_xx},
+	{"hhd", flag_hh_d},
+	{"hhi", flag_hh_d},
+	{"hhu", flag_hh_u},
+	{"hho", flag_hh_o},
+	{"hhx", flag_hh_x},
+	{"hhX", flag_hh_xx},
+	{"hd", flag_h_nbr},
+	{"hi", flag_h_nbr},
+	{"hu", flag_unsg_short},
+	{"ho", flag_o},
+	{"hx", flag_x},
+	{"hX", flag_xx},
+};
 
 void	flag_one(char *str, va_list ap, int ct, char *str_temp)
 {
@@ -79,8 +100,7 @@ int	len_flag(char *str, int ct)
 
 	while (b == 0) {
 		while (ctp < 10) {
-			if (str[ct] == tab_spec[ctp].spec_pf)
-				b ++;
+			b += str[ct] == tab_spec[ctp].spec_pf ? 1 : 0;
 			ctp ++;
 		}
 		ctp = 0;

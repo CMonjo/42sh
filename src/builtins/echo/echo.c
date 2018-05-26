@@ -24,7 +24,7 @@ void	skip_print_quotes(char **arr, int ct, int ctb, char c)
 	}
 }
 
-int	echo(char **arr, UNUSED char **envp, UNUSED env_st_t *env_st)
+int	echo_build(char **arr, UNUSED char **envp, UNUSED env_st_t *env_st)
 {
 	if (arr[1] == NULL)
 		return (0);

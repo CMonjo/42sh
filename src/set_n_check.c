@@ -32,9 +32,8 @@ int	check_name(char **str, env_st_t* env_st)
 	while (str[1][ct] != '\0') {
 		if ((str[1][ct] > 47 && str[1][ct] < 58) || str[1][ct] == '_')
 			b = 1;
-		if (b == 0 && (str[1][ct] < 65 ||
-		(str[1][ct] > 90 && str[1][ct] < 97)
-			|| str[1][ct] > 122)) {
+		if (b == 0 && (str[1][ct] < 65 || (str[1][ct] > 90 &&
+		str[1][ct] < 97) || str[1][ct] > 122)) {
 			my_putstr_err(NULL, "setenv: Variable name must cont");
 			my_putstr_err(NULL, "ain alphanumeric characters.\n");
 			env_st->status = 1;
@@ -54,7 +53,7 @@ char	**unset_env_name(char **str, char **envp, env_st_t* env_st)
 
 	free(new_env[env_st->ind]);
 	new_env[env_st->ind] = malloc(sizeof(char)
-				* (my_strlen(str[1]) + my_strlen(str[2])) + 2);
+	* (my_strlen(str[1]) + my_strlen(str[2])) + 2);
 	str_tmp = malloc_str(0, 0, 0, str);
 	str_tmp[(my_strlen(str[1]) + my_strlen(str[2]) + 1)] = '\0';
 	while (str_tmp[ct] != '\0') {
@@ -74,7 +73,7 @@ int	set_name(char **str, char **envp, env_st_t* env_st)
 	env_st->len_h ++;
 	new_env = copy_env(envp, env_st, 0);
 	new_env[env_st->len_h - 1] = malloc(sizeof(char)
-					* (my_strlen(str[1]) + 2));
+	* (my_strlen(str[1]) + 2));
 	while (str[1][ct] != '\0') {
 		new_env[env_st->len_h - 1][ct] = str[1][ct];
 		ct ++;
@@ -93,7 +92,7 @@ int	set_name_value(char **str, char **envp, env_st_t* env_st)
 
 	new_env = copy_env(envp, env_st, 0);
 	new_env[env_st->len_h - 1] = malloc(sizeof(char)
-				* (my_strlen(str[1]) + my_strlen(str[2])) + 2);
+	* (my_strlen(str[1]) + my_strlen(str[2])) + 2);
 	str_tmp = malloc_str(0, 0, 0, str);
 	str_tmp[(my_strlen(str[1]) + my_strlen(str[2]) + 1)] = '\0';
 	while (str_tmp[ct] != '\0') {

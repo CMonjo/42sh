@@ -30,11 +30,9 @@ int	find_local_var_error(char *str, env_st_t *env_st, int *b)
 		(*b) = 1;
 		return (1);
 	}
-	while (set != NULL) {
+	for (; set != NULL; set = set->next)
 		if (set->active == 1 && my_strcmp(set->name, str) == 0)
 			return (0);
-		set = set->next;
-	}
 	if (select_env(env_st->envp_cpy, str) != NULL)
 		return (0);
 	(*b) = 1;

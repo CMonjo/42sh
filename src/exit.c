@@ -45,11 +45,11 @@ int	exit_command(char **array, UNUSED char **envp, env_st_t *env_st)
 	if (array[1] == NULL) {
 		exit_display(0, env_st);
 		env_st->status = 0;
-		exit (0);
+		exit(0);
 	} else if (is_this_nbr(array[1]) == 1) {
 		exit_display(0, env_st);
 		env_st->status = (unsigned char)my_getnbr(array[1]);
-		exit ((unsigned char)my_getnbr(array[1]));
+		exit((unsigned char)my_getnbr(array[1]));
 	}
 	if (is_there_nbr(array[1]) == 1) {
 		exit_display(1, env_st);

@@ -53,9 +53,9 @@ int	error_if(char **arr, env_st_t *env_st)
 int	if_build_next_next(int ct, char **arr, env_st_t *env_st, int ctb)
 {
 	if (my_strcmp(arr[6], "then") == 0 && arr[7] != NULL) {
-			env_st->status = 1;
-			my_putstr_err(NULL, "if: Improper then.\n");
-			return (0);
+		env_st->status = 1;
+		my_putstr_err(NULL, "if: Improper then.\n");
+		return (0);
 	}
 	if ((tab_if_sep[ct].name_str)(arr[2], arr[ctb]) == 0) {
 		if (my_strcmp(arr[6], "then") == 0)

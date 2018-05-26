@@ -22,7 +22,8 @@
 
 	typedef struct flag_s {
 		char flag_pf;
-		int (*flag_p)(char *str, int ctp, long long temp, char *str_temp);
+		int (*flag_p)(char *str, int ctp,
+		long long temp, char *str_temp);
 	} flag_t;
 
 	typedef struct flag_char_s {

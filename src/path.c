@@ -62,8 +62,8 @@ int	check_same(char **envp, env_st_t* env_st)
 	return (ct + 1);
 }
 
-void	check_path_env(char **envp, char *name,
-	env_st_t* env_st, char **str_arr, tree_t* temp)
+void	check_path_env(char **envp, char *name, env_st_t* env_st,
+char **str_arr, tree_t* temp)
 {
 	int ct = 0;
 	char *str;
@@ -78,8 +78,8 @@ void	check_path_env(char **envp, char *name,
 		if (envp[env_st->ind][ctb] == '\0')
 			ctb --;
 		if (access(str, F_OK) != -1) {
-			if (strat_exec(str, str_arr, env_st, temp) == 1)
-				env_st->status = 0;
+			strat_exec(str, str_arr, env_st, temp) == 1 ?
+			env_st->status = 0 : 0;
 			return;
 		}
 	}

@@ -42,8 +42,8 @@ void	first_simple_or_sep_and(tree_t* temp, env_st_t *env_st)
 			check_gnl(temp->right->right->commande_parseur,
 			env_st->envp_cpy, env_st, temp);
 	}
-	else if (env_st->status != 0
-	&& check_sep_char(temp->right->commande_parseur) == 1)
-			check_gnl(temp->right->right->commande_parseur,
-			env_st->envp_cpy, env_st, temp);
+	else if (env_st->status != 0 &&
+	check_sep_char(temp->right->commande_parseur) == 1)
+		check_gnl(temp->right->right->commande_parseur,
+		env_st->envp_cpy, env_st, temp);
 }

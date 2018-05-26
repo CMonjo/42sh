@@ -39,7 +39,6 @@ char	*grep_file(char *path, char *find, int boul, FILE *fd)
 	grep_file[0] = '\0';
 	while ((readed = getline(&file, &size, fd)) > 0) {
 		ckeck_file_grep(file, find, &b);
-		//grep_file = strcat_grep(grep_file, boul, b, path, file);
 		if (b == 1 && boul == 0) {
 			grep_file = my_strcat(grep_file, file, 0);
 		} else if (b == 1 && boul == 1 ) {

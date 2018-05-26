@@ -90,10 +90,7 @@ int	main_b_tree(char *str, env_st_t *info, int fd_in, int fd_out)
 	if (main_b_tree_check_strat(str, info) == 1)
 		return (0);
 	command = check_command(str, 0);
-	if (error_main_b_tree_variable(str, command, info) == 1)
-		return (1);
 	fill_history(info, command);
-	command = variable(command, info);
 	if (word_array(command) == NULL || error_parent(command) == 1)
 		return (1);
 	command = too_much_parent(command);

@@ -15,7 +15,7 @@ name_env_t const tab_name_b[] = {
 	{"unsetenv", unset_env},
 	{"alias", alias},
 	{"unalias", unalias},
-	{"echo", echo},
+	{"echo", echo_build},
 	{"repeat", repeat},
 	{"which", which},
 	{"where", where},
@@ -64,6 +64,9 @@ int	check_gnl(char *name, char **envp, env_st_t *env_st, tree_t* temp)
 {
 	char **str;
 
+	if (error_main_b_tree_variable(name, name, env_st) == 1)
+		return (1);
+	name = variable(name, env_st);
 	if ((str = word_array(name)) == NULL)
 		return (0);
 	if (check_stars(name) == 1 || check_bracket(name) == 1 ||

@@ -18,6 +18,7 @@
 	#include <dirent.h>
 	#include <pwd.h>
 	#include <grp.h>
+	#include <time.h>
 	#include <errno.h>
 	#include <sys/wait.h>
 	#include "tools.h"
@@ -53,7 +54,11 @@
 	typedef struct history_s {
 		int nbr;
 		char *command;
+		long number;
+		char hrs[3];
+		char min[3];
 		struct history_s *next;
+		struct history_s *prev;
 	} history_t;
 
 	typedef struct job_s {
@@ -365,6 +370,7 @@
 	int	check_alias_local_var(char *command,
 	char *str, env_st_t *env_st);
 	int	check_gnl_next(char **str, char **envp, env_st_t *env_st);
-
+	int history(char **array, UNUSED char **envp, env_st_t *env_st);
+	void	fill_history(env_st_t *info, char *command);
 
 #endif

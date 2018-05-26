@@ -69,7 +69,7 @@ int	exec(char **envp, env_st_t* env_st, char **str, tree_t* temp)
 	if (b == 1) {
 		exec_arg(envp, env_st, str, temp);
 	} else {
-		check_path_env(envp, str[0], env_st, str, temp);
+		check_path_env(str[0], env_st, str, temp);
 	}
 	return (0);
 }

@@ -183,9 +183,9 @@
 	void alias_compare(env_st_t *env_st, char *str);
 	int unalias(char **array, UNUSED char **envp, env_st_t *env_st);
 	void alias_add(env_st_t *env_st, char **str, char *long_str,
-		char *parenthesis);
+	char *parenthesis);
 	alias_t *alias_add_node(char **str, char *long_str,
-		char *parenthesis);
+	char *parenthesis);
 	void alias_display(env_st_t *env_st);
 	char *alias_parse_parenthesis(char **tab);
 	int	error_alias_loop(char *first, char *str, env_st_t *env_st);
@@ -293,7 +293,7 @@
 	int start_error_tree(tree_t* temp, int b);
 	char *get_next_line(int fd);
 	char *maloc_str(int ct, int b, int ctb, char **str);
-	void check_path_env(char **envp, char *name, env_st_t* env_st,
+	void check_path_env(char *name, env_st_t* env_st,
 	char **str_arr, tree_t* temp);
 	int check_path_bsc(char *name, char **str_arr,
 	env_st_t* env_st, tree_t* temp);

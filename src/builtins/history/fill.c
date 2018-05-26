@@ -21,8 +21,10 @@ void	fill_history(env_st_t *info, char *command)
 	new_ele->number = (info->history) ? info->history->number + 1 : 1;
 	new_ele->hrs[0] = str[0];
 	new_ele->hrs[1] = str[1];
+	new_ele->hrs[2] = '\0';
 	new_ele->min[0] = str[3];
 	new_ele->min[1] = str[4];
+	new_ele->min[2] = '\0';
 	new_ele->next = info->history;
 	new_ele->prev = NULL;
 	(info->history != NULL) ? info->history->prev = new_ele : 0;

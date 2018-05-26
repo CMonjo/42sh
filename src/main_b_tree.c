@@ -67,39 +67,16 @@ void	start_fill_tree(tree_t* temp, env_st_t *env_st)
 		my_printf_te(temp->right);
 }*/
 
-int	check_special_case(char *str)
+int	main_b_tree_check_strat(char *str, env_st_t *info)
 {
-	char **arr = word_array(str);
-	int str_arr = 0;
-
-	while (arr[str_arr] != NULL)
-		str_arr ++;
-	if (str_arr != 1)
-		return (0);
-	for (int ct = 0; arr[0][ct] != '\0'; ct ++)
-		if (arr[0][ct] != ';' && arr[0][ct] != '&')
-			return (0);
-	return (1);
-}
-
-int	error_main_b_tree(char *command, env_st_t *info, tree_t* temp)
-{
+	char *command;
 	char **arr;
 
-	if ((arr = word_array(command)) == NULL)
+	if ((arr = word_array(str)) == NULL)
 		return (1);
-	for (int ct = 0; arr[ct] != NULL; ct ++) {
-		if (my_strcmp(arr[ct], "alias") == 0
-		|| my_strcmp(arr[ct], "unalias") == 0)
-			pass_alias_unalias(arr, &ct);
-		if (arr[ct] == NULL)
-			break;
-		if (info->alias != NULL
-		&& error_alias_loop(arr[ct], arr[ct], info) == 1)
-			return (1);
-	}
-	if (start_error_tree(temp, 0) == 1 || start_error_tree(temp, 1) == 1) {
-		info->status = 1;
+	if (check_special_case(str) == 1 || check_long_sep(str) == 1) {
+		command = check_command(str, 0);
+		fill_history(info, command);
 		return (1);
 	}
 	return (0);
@@ -109,36 +86,19 @@ int	main_b_tree(char *str, env_st_t *info, int fd_in, int fd_out)
 {
 	tree_t* temp;
 	char *command;
-	char **arr;
 
-	if ((arr = word_array(str)) == NULL)
+	if (main_b_tree_check_strat(str, info) == 1)
 		return (0);
-	if (check_special_case(str) == 1 || check_long_sep(str) == 1) {
-		command = check_command(str, 0);
-		fill_history(info, command);
-		return (0);
-	}
 	command = check_command(str, 0);
-	//printf("COMMANDE AVANt : : '%s'\n", command);
-	command = chang_inib(command);
-	//printf("COMMANDE APRES : '%s'\n", command);
-	if (variable_error(command, info) == 1) {
-		command = check_command(str, 0);
-		fill_history(info, command);
+	if (error_main_b_tree_variable(str, command, info) == 1)
 		return (1);
-	}
 	fill_history(info, command);
 	command = variable(command, info);
-	//printf("COMMANDE : '%s'\n", command);
-	//command = epur_command_sep_one(command);
 	if (word_array(command) == NULL || error_parent(command) == 1)
 		return (1);
 	command = too_much_parent(command);
-	//printf("COMMANDE : '%s'\n", command);
-	if (error_null_parent(word_array(command)) == 1) {
+	if (error_null_parent(word_array(command)) == 1)
 		return (1);
-	}
-	//printf("0  %s    1  %s     2     %s\n\n", arr[0], arr[1], arr[2]);
 	/*printf("\n--------------HISTORY----------\n\n");
 	my_printf_history(info->history);
 	printf("\n--------------HISTORY----------\n\n");*/

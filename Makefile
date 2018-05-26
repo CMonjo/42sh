@@ -38,6 +38,7 @@ SRC	=	src/main.c		\
 		src/inib.c	\
 		src/check_alias.c	\
 		src/is_there_star.c	\
+		src/error_main_b_tree.c	\
 		src/variables/variables.c	\
 		src/variables/variables_spe.c	\
 		src/variables/variables_string.c	\

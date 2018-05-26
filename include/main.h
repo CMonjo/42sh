@@ -117,6 +117,9 @@
 	void my_bubble_set(set_t *current);
 
 	//ALIAS
+	int	error_main_b_tree_variable(char *str, char *command, env_st_t *info);
+	int	check_special_case(char *str);
+	int	error_main_b_tree(char *command, env_st_t *info, tree_t* temp);
 	void	skip_parent_command(char *command, int *ctb);
 	void	remove_parent_command(char *command, char *av,
 	char sep, int len);

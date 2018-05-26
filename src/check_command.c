@@ -62,5 +62,5 @@ char	*check_command(char *command, int b)
 			b = 0;
 		}
 	}
-	return (command);
+	return (chang_inib(command));
 }

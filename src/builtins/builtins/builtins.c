@@ -12,11 +12,11 @@ UNUSED env_st_t *env_st)
 {
 	char *bul_in[] = {"alias", "bg", "builtins", "cd", "echo", "env",
 	"exit", "fg", "foreach", "if", "repeat", "set", "setenv", "unalias",
-	"unset", "unsetenv", "where", "which", "yes"};
+	"unset", "unsetenv", "where", "which", "yes", "endif", "end"};
 	int i = 0;
 	int ct = 0;
 
-	while (i != 19) {
+	while (i != 21) {
 		my_printf("%s", bul_in[i]);
 		ct = ct + 1;
 		i = i + 1;

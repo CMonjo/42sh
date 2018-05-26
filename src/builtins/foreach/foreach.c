@@ -67,7 +67,7 @@ char	**foreach_loop(char **arr, UNUSED char **envp, env_st_t *env_st)
 		}
 		else if (my_strlen(str) <= 0 && isatty(0) != 1) {
 			exec_command_ele(arr_command, 1, arr, env_st);
-			exit(0);
+			exit(env_st->status);
 		}
 		prompt_foreach();
 	}

@@ -29,6 +29,7 @@ name_env_t const tab_name_b[] = {
 	{"yes", yes},
 	{"end", end},
 	{"endif", endif_build},
+	{"else", else_build},
 	{"cat", cat},
 	{"grep", grep},
 };
@@ -42,7 +43,7 @@ tree_t* temp)
 
 	if (command == NULL)
 		return (0);
-	while (ct < 21) {
+	while (ct < 22) {
 		if (command[0] != NULL
 		&& my_strcmp(command[0], tab_name_b[ct].name) == 0) {
 			dup2(temp->fd_in, 0);
@@ -80,7 +81,7 @@ int	check_gnl_next(char **str, char **envp, env_st_t *env_st)
 {
 	int ct = 0;
 
-	while (ct < 21) {
+	while (ct < 22) {
 		if (str[0] != NULL
 		&& my_strcmp(str[0], tab_name_b[ct].name) == 0) {
 			(tab_name_b[ct].name_str)(str, envp, env_st);

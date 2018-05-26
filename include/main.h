@@ -117,6 +117,11 @@
 	void my_bubble_set(set_t *current);
 
 	//ALIAS
+	char	**else_loop(UNUSED char **arr,
+	UNUSED char **envp, env_st_t *env_st);
+	int	else_build(char **arr, UNUSED char **envp, env_st_t *env_st);
+	void	prompt_else(void);
+	int	end_else_while(char **arr, UNUSED env_st_t *env_st);
 	int	endif_build(UNUSED char **arr,
 	UNUSED char **envp, env_st_t *env_st);
 	int	error_main_b_tree_variable(char *str,

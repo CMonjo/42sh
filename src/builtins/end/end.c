@@ -7,6 +7,13 @@
 
 #include "main.h"
 
+int	end_else_while(char **arr, UNUSED env_st_t *env_st)
+{
+	if (arr != NULL && my_strcmp(arr[0], "endif") == 0)
+		return (1);
+	return (0);
+}
+
 int	end_if_while(char **arr, env_st_t *env_st)
 {
 	if (arr != NULL && (my_strcmp(arr[0], "endif") == 0

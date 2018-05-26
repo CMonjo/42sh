@@ -374,5 +374,11 @@
 	void	bash_rc(env_st_t *env_st);
 	int history(char **array, UNUSED char **envp, env_st_t *env_st);
 	void	fill_history(env_st_t *info, char *command);
+	int	check_sheebang_next(int len_sheebang, char *str, int start);
+	int	check_sheebang_file(char **arr, char *str, int sheebang_len,
+	env_st_t* env_st);
+	int	arr_len(char **arr);
+	int	sheebang_next(int sheebang_len, char *str);
+	int	sheebang_next_two(int file_len, char *str, int sheebang_len);
 
 #endif

@@ -92,6 +92,8 @@ SRC	=	src/main.c		\
 		src/error/error_long_sep.c		\
 		src/error/start_error_sep.c		\
 		src/scripting/scripting.c		\
+		src/scripting/scripting_next.c		\
+		src/scripting/scripting_next_next.c		\
 		src/scripting/scripting_variables.c		\
 		src/builtins/alias/alias_sort.c		\
 		src/verif_parent.c			\

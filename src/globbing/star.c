@@ -80,5 +80,5 @@ char	**star_handle(char **array, char *str)
 	index = arg_nbr(array, 1);
 	for (int i = 0; i != index; i++)
 		globuffer.gl_pathv[i] = array[i];
-	return(my_arraydup(globuffer.gl_pathv));
+	return (my_arraydup(globuffer.gl_pathv));
 }

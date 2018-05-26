@@ -35,9 +35,9 @@ int	check_sep_nbr(char *command, int ct)
 	char const *tab_sep_err[4] = {"|", "<", ">"};
 
 	for (int ctb = 0; tab_sep_err[ctb] != NULL; ctb ++) {
-		if (tab_sep_err[ctb][0] == command[ct])
-			if (check_sep_nbr_msg(command, command[ct], ct) == 1)
-				return (1);
+		if ((tab_sep_err[ctb][0] == command[ct]) &&
+		check_sep_nbr_msg(command, command[ct], ct) == 1)
+			return (1);
 	}
 	return (0);
 }

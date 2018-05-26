@@ -12,7 +12,7 @@ void set_fill(env_st_t *env_st, char *name, char *value)
 	set_t *tmp = env_st->set;
 
 	if (set_deep(value) == 0) {
-		printf("Directory stack not that deep.\n");
+		my_printf("Directory stack not that deep.\n");
 		env_st->status = 1;
 		return;
 	}

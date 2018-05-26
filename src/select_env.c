@@ -25,10 +25,10 @@ int	comp_str_env(char *env, char *str)
 	char *dest = before_egal(env);
 
 	if (my_strcmp(dest, str) == 0) {
-		free (dest);
+		free(dest);
 		return (0);
 	}
-	free (dest);
+	free(dest);
 	return (1);
 }
 

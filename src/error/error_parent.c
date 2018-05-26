@@ -38,6 +38,7 @@ void	error_parent_next(int *parent_left, int *parent_right, char *command)
 		}
 	}
 }
+
 int	error_parent_next_next(int parent_left, int parent_right)
 {
 	if (parent_right == 0) {

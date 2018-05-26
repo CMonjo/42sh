@@ -45,7 +45,7 @@ char	**array_bracket_sort(char **array)
 			tmp = my_strdup(array[i]);
 			array = delete_line(array, i);
 			array = add_line(array, tmp, 1);
-			free (tmp);
+			free(tmp);
 			i = -1;
 			checkpoint = 0;
 		}
@@ -81,5 +81,5 @@ char	**bracket_handle(char **array, char *str)
 	index = arg_nbr_bracket(array, 1);
 	for (int i = 0; i != index; i++)
 		globuffer.gl_pathv[i] = array[i];
-	return(globuffer.gl_pathv);
+	return (globuffer.gl_pathv);
 }

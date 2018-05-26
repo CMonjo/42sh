@@ -34,9 +34,8 @@ char	**my_separator_command(char *av, char *sep)
 	}
 	command = malloc(sizeof(char) * (len + 1));
 	remove_parent_command(command, av, sep[0], len);
-	len ++;
-	if (my_strlen(sep) == 2)
-		len ++;
+	len++;
+	len += my_strlen(sep) == 2 ? 1 : 0;
 	command_arr[0] = my_strdup(sep);
 	command_arr[1] = my_strdup(command);
 	command_arr[2] = my_second_command(av, len, sep[0]);

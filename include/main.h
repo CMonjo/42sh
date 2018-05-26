@@ -173,7 +173,7 @@
 	char	*replace_variable_arr(char *str_one, char *str_two,
 	char **arr, int index_arg);
 	char	*replace_variable(char *str, char **arr);
-	int	scripting(char **arr,  char **arr_val, char **envp,
+	int	scripting(char **arr, char **arr_val, char **envp,
 	env_st_t* env_st);
 	int alias(char **array, UNUSED char **envp, env_st_t *env_st);
 	char *alias_parse(char **tab);

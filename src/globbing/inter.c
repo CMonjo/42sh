@@ -45,7 +45,7 @@ char	**array_inter_sort(char **array)
 			tmp = my_strdup(array[i]);
 			array = delete_line(array, i);
 			array = add_line(array, tmp, 1);
-			free (tmp);
+			free(tmp);
 			i = -1;
 			checkpoint = 0;
 		}

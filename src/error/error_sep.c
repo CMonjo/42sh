@@ -13,7 +13,8 @@ int	error_redi_right_input(tree_t* temp, char *str)
 	char **arr_two;
 	char **arr_three;
 
-	if (temp->left == NULL || temp->right == NULL || temp->left->right == NULL)
+	if (temp->left == NULL || temp->right == NULL ||
+	temp->left->right == NULL)
 		return (0);
 	arr = word_array(temp->right->commande_parseur);
 	arr_two = word_array(temp->left->commande_parseur);
@@ -29,7 +30,7 @@ int	error_redi_right_input(tree_t* temp, char *str)
 
 int	error_and_or(tree_t* temp, char *str)
 {
-	char **arr = word_array(temp->right->commande_parseur);;
+	char **arr = word_array(temp->right->commande_parseur);
 
 	if (my_strcmp_c(str, "&&") == 0 && my_strcmp_c(arr[0], "||") == 0
 	&& temp->right->left == NULL) {

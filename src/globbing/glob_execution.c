@@ -66,6 +66,6 @@ int	glob_execution(char **str, char **envp, env_st_t *env_st, char *name)
 		env_st->status = 1;
 		dprintf(2, "%s: No match.\n", array[0]);
 	}
-	free (array);
+	free(array);
 	return (0);
 }

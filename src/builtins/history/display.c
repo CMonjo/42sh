@@ -11,7 +11,7 @@ void display_history(history_t *temp)
 {
 	if (temp->next)
 		display_history(temp->next);
-	printf("     %ld\t%s:%s\t%s\n", temp->number, temp->hrs, temp->min,
+	my_printf("     %ld\t%s:%s\t%s\n", temp->number, temp->hrs, temp->min,
 	temp->command);
 }
 

@@ -15,6 +15,7 @@ char	swap(int a, int b, char *str)
 	str[b] = c;
 	return (0);
 }
+
 char	*my_revstr(char *str)
 {
 	int b = 0;

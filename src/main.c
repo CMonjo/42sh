@@ -54,6 +54,7 @@ int	main_loop(char **envp, int end, char *str)
 {
 	env_st_t *env_st = init_env_struct(envp);
 
+	bash_rc(env_st);
 	prompt();
 	while (!end) {
 		str = my_getline();

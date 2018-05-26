@@ -20,3 +20,17 @@ char	*my_getline(void)
 	str[readed - 1] = '\0';
 	return (str);
 }
+
+char	*my_getline_cle(FILE *fd)
+{
+	size_t size = 0;
+	char *str = NULL;
+	int readed = 0;
+
+	readed = getline(&str, &size, fd);
+	if (readed <= 0) {
+		return (NULL);
+	}
+	str[readed - 1] = '\0';
+	return (str);
+}

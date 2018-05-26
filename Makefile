@@ -33,6 +33,7 @@ SRC	=	src/main.c		\
 		src/start_sep.c		\
 		src/start_double_sep.c	\
 		src/start_double_sep_and_or.c	\
+		src/remove_parent.c	\
 		src/exit.c	\
 		src/inib.c	\
 		src/check_alias.c	\

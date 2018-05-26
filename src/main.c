@@ -7,11 +7,8 @@
 
 #include "main.h"
 
-env_st_t	*init_env_struct(char **envp)
+env_st_t	*init_env_struct_bis(env_st_t* new_node)
 {
-	env_st_t* new_node = malloc(sizeof(env_st_t));
-	int ctp = 0;
-
 	new_node->len_w = 0;
 	new_node->ind = 0;
 	new_node->unset = 0;
@@ -24,6 +21,15 @@ env_st_t	*init_env_struct(char **envp)
 	new_node->job = NULL;
 	new_node->alias = NULL;
 	new_node->set = NULL;
+	return (new_node);
+}
+
+env_st_t	*init_env_struct(char **envp)
+{
+	env_st_t* new_node = malloc(sizeof(env_st_t));
+	int ctp = 0;
+
+	new_node = init_env_struct_bis(new_node);
 	new_node->envp_bsc = create_env();
 	if (envp[0] == NULL) {
 		new_node->envp_cpy = create_env();

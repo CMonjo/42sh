@@ -117,6 +117,9 @@
 	void my_bubble_set(set_t *current);
 
 	//ALIAS
+	void	skip_parent_command(char *command, int *ctb);
+	void	remove_parent_command(char *command, char *av,
+	char sep, int len);
 	char	*my_second_command(char *av, int len, char sep);
 	int	check_sep_bis_second(char **arr);
 	void	skip_parent(char **arr, int *ctb);

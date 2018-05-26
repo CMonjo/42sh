@@ -14,6 +14,9 @@ int	exec_erno(char *name, char **envp, char **str, env_st_t* env_st)
 	if ((val = execve(name, str, envp)) == -1) {
 		if (errno == 13)
 			my_putstr_err(name, ": Permission denied.\n");
+		if (errno == 8)
+			my_putstr_err(name,
+			": Exec format error. Wrong Architecture.\n");
 		env_st->status = 1;
 		return (-1);
 	}

@@ -47,7 +47,7 @@ env_st_t	*init_env_struct(char **envp)
 void	prompt(void)
 {
 	if (isatty(0) == 1)
-		my_printf("%s $> ", getcwd(NULL, 0));
+		my_printf("\x1B[34m%s \x1B[0m$> ", getcwd(NULL, 0));
 }
 
 int	main_loop(char **envp, int end, char *str)

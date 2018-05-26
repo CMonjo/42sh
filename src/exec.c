@@ -14,6 +14,9 @@ int	exec_erno(char *name, char **envp, char **str, env_st_t* env_st)
 	if ((val = execve(name, str, envp)) == -1) {
 		if (errno == 13)
 			my_putstr_err(name, ": Permission denied.\n");
+		if (errno == 8)
+			my_putstr_err(name,
+			": Exec format error. Wrong Architecture.\n");
 		env_st->status = 1;
 		return (-1);
 	}
@@ -66,7 +69,7 @@ int	exec(char **envp, env_st_t* env_st, char **str, tree_t* temp)
 	if (b == 1) {
 		exec_arg(envp, env_st, str, temp);
 	} else {
-		check_path_env(envp, str[0], env_st, str, temp);
+		check_path_env(str[0], env_st, str, temp);
 	}
 	return (0);
 }

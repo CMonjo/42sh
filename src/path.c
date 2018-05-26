@@ -62,20 +62,21 @@ int	check_same(char **envp, env_st_t* env_st)
 	return (ct + 1);
 }
 
-void	check_path_env(char **envp, char *name, env_st_t* env_st,
+void	check_path_env(char *name, env_st_t* env_st,
 char **str_arr, tree_t* temp)
 {
 	int ct = 0;
 	char *str;
 
-	if (check_val(envp, "PATH", env_st) == 0) {
+	if (check_val(env_st->envp_cpy, "PATH", env_st) == 0) {
 		check_path_bsc(name, str_arr, env_st, temp);
 		return;
 	}
-	ct = check_same(envp, env_st);
-	for (int ctb = ct; envp[env_st->ind][ctb] != '\0'; ctb ++) {
-		str = my_strcat(pathing(envp, &ctb, env_st->ind), name, 0);
-		if (envp[env_st->ind][ctb] == '\0')
+	ct = check_same(env_st->envp_cpy, env_st);
+	for (int ctb = ct; env_st->envp_cpy[env_st->ind][ctb] != '\0'; ctb ++) {
+		str = my_strcat(pathing(env_st->envp_cpy, &ctb,
+		env_st->ind), name, 0);
+		if (env_st->envp_cpy[env_st->ind][ctb] == '\0')
 			ctb --;
 		if (access(str, F_OK) != -1) {
 			strat_exec(str, str_arr, env_st, temp) == 1 ?

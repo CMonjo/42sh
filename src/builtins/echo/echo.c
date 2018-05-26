@@ -26,9 +26,15 @@ void	skip_print_quotes(char **arr, int ct, int ctb, char c)
 
 int	echo_build(char **arr, UNUSED char **envp, UNUSED env_st_t *env_st)
 {
-	if (arr[1] == NULL)
+	int ctb = 1;
+
+	if (arr[1] == NULL) {
+		my_putchar('\n');
 		return (0);
-	for (int ct = 1; arr[ct] != NULL; ct ++) {
+	}
+	if (my_strcmp(arr[1], "-n") == 0)
+		ctb ++;
+	for (int ct = ctb; arr[ct] != NULL; ct ++) {
 		if (arr[ct][0] == 39 || arr[ct][0] == 34)
 			skip_print_quotes(arr, ct, 1, arr[ct][0]);
 		else
@@ -36,6 +42,7 @@ int	echo_build(char **arr, UNUSED char **envp, UNUSED env_st_t *env_st)
 		if (arr[ct + 1] != NULL)
 			my_putchar(' ');
 	}
-	my_putchar('\n');
+	if (my_strcmp(arr[1], "-n") != 0)
+		my_putchar('\n');
 	return (0);
 }

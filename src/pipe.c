@@ -48,7 +48,6 @@ char **command_in, char **command_out, tree_t* temp)
 		my_pipe_start_only_else(env_st, command_out, num, temp);
 }
 
-
 int	my_pipe_start(env_st_t *env_st,
 char **command_in, char **command_out, tree_t* temp)
 {

@@ -21,30 +21,30 @@ int	exec_erno(char *name, char **envp, char **str, env_st_t* env_st)
 	return (0);
 }
 
-int	strat_exec(char *name, char **envp, char **str,
+int	strat_exec(char *name, char **str,
 env_st_t* env_st, tree_t* temp)
 {
 	int w = 0;
 	int val;
 
-	if (scripting(word_array(name), str, envp, env_st) == 1)
+	if (scripting(word_array(name), str, env_st->envp_cpy, env_st) == 1)
 		return (1);
 	if ((val = fork()) == -1)
 		return (0);
 	if (val == 0) {
 		dup2(temp->fd_in, 0);
 		dup2(temp->fd_out, 1);
-		if (exec_erno(name, envp, str, env_st) == -1)
+		if (exec_erno(name, env_st->envp_cpy, str, env_st) == -1)
 			return (0);
 	} else
 		wait(&w);
 	return (status(w, env_st));
 }
 
-int	exec_arg(char **envp, env_st_t* env_st, char **str, tree_t* temp)
+int	exec_arg(UNUSED char **envp, env_st_t* env_st, char **str, tree_t* temp)
 {
 	if (access(str[0], F_OK) != -1) {
-		if (strat_exec(str[0], envp, str, env_st, temp) == 1)
+		if (strat_exec(str[0], str, env_st, temp) == 1)
 			env_st->status = 0;
 		return (0);
 	}

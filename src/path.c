@@ -29,21 +29,21 @@ char*	pathing(char **envp, int *ct, int ctb)
 	return (str);
 }
 
-int	check_path_bsc(char **envp, char *name, char **str_arr,
+int	check_path_bsc(char *name, char **str_arr,
 env_st_t* env_st, tree_t* temp)
 {
 	int ct = 0;
 	char *str;
 
-	while (envp[0][ct] != '=')
+	while (env_st->envp_bsc[0][ct] != '=')
 		ct ++;
 	ct ++;
-	for (int ctb = ct; envp[0][ctb] != '\0'; ctb ++) {
-		str = my_strcat(pathing(envp, &ctb, 0), name, 0);
-		if (envp[0][ctb] == '\0')
+	for (int ctb = ct; env_st->envp_bsc[0][ctb] != '\0'; ctb ++) {
+		str = my_strcat(pathing(env_st->envp_bsc, &ctb, 0), name, 0);
+		if (env_st->envp_bsc[0][ctb] == '\0')
 			ct --;
 		if (access(str, F_OK) != -1) {
-			strat_exec(str, envp, str_arr, env_st, temp);
+			strat_exec(str, str_arr, env_st, temp);
 			env_st->status = 0;
 			return (0);
 		}
@@ -69,7 +69,7 @@ void	check_path_env(char **envp, char *name,
 	char *str;
 
 	if (check_val(envp, "PATH", env_st) == 0) {
-		check_path_bsc(env_st->envp_bsc, name, str_arr, env_st, temp);
+		check_path_bsc(name, str_arr, env_st, temp);
 		return;
 	}
 	ct = check_same(envp, env_st);
@@ -78,7 +78,7 @@ void	check_path_env(char **envp, char *name,
 		if (envp[env_st->ind][ctb] == '\0')
 			ctb --;
 		if (access(str, F_OK) != -1) {
-			if (strat_exec(str, envp, str_arr, env_st, temp) == 1)
+			if (strat_exec(str, str_arr, env_st, temp) == 1)
 				env_st->status = 0;
 			return;
 		}

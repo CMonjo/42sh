@@ -28,18 +28,6 @@ void	ckeck_file_grep(char *file, char *find, int *b)
 			ckeck_grep(file, find, ct, b);
 }
 
-char	*strcat_grep(char *grep_file, int boul, int b, char* path, char *file)
-{
-	if (b == 1 && boul == 0) {
-		grep_file = my_strcat(grep_file, file, 0);
-	} else if (b == 1 && boul == 1 ) {
-		grep_file = my_strcat(grep_file, path, 0);
-		grep_file = my_strcat(grep_file, ":", 0);
-		grep_file = my_strcat(grep_file, file, 0);
-	}
-	return (grep_file);
-}
-
 char	*grep_file(char *path, char *find, int boul, FILE *fd)
 {
 	size_t size = 0;
@@ -51,7 +39,14 @@ char	*grep_file(char *path, char *find, int boul, FILE *fd)
 	grep_file[0] = '\0';
 	while ((readed = getline(&file, &size, fd)) > 0) {
 		ckeck_file_grep(file, find, &b);
-		grep_file = strcat_grep(grep_file, boul, b, path, file);
+		//grep_file = strcat_grep(grep_file, boul, b, path, file);
+		if (b == 1 && boul == 0) {
+			grep_file = my_strcat(grep_file, file, 0);
+		} else if (b == 1 && boul == 1 ) {
+			grep_file = my_strcat(grep_file, path, 0);
+			grep_file = my_strcat(grep_file, ":", 0);
+			grep_file = my_strcat(grep_file, file, 0);
+		}
 		b = 0;
 	}
 	return (grep_file);

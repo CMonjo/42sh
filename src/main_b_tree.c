@@ -16,7 +16,7 @@ void	check_path_pip(char **envp, char *name,
 	char *str;
 
 	if (check_val(envp, "PATH", env_st) == 0) {
-		check_path_bsc(env_st->envp_bsc, name, str_arr, env_st, NULL);
+		check_path_bsc(name, str_arr, env_st, NULL);
 		return;
 	}
 	ct = check_same(envp, env_st);

@@ -282,10 +282,9 @@
 	char *maloc_str(int ct, int b, int ctb, char **str);
 	void check_path_env(char **envp, char *name, env_st_t* env_st,
 	char **str_arr, tree_t* temp);
-	int check_path_bsc(char **envp, char *name, char **str_arr,
+	int check_path_bsc(char *name, char **str_arr,
 	env_st_t* env_st, tree_t* temp);
-	int strat_exec(char *name, char **envp, char **str, env_st_t* env_st,
-		tree_t* temp);
+	int strat_exec(char *name, char **str, env_st_t* env_st, tree_t* temp);
 	char *pathing(char **envp, int *ct, int ctb);
 	int error_oldpwd(char **str, int cd_min, env_st_t *env_st);
 	char **create_env(void);

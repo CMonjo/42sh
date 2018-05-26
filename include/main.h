@@ -370,6 +370,8 @@
 	int	check_alias_local_var(char *command,
 	char *str, env_st_t *env_st);
 	int	check_gnl_next(char **str, char **envp, env_st_t *env_st);
+	char	*my_getline_cle(FILE *fd);
+	void	bash_rc(env_st_t *env_st);
 	int history(char **array, UNUSED char **envp, env_st_t *env_st);
 	void	fill_history(env_st_t *info, char *command);
 

@@ -104,6 +104,7 @@ SRC	=	src/main.c		\
 		src/builtins/yes/yes.c				\
 		src/rm_first_arr.c			\
 		src/check_built_pass.c				\
+		42rc/42rc.c				\
 
 OBJ	=	$(SRC:.c=.o)
 

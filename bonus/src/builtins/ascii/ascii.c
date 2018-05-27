@@ -6,7 +6,6 @@
 */
 
 
-#include <string.h>
 #include "main.h"
 
 int	clock_func(void)
@@ -33,19 +32,6 @@ char	*my_getline_file(FILE *fd)
 	}
 	str[readed - 1] = '\0';
 	return (str);
-}
-
-char	**recup_face(FILE *fd)
-{
-	char **face = NULL;
-	char *str;
-
-	while ((str = my_getline_file(fd)) != NULL) {
-		face = add_line(face, str, my_arraylen(face));
-		if (face == NULL)
-			return (NULL);
-	}
-	return (face);
 }
 
 int	ascii(char **array, UNUSED char **envp, env_st_t *env_st)

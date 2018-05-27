@@ -48,7 +48,8 @@ void	start_fill_tree(tree_t* temp, env_st_t *env_st)
 	if (b != 0)
 		return;
 	if (boul == 0)
-		check_gnl(temp->commande_parseur, env_st->envp_cpy, env_st, temp);
+		check_gnl(temp->commande_parseur, env_st->envp_cpy,
+		env_st, temp);
 	if (temp->left != NULL)
 		start_fill_tree(temp->left, env_st);
 	if (temp->right != NULL)

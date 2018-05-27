@@ -7,7 +7,7 @@
 
 CC	=	gcc
 
-CFLAGS	=	-I./include -W -Wall -Wextra -g3
+CFLAGS	=	-I./include -W -Wall -Wextra
 
 SRC	=	src/main.c				\
 		src/error/error_alias.c			\

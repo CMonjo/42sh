@@ -31,6 +31,7 @@ env_st_t	*init_env_struct(char **envp)
 
 	new_node = init_env_struct_bis(new_node);
 	new_node->envp_bsc = create_env();
+	init_prompt(new_node);
 	if (envp[0] == NULL) {
 		new_node->envp_cpy = create_env();
 		new_node->len_h = 2;
@@ -55,8 +56,8 @@ void	prompt(env_st_t *env_st)
 		time(&t);
 		timeinfo = localtime(&t);
 		strftime(str, sizeof(str), "%T", timeinfo);
-		my_printf("\x1b[1m\x1b[33m%s", str);
-		my_printf(" \x1B[35m%s", getcwd(NULL, 0));
+		my_printf("\x1b[1m%s%s", env_st->prompt->clock, str);
+		my_printf(" %s%s", env_st->prompt->path, getcwd(NULL, 0));
 		(env_st->status == 0) ? my_printf("\x1B[32m") :
 		my_printf("\x1B[31m");
 		my_printf(" $> ");

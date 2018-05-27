@@ -12,6 +12,7 @@
 	#include <unistd.h>
 	#include <sys/stat.h>
 	#include <stdarg.h>
+	#include <string.h>
 	#include <stdio.h>
 	#include <sys/types.h>
 	#include <fcntl.h>
@@ -61,6 +62,16 @@
 		struct history_s *prev;
 	} history_t;
 
+	typedef struct color_s {
+		char name[10];
+		char cmd[10];
+	} color_t;
+
+	typedef struct prompt_s {
+		char clock[10];
+		char path[10];
+	} prompt_t;
+
 	typedef struct job_s {
 		int nbr;
 		int pid;
@@ -79,6 +90,7 @@
 		int set_array;
 		char **envp_cpy;
 		char **envp_bsc;
+		prompt_t *prompt;
 		tree_t *tree;
 		alias_t *alias;
 		set_t *set;
@@ -380,5 +392,7 @@
 	int	arr_len(char **arr);
 	int	sheebang_next(int sheebang_len, char *str);
 	int	sheebang_next_two(int file_len, char *str, int sheebang_len);
+	int color(char **array, UNUSED char **envp, env_st_t *env_st);
+	void init_prompt(env_st_t *env_st);
 
 #endif

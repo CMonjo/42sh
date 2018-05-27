@@ -58,7 +58,7 @@ int	grep(char **arr, UNUSED char **envp, UNUSED env_st_t *env_st)
 	while (arr[tab_len] != NULL)
 		tab_len ++;
 	if (tab_len == 1) {
-		my_printf("PLease put a file and something to find\n");
+		my_printf("Please put a file and something to find\n");
 		return (1);
 	}
 	if (tab_len == 2)

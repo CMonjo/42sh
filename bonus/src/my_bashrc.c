@@ -72,7 +72,7 @@ void	bash_rc(env_st_t *env_st)
 	char *str = NULL;
 	char **dest = NULL;
 
-	fd = fopen("./data/alias_rc", "r");
+	fd = fopen("./data/bashrc/alias_rc", "r");
 	while (1) {
 		str = my_getline_cle(fd);
 		if (str == NULL)

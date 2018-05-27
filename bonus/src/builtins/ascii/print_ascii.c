@@ -7,22 +7,22 @@
 
 #include "main.h"
 
-void	print_ascii_array(char **face, int y)
+void	print_ascii_array(int y, FILE *fd)
 {
 	int i = 0;
+	char *str;
 
-	for (; face != NULL && face[i] != NULL; i++)
+	rewind(fd);
+	str = my_getline_file(fd);
+	for (; str != NULL; i++, str = my_getline_file(fd))
 		if (y + i > 0)
-			mvprintw(y + i, 0, face[i]);
+			mvprintw(y + i, 0, str);
 }
 
 void	print_ascii(FILE *fd)
 {
-	char **face = recup_face(fd);
 	int pos[2];
 
-	if (face == NULL)
-		return;
 	initscr();
 	noecho();
 	getmaxyx(stdscr, pos[0], pos[1]);
@@ -31,7 +31,7 @@ void	print_ascii(FILE *fd)
 		if (clock_func() == 1) {
 			clear();
 			pos[0] -= 1;
-			print_ascii_array(face, pos[0]);
+			print_ascii_array(pos[0], fd);
 		}
 	}
 	endwin();

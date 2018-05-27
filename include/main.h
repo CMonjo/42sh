@@ -169,6 +169,7 @@
 	void	pass_alias_unalias(char **arr, int *ct);
 	void	first_simple_or_sep_and(tree_t* temp, env_st_t *env_st);
 	void	first_simple_or_sep_or(tree_t* temp, env_st_t *env_st);
+	char	*my_getline_file(FILE *fd);
 	void	my_pipe_start_only(env_st_t *env_st,
 	char **command_in, char **command_out, tree_t* temp);
 	char	**then_loop(char **arr, UNUSED char **envp, env_st_t *env_st);

@@ -19,9 +19,9 @@ int	check_bult_in(char *str)
 	char *bul_in[] = {"cd", "env", "exit", "setenv", "unsetenv",
 	"alias", "unalias", "echo", "repeat", "which", "where", "set",
 	"unset", "foreach", "yes", "fg", "bg", "if", "builtins",
-	"end", "endif", "else", "history", "cat", "grep", "ascii"};
+	"end", "endif", "else", "history", "cat", "grep", "ascii", "color"};
 
-	for (int ct = 0; ct != 26; ct ++) {
+	for (int ct = 0; ct != 27; ct ++) {
 		if (my_strcmp(str, bul_in[ct]) == 0)
 			return (ct);
 	}

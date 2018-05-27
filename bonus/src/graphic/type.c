@@ -50,7 +50,8 @@ int	type(info_t *info)
 		else if (event.key.code == sfKeyBack && info->str != NULL &&
 		my_strlen(info->str) != 0)
 			info->str = remove_char(info->str);
-		else if (event.key.code == sfKeyReturn)
+		else if (event.key.code == sfKeyReturn && info->str != NULL &&
+		my_strlen(info->str) != 0)
 			return (1);
 		type_close(info, event);
 	}

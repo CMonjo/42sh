@@ -23,7 +23,7 @@ void	print_result(info_t *info, FILE *file)
 
 char	*prompt_graph(void)
 {
-	return (my_strcat_h(getcwd(NULL, 0),"  $> "));
+	return (my_strcat_h(getcwd(NULL, 0), "  $> "));
 }
 
 void	print_exit(void)

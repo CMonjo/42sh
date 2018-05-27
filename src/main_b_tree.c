@@ -56,18 +56,6 @@ void	start_fill_tree(tree_t* temp, env_st_t *env_st)
 		start_fill_tree(temp->right, env_st);
 }
 
-/*void	my_printf_te(tree_t* temp)
-{
-	char **arr = NULL;
-
-	arr = word_array(temp->commande_parseur);
-	printf(" COMMANDE  '%s'\n", arr[0]);
-	if (temp->left != NULL)
-		my_printf_te(temp->left);
-	if (temp->right != NULL)
-		my_printf_te(temp->right);
-}*/
-
 int	main_b_tree_check_strat(char *str, env_st_t *info)
 {
 	char *command;
@@ -98,9 +86,6 @@ int	main_b_tree(char *str, env_st_t *info, int fd_in, int fd_out)
 	if (error_null_parent(word_array(command)) == 1)
 		return (1);
 	temp = my_list_command(command, info, fd_in, fd_out);
-	/*printf("\n--------------TREEE  ----------\n\n");
-	my_printf_te(temp);
-	printf("--------------TREEE-------------\n\n");*/
 	if (error_main_b_tree(command, info, temp) == 1)
 		return (1);
 	start_fill_tree(temp, info);

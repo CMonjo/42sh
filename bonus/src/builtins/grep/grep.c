@@ -41,7 +41,7 @@ char	*grep_file(char *path, char *find, int boul, FILE *fd)
 		ckeck_file_grep(file, find, &b);
 		if (b == 1 && boul == 0) {
 			grep_file = my_strcat(grep_file, file, 0);
-		} else if (b == 1 && boul == 1 ) {
+		} else if (b == 1 && boul == 1) {
 			grep_file = my_strcat(grep_file, path, 0);
 			grep_file = my_strcat(grep_file, ":", 0);
 			grep_file = my_strcat(grep_file, file, 0);

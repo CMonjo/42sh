@@ -44,6 +44,7 @@ void set_initialize(env_st_t *env_st, char **array)
 		else
 			set_check_array(env_st, array, i);
 	}
+	env_st->status = 0;
 }
 
 int set(char **array, UNUSED char **envp, env_st_t *env_st)

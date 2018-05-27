@@ -12,6 +12,9 @@ CFLAGS	=	-I ../include -I ./include -W -Wall -Wextra
 LDFLAGS	=	-lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio -lncurses
 
 SRC_BONUS	=	src/bonus.c				\
+			src/term/arrows.c			\
+			src/term/get_line.c			\
+			src/term/init.c				\
 			src/my_bashrc.c				\
 			src/check_exec.c			\
 			src/check_built_pass.c			\

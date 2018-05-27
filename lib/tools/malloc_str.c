@@ -10,7 +10,7 @@
 char	*malloc_str(int ct, int b, int ctb, char **str)
 {
 	char *str_tmp = malloc(sizeof(char)
-				* (my_strlen(str[1]) + my_strlen(str[2])) + 2);
+	* (my_strlen(str[1]) + my_strlen(str[2])) + 2);
 
 	while (ctb != (my_strlen(str[1]) + my_strlen(str[2]) + 1)) {
 		if (b == 0 && str[1][ct] != '\0') {

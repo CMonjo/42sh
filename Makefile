@@ -9,8 +9,6 @@ CC	=	gcc
 
 CFLAGS	=	-I./include -W -Wall -Wextra
 
-CFLAGS +=	-g3
-
 SRC	=	src/main.c				\
 		src/error/error_alias.c			\
 		src/exec.c				\

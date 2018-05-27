@@ -11,8 +11,8 @@ void	print_ascii_array(int y, FILE *fd)
 {
 	int i = 0;
 	char *str;
-	rewind(fd);
 
+	rewind(fd);
 	str = my_getline_file(fd);
 	for (; str != NULL; i++, str = my_getline_file(fd))
 		if (y + i > 0)

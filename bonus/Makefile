@@ -9,8 +9,6 @@ CC	=	gcc
 
 CFLAGS	=	-I ../include -W -Wall -Wextra
 
-CFLAGS	+=	-g3
-
 SRC_BONUS	=	src/bonus.c				\
 			src/my_bashrc.c				\
 			src/check_exec.c			\

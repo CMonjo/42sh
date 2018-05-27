@@ -28,7 +28,8 @@
 
 	typedef struct flag_char_s {
 		char flag_c_pf;
-		int (*flag_c_p)(char *str, int ctp, char *temp, char *str_temp);
+		int (*flag_c_p)(char *str, int ctp, char *temp,
+		char *str_temp);
 	} flag_char_t;
 
 	char	*int_to_char(int nb);

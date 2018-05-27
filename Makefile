@@ -44,7 +44,7 @@ SRC	=	src/main.c		\
 		src/variables/variables_string.c	\
 		src/error/error_variables.c	\
 		src/my_arraydup.c	\
-		src/builtins/builtins/builtins.c				\
+		src/builtins/builtins/builtins.c	\
 		src/builtins/history/display.c		\
 		src/builtins/history/fill.c		\
 		src/builtins/jobs/jobs.c		\
@@ -106,7 +106,6 @@ SRC	=	src/main.c		\
 		src/builtins/yes/yes.c				\
 		src/rm_first_arr.c			\
 		src/check_built_pass.c				\
-		42rc/42rc.c				\
 
 OBJ	=	$(SRC:.c=.o)
 

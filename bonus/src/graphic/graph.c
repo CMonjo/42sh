@@ -60,7 +60,7 @@ int	main_graph(char **envp)
 {
 	info_t *info = info_init();
 	sprite_t *sprite_list = sprite_list_init();
-	int return_value;
+	int return_value = 0;
 
 	return_value = main_loop_graph(info, envp, 0, sprite_list);
 	sfMusic_destroy(info->music);

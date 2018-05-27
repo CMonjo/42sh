@@ -9,7 +9,7 @@
 
 char	*add_char(char *str, char c)
 {
-	unsigned int i;
+	unsigned int i = 0;
 	char *new = malloc(sizeof(char) * (my_strlen(str) + 2));
 
 	for (i = 0; str != NULL && str[i] != '\0'; i++)
@@ -22,7 +22,7 @@ char	*add_char(char *str, char c)
 
 char	*remove_char(char *str)
 {
-	unsigned int i;
+	unsigned int i = 0;
 	char *new = malloc(sizeof(char) * my_strlen(str));
 
 	for (i = 0; str[i + 1] != '\0'; i++)

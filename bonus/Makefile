@@ -9,7 +9,7 @@ CC	=	gcc
 
 CFLAGS	=	-I ../include -I ./include -W -Wall -Wextra
 
-LDFLAGS	=	-lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio -lncurses
+LDFLAGS	=	-lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio
 
 SRC_BONUS	=	src/bonus.c				\
 			src/term/arrows.c			\
@@ -129,14 +129,16 @@ all:	$(NAME)
 
 $(NAME):	$(OBJ)
 	make -C ../lib/tools
-	$(CC) -o $(NAME) $(OBJ) $(LDFLAGS) -L../lib/tools -ltools
+	$(CC) -o $(NAME) $(OBJ) $(LDFLAGS) -L../lib/tools -ltools -lncurses
 
 clean:
 	rm -f $(OBJ)
 	make clean -C ../lib/tools
+	make clean -C ../
 
 fclean:	clean
 	rm -f $(NAME)
 	make fclean -C ../lib/tools
+	make fclean -C ../
 
 re:	fclean all

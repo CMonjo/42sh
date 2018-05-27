@@ -38,7 +38,7 @@ info_t	*info_init(void)
 	info->str = NULL;
 	info->music = sfMusic_createFromFile("music/ost.ogg");
 	info->window = sfRenderWindow_create((sfVideoMode){1920, 1080, 32},
-				"shell", sfDefaultStyle, NULL);
+	"shell", sfDefaultStyle, NULL);
 	info->font = sfFont_createFromFile("font/retro.otf");
 	info->text = text_creation(info->str, info->font,
 	20, (sfVector2f){400, 40});

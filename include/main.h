@@ -211,7 +211,7 @@
 	int	foreach(char **arr, char **envp, env_st_t *env_st);
 	int	where(char **arr, char **envp, env_st_t *env_st);
 	int	which(char **arr, char **envp, env_st_t *env_st);
-	void error_backstick_quote(char *str, char c, int *ct);
+	int error_backstick_quote(char *str, char c, int *ct);
 	int error_parent(char *command);
 	int check_long_sep(char *command);
 	int repeat(char **arr, char **envp, env_st_t *env_st);

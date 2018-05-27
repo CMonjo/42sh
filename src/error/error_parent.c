@@ -25,18 +25,19 @@ int	error_null_parent(char **command)
 	return (0);
 }
 
-void	error_parent_next(int *parent_left, int *parent_right, char *command)
+int	error_parent_next(int *parent_left, int *parent_right, char *command)
 {
 	for (int ct = 0; command[ct] != '\0'; ct ++) {
 		if (command[ct] == ')')
 			*parent_right += 1;
 		if (command[ct] == '(')
 			*parent_left += 1;
-		if (command[ct] == 34 || command[ct] == 39) {
-			ct ++;
-			error_backstick_quote(command, command[ct - 1], &ct);
+		if ((command[ct] == 34 || command[ct] == 39)
+		&& error_backstick_quote(command, command[ct], &ct) == -1) {
+				return (1);
 		}
 	}
+	return (0);
 }
 
 int	error_parent_next_next(int parent_left, int parent_right)
@@ -61,7 +62,8 @@ int	error_parent(char *command)
 	int parent_left = 0;
 	int parent_right = 0;
 
-	error_parent_next(&parent_left, &parent_right, command);
+	if (error_parent_next(&parent_left, &parent_right, command) == 1)
+		return (1);
 	if (parent_left == 0 && parent_right == 0)
 		return (0);
 	if (parent_left == 0) {

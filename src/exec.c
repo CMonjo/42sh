@@ -44,7 +44,8 @@ env_st_t* env_st, tree_t* temp)
 	return (status(w, env_st));
 }
 
-int	exec_arg(UNUSED char **envp, env_st_t* env_st, char **str, tree_t* temp)
+int	exec_arg(UNUSED char **envp, env_st_t* env_st,
+char **str, tree_t* temp)
 {
 	if (access(str[0], F_OK) != -1) {
 		if (strat_exec(str[0], str, env_st, temp) == 1)

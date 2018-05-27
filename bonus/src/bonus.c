@@ -92,8 +92,7 @@ int	main_loop(char **envp, int end, char *str)
 
 int	main(int ac, char **av, char **envp)
 {
-	(void)ac;
-	(void)av;
+
 
 	return (main_loop(envp, 0, NULL));
 }

@@ -36,7 +36,7 @@ char	*my_getline_file(FILE *fd)
 
 int	ascii(char **array, UNUSED char **envp, env_st_t *env_st)
 {
-	char *faces[4] = {"marlon", "thibault", "karim", "edouart"};
+	char *faces[4] = {"marlon", "thibault", "karim", "edouard"};
 	char *path;
 	int i = 0;
 	FILE *fd = NULL;

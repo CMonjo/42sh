@@ -60,7 +60,7 @@ int color(char **array, UNUSED char **envp, env_st_t *env_st)
 	for (int i = 0; i < 8; i++) {
 		if (my_strcmp(promptcolor[i].name, array[2]) != 0)
 			continue;
-			set_color(env_st, array, i);
+		set_color(env_st, array, i);
 		env_st->status = 0;
 		return (0);
 	}

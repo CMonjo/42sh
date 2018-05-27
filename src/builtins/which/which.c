@@ -80,5 +80,6 @@ int	which(char **arr, char **envp, env_st_t *env_st)
 		which_alias(arr[ct], env_st) != 1)
 			which_command(envp, env_st, arr[ct]);
 	}
+	env_st->status = 0;
 	return (0);
 }

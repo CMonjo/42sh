@@ -71,7 +71,6 @@ int	main_loop(char **envp, int end, char *str)
 	while (!end) {
 		str = (isatty(0) == 1) ? my_get_line(env_st->term, str,
 		env_st->history) : my_getline();
-		str = my_getline();
 		if (isatty(0) == 1 && str == NULL) {
 			my_printf("exit\n");
 			exit(0);

@@ -1,20 +1,11 @@
 /*
 ** EPITECH PROJECT, 2017
-** arrows.c
+** arrows
 ** File description:
-** arrows_handle.c
+** arrows
 */
 
 #include "main.h"
-
-char *my_realloc(char *str, term_t *term, int nbr)
-{
-	if (nbr >= term->mal - 1) {
-		term->mal *= 2;
-		str = realloc(str, sizeof(char) * term->mal);
-	}
-	return (str);
-}
 
 void disp_history(history_t *tmp, char *str, int *i, term_t *term)
 {
@@ -47,22 +38,6 @@ void del_arrows(term_t *term, char *str, int *i)
 		str[*i - 3] = '\0';
 		*i = *i - 3;
 	}
-}
-
-int check_tab(char *str)
-{
-	if (strlen(str) == 1 && str[0] == '\t') {
-		str[0] = 'l';
-		str[1] = 's';
-		str[2] = ' ';
-		str[3] = '-';
-		str[4] = 'C';
-		str[5] = 'F';
-		str[6] = '\0';
-		putchar('\n');
-		return (1);
-	}
-	return (0);
 }
 
 void manage_down_arrow(term_t *term, history_t **tmp, char *str, int *i)
@@ -100,45 +75,4 @@ void manage_up_arrow(term_t *term, history_t **tmp, char *str, int *i)
 		}
 	}
 	manage_down_arrow(term, tmp, str, i);
-}
-
-char *my_get_line(term_t *term, char *str, history_t *history)
-{
-	char c = getchar();
-	history_t *tmp = history;
-
-	fprintf(stdout, "\e[s");
-	str = (!str) ? malloc(sizeof(char) * term->mal) : str;
-	term->histo = 0;
-	str[0] = '\0';
-	for (int i = 0; c != '\n' && c != '\0'; c = getchar()) {
-		putchar(c);
-		str[i] = c;
-		i++;
-		str = my_realloc(str, term, i);
-		str[i] = '\0';
-		if (check_tab(str) == 1)
-			return (str);
-		del_arrows(term, str, &i);
-		manage_up_arrow(term, &tmp, str, &i);
-	}
-	putchar('\n');
-	return (str);
-}
-
-int unset_canonic(env_st_t *sh)
-{
-	sh->term = malloc(sizeof(term_t));
-	if (isatty(0) == 0 || tcgetattr(0, &(sh->term->origin)) == -1)
-		return (0);
-	sh->term->mal = 10;
-	if (tcgetattr(0, &(sh->term->tios)) == -1)
-		exit(84);
-	sh->term->tios.c_lflag &= ~(ICANON | ECHO);
-	sh->term->tios.c_cc[VMIN] = 1;
-	sh->term->tios.c_cc[VTIME] = 0;
-	if (tcsetattr(0, TCSANOW, &(sh->term->tios)))
-		exit(84);
-	fflush(stdout);
-	return (0);
 }

@@ -25,6 +25,7 @@
 	#include <glob.h>
 	#include <ncurses.h>
 	#include <termios.h>
+	#include <termcap.h>
 	#include "tools.h"
 
 	#define UNUSED __attribute__((unused))
@@ -81,6 +82,15 @@
 		struct job_s *next;
 	} job_t;
 
+	typedef struct term_s {
+		int mal;
+		int histo;
+		int a;
+		int b;
+		struct termios origin;
+		struct termios tios;
+	} term_t;
+
 	typedef struct env_st_s {
 		int len_w;
 		int len_h;
@@ -94,6 +104,7 @@
 		char **envp_bsc;
 		prompt_t *prompt;
 		tree_t *tree;
+		term_t *term;
 		alias_t *alias;
 		set_t *set;
 		history_t *history;
@@ -403,5 +414,8 @@
 	void init_prompt(env_st_t *env_st);
 	int unset_canonic(env_st_t *sh);
 	char *my_get_line(term_t *term, char *str, history_t *history);
+	char *my_realloc(char *str, term_t *term, int nbr);
+	void del_arrows(term_t *term, char *str, int *i);
+	void manage_up_arrow(term_t *term, history_t **tmp, char *str, int *i);
 
 #endif

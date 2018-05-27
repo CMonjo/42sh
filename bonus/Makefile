@@ -12,7 +12,9 @@ CFLAGS	=	-I ../include -W -Wall -Wextra
 CFLAGS	+=	-g3
 
 SRC_BONUS	=	src/bonus.c				\
-			src/arrows.c				\
+			src/term/arrows.c			\
+			src/term/get_line.c			\
+			src/term/init.c				\
 			src/my_bashrc.c				\
 			src/check_exec.c			\
 			src/check_built_pass.c			\

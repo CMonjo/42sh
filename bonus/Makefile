@@ -7,7 +7,9 @@
 
 CC	=	gcc
 
-CFLAGS	=	-I ../include -W -Wall -Wextra
+CFLAGS	=	-I ../include -I ./include -W -Wall -Wextra
+
+LDFLAGS	=	-lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio -lncurses
 
 SRC_BONUS	=	src/bonus.c				\
 			src/my_bashrc.c				\
@@ -19,6 +21,12 @@ SRC_BONUS	=	src/bonus.c				\
 			src/builtins/grep/grep_bis.c		\
 			src/builtins/ascii/ascii.c		\
 			src/builtins/ascii/print_ascii.c	\
+			src/graphic/graph.c	\
+			src/graphic/display.c	\
+			src/graphic/init.c	\
+			src/graphic/main_loop.c	\
+			src/graphic/new_command.c	\
+			src/graphic/type.c	\
 
 SRC	=	../src/error/error_alias.c			\
 		../src/exec.c					\
@@ -118,7 +126,7 @@ all:	$(NAME)
 
 $(NAME):	$(OBJ)
 	make -C ../lib/tools
-	$(CC) -o $(NAME) $(OBJ) -L../lib/tools -ltools -lncurses
+	$(CC) -o $(NAME) $(OBJ) $(LDFLAGS) -L../lib/tools -ltools
 
 clean:
 	rm -f $(OBJ)

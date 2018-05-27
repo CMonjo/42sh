@@ -5,6 +5,7 @@
 ** main.c
 */
 
+#include "graph.h"
 #include "main.h"
 
 env_st_t	*init_env_struct_bis(env_st_t* new_node)
@@ -88,5 +89,8 @@ int	main(int ac, char **av, char **envp)
 	(void)ac;
 	(void)av;
 
-	return (main_loop(envp, 0, NULL));
+	if (ac == 2 && my_strcmp(av[1], "-g") == 0)
+		return(main_graph(envp));
+	else if (ac == 1)
+		return (main_loop(envp, 0, NULL));
 }

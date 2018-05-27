@@ -86,7 +86,7 @@ int	main_loop(char **envp, int end, char *str)
 			end = !end;
 		prompt(env_st);
 	}
-	tcsetattr(0, TCSANOW, &(env_st->term->origin));
+	tcsetattr(0, TCSADRAIN, &(env_st->term->origin));
 	return (env_st->status);
 }
 

@@ -31,6 +31,7 @@ env_st_t	*init_env_struct(char **envp)
 
 	new_node = init_env_struct_bis(new_node);
 	new_node->envp_bsc = create_env();
+	(isatty(0) == 1) ? unset_canonic(new_node) : 0;
 	if (envp[0] == NULL) {
 		new_node->envp_cpy = create_env();
 		new_node->len_h = 2;
@@ -68,6 +69,8 @@ int	main_loop(char **envp, int end, char *str)
 	bash_rc(env_st);
 	prompt();
 	while (!end) {
+		str = (isatty(0) == 1) ? my_get_line(env_st->term, str,
+		env_st->history) : my_getline();
 		str = my_getline();
 		if (isatty(0) == 1 && str == NULL) {
 			my_printf("exit\n");
@@ -80,6 +83,7 @@ int	main_loop(char **envp, int end, char *str)
 			end = !end;
 		prompt();
 	}
+	tcsetattr(0, TCSANOW, &(env_st->term->origin));
 	return (env_st->status);
 }
 

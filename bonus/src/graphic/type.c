@@ -38,6 +38,13 @@ void	type_close(info_t *info, sfEvent event)
 		sfRenderWindow_close(info->window);
 }
 
+void	type_remove(sfEvent event, info_t *info)
+{
+	if (event.key.code == sfKeyBack && info->str != NULL &&
+	my_strlen(info->str) != 0)
+		info->str = remove_char(info->str);
+}
+
 int	type(info_t *info)
 {
 	sfEvent event;
@@ -47,12 +54,11 @@ int	type(info_t *info)
 		sfKeyReturn || event.key.code == ':') && (event.key.code !=
 		sfKeyBack || event.key.code == ';'))
 			info->str = add_char(info->str, event.key.code);
-		else if (event.key.code == sfKeyBack && info->str != NULL &&
-		my_strlen(info->str) != 0)
-			info->str = remove_char(info->str);
 		else if (event.key.code == sfKeyReturn && info->str != NULL &&
 		my_strlen(info->str) != 0)
 			return (1);
+		else
+			type_remove(event, info);
 		type_close(info, event);
 	}
 	return (0);

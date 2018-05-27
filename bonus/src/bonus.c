@@ -94,7 +94,7 @@ int	main_loop(char **envp, int end, char *str)
 int	main(int ac, char **av, char **envp)
 {
 	if (ac == 2 && my_strcmp(av[1], "-g") == 0)
-		return(main_graph(envp));
+		return (main_graph(envp));
 	else if (ac == 1)
 		return (main_loop(envp, 0, NULL));
 }

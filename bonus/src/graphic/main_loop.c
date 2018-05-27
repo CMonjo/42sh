@@ -28,7 +28,7 @@ int	main_loop_graph(info_t *info, char **envp, int end,
 sprite_t *sprite_list)
 {
 	FILE *file;
-	char *path = my_strcat_h(getcwd(NULL, 0), "/output");
+	char *path = my_strcat_h(getcwd(NULL, 0), "/.output");
 	int fd = open(path, O_CREAT | O_RDONLY | O_WRONLY | O_TRUNC, 0666);
 	env_st_t *env_st = init_env_struct(envp);
 	sfEvent event;

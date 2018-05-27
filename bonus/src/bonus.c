@@ -31,6 +31,7 @@ env_st_t	*init_env_struct(char **envp)
 
 	new_node = init_env_struct_bis(new_node);
 	new_node->envp_bsc = create_env();
+	init_prompt(new_node);
 	(isatty(0) == 1) ? unset_canonic(new_node) : 0;
 	if (envp[0] == NULL) {
 		new_node->envp_cpy = create_env();
@@ -45,7 +46,7 @@ env_st_t	*init_env_struct(char **envp)
 	return (new_node);
 }
 
-void	prompt(void)
+void	prompt(env_st_t *env_st)
 {
 	time_t t = time(NULL);
 	struct tm *timeinfo;
@@ -56,9 +57,12 @@ void	prompt(void)
 		time(&t);
 		timeinfo = localtime(&t);
 		strftime(str, sizeof(str), "%T", timeinfo);
-		my_printf("\x1b[1m\x1b[32m%s", str);
-		my_printf(" \x1B[34m%s", getcwd(NULL, 0));
-		my_printf(" \x1B[0m$> ");
+		my_printf("\x1b[1m%s%s", env_st->prompt->clock, str);
+		my_printf(" %s%s", env_st->prompt->path, getcwd(NULL, 0));
+		(env_st->status == 0) ? my_printf("\x1B[32m") :
+		my_printf("\x1B[31m");
+		my_printf(" $> ");
+		my_printf("\x1B[0m");
 	}
 }
 
@@ -67,7 +71,7 @@ int	main_loop(char **envp, int end, char *str)
 	env_st_t *env_st = init_env_struct(envp);
 
 	bash_rc(env_st);
-	prompt();
+	prompt(env_st);
 	while (!end) {
 		str = (isatty(0) == 1) ? my_get_line(env_st->term, str,
 		env_st->history) : my_getline();
@@ -80,7 +84,7 @@ int	main_loop(char **envp, int end, char *str)
 		}
 		else if (isatty(0) != 1)
 			end = !end;
-		prompt();
+		prompt(env_st);
 	}
 	tcsetattr(0, TCSANOW, &(env_st->term->origin));
 	return (env_st->status);

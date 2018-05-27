@@ -7,7 +7,7 @@
 
 CC	=	gcc
 
-CFLAGS	=	-I ../include -W -Wall -Wextra
+CFLAGS	=	-I ../include -W -Wall -Wextra -g3
 
 SRC_BONUS	=	src/bonus.c				\
 			src/term/arrows.c			\

@@ -60,7 +60,6 @@ SRC	=	src/main.c		\
 		src/builtins/env/env_other.c		\
 		src/builtins/cd/cd.c			\
 		src/builtins/cd/cd_path.c		\
-		src/builtins/cat/cat.c			\
 		src/builtins/end/end.c			\
 		src/builtins/endif/endif.c			\
 		src/builtins/which/which.c			\
@@ -79,8 +78,6 @@ SRC	=	src/main.c		\
 		src/builtins/set/set_sort.c		\
 		src/builtins/set/set_spaced.c		\
 		src/builtins/set/unset.c		\
-		src/builtins/grep/grep.c		\
-		src/builtins/grep/grep_bis.c		\
 		src/builtins/alias/unalias.c		\
 		src/builtins/alias/alias.c		\
 		src/builtins/alias/alias_parsing.c	\

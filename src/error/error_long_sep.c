@@ -19,12 +19,10 @@ int	check_sep_nbr_msg(char *command, char sep, int ct)
 	}
 	if (sep == '|' && command_sep > 2) {
 		my_printf("Invalid null command.\n");
-		exit(1);
 		return (1);
 	}
 	if ((sep == '>' || sep == '<') && command_sep > 2) {
 		my_printf("Missing name for redirect.\n");
-		exit(1);
 		return (1);
 	}
 	return (0);

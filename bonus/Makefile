@@ -9,11 +9,18 @@ CC	=	gcc
 
 CFLAGS	=	-I ../include -W -Wall -Wextra
 
-CFLAGS +=	-g3
+CFLAGS	+=	-g3
 
-SRC_BONUS	=	src/bonus.c	\
-			src/my_bashrc.c	\
-
+SRC_BONUS	=	src/bonus.c				\
+			src/my_bashrc.c				\
+			src/check_exec.c			\
+			src/check_built_pass.c			\
+			src/builtins/builtins/builtins.c	\
+			src/builtins/cat/cat.c			\
+			src/builtins/grep/grep.c		\
+			src/builtins/grep/grep_bis.c		\
+			src/builtins/ascii/ascii.c		\
+			src/builtins/ascii/print_ascii.c	\
 
 SRC	=	../src/error/error_alias.c	\
 		../src/exec.c		\
@@ -22,7 +29,6 @@ SRC	=	../src/error/error_alias.c	\
 		../src/pipe_plus.c		\
 		../src/exec_red.c		\
 		../src/exec_path_red.c	\
-		../src/check_exec.c		\
 		../src/path.c		\
 		../src/main_b_tree.c	\
 		../src/set_n_check.c	\
@@ -47,7 +53,6 @@ SRC	=	../src/error/error_alias.c	\
 		../src/variables/variables_string.c	\
 		../src/error/error_variables.c	\
 		../src/my_arraydup.c	\
-		../src/builtins/builtins/builtins.c				\
 		../src/builtins/history/display.c		\
 		../src/builtins/history/fill.c		\
 		../src/builtins/jobs/jobs.c		\
@@ -62,7 +67,6 @@ SRC	=	../src/error/error_alias.c	\
 		../src/builtins/env/env_other.c		\
 		../src/builtins/cd/cd.c			\
 		../src/builtins/cd/cd_path.c		\
-		../src/builtins/cat/cat.c			\
 		../src/builtins/end/end.c			\
 		../src/builtins/endif/endif.c			\
 		../src/builtins/which/which.c			\
@@ -81,8 +85,6 @@ SRC	=	../src/error/error_alias.c	\
 		../src/builtins/set/set_sort.c		\
 		../src/builtins/set/set_spaced.c		\
 		../src/builtins/set/unset.c		\
-		../src/builtins/grep/grep.c		\
-		../src/builtins/grep/grep_bis.c		\
 		../src/builtins/alias/unalias.c		\
 		../src/builtins/alias/alias.c		\
 		../src/builtins/alias/alias_parsing.c	\
@@ -108,7 +110,6 @@ SRC	=	../src/error/error_alias.c	\
 		../src/globbing/star.c	\
 		../src/builtins/yes/yes.c				\
 		../src/rm_first_arr.c			\
-		../src/check_built_pass.c				\
 
 OBJ	=	$(SRC:.c=.o) $(SRC_BONUS:.c=.o)
 
@@ -118,7 +119,7 @@ all:	$(NAME)
 
 $(NAME):	$(OBJ)
 	make -C ../lib/tools
-	$(CC) -o $(NAME) $(OBJ) -L../lib/tools -ltools
+	$(CC) -o $(NAME) $(OBJ) -L../lib/tools -ltools -lncurses
 
 clean:
 	rm -f $(OBJ)

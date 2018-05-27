@@ -22,8 +22,9 @@
 	#include <time.h>
 	#include <errno.h>
 	#include <sys/wait.h>
-	#include "tools.h"
 	#include <glob.h>
+	#include <ncurses.h>
+	#include "tools.h"
 
 	#define UNUSED __attribute__((unused))
 
@@ -164,6 +165,10 @@
 	char	*rm_first_arr(char **arr);
 	int	cat_bis(char **arr,
 	UNUSED char **envp, UNUSED env_st_t *env_st);
+	void	print_ascii(FILE *fd);
+	char	**recup_face(FILE *fd);
+	int	clock_func(void);
+	char *concat_alias(char *dest, char *src);	
 	char	*get_pid(char *str, env_st_t *env_st);
 	char	*value_return(char *str, env_st_t *env_st);
 	void	fill_history(env_st_t *info, char *str);
@@ -205,6 +210,7 @@
 	env_st_t *env_st, tree_t* temp);
 
 	//
+	int	ascii(char **array, UNUSED char **envp, env_st_t *env_st);	
 	void	prompt_foreach(void);
 	int	count_ele(char **arr);
 	int	error_foreach(char **arr, env_st_t *env_st);
@@ -223,7 +229,7 @@
 	int	foreach(char **arr, char **envp, env_st_t *env_st);
 	int	where(char **arr, char **envp, env_st_t *env_st);
 	int	which(char **arr, char **envp, env_st_t *env_st);
-	void error_backstick_quote(char *str, char c, int *ct);
+	int error_backstick_quote(char *str, char c, int *ct);
 	int error_parent(char *command);
 	int check_long_sep(char *command);
 	int repeat(char **arr, char **envp, env_st_t *env_st);

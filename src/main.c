@@ -57,7 +57,8 @@ void	prompt(env_st_t *env_st)
 		strftime(str, sizeof(str), "%T", timeinfo);
 		my_printf("\x1b[1m\x1b[33m%s", str);
 		my_printf(" \x1B[35m%s", getcwd(NULL, 0));
-		(env_st->status == 0) ? my_printf("\x1B[32m") : my_printf("\x1B[31m");
+		(env_st->status == 0) ? my_printf("\x1B[32m") :
+		my_printf("\x1B[31m");
 		my_printf(" $> ");
 		my_printf("\x1B[0m");
 	}

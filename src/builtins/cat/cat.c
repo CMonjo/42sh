@@ -22,7 +22,7 @@ char	*cat_file(FILE *fd)
 
 int	cat_bis(char **arr, UNUSED char **envp, UNUSED env_st_t *env_st)
 {
-	char *grep_file_dis;
+	char *grep_file_dis = '\0';
 	char *grep_file_more = "\0";
 	FILE *fd;
 
@@ -44,14 +44,6 @@ int	cat_bis(char **arr, UNUSED char **envp, UNUSED env_st_t *env_st)
 
 int	cat(char **arr, UNUSED char **envp, UNUSED env_st_t *env_st)
 {
-	int tab_len = 0;
-
-	while (arr[tab_len] != NULL)
-		tab_len ++;
-	if (tab_len == 1) {
-		my_printf("Please put a file and something to find.\n");
-		return (1);
-	}
 	cat_bis(arr, envp, env_st);
 	return (0);
 }

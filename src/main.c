@@ -46,8 +46,19 @@ env_st_t	*init_env_struct(char **envp)
 
 void	prompt(void)
 {
-	if (isatty(0) == 1)
-		my_printf("\x1B[34m%s \x1B[0m$> ", getcwd(NULL, 0));
+	time_t t = time(NULL);
+	struct tm *timeinfo;
+	char str[64];
+
+	if (isatty(0) == 1) {
+		str[0] = '\0';
+		time(&t);
+		timeinfo = localtime(&t);
+		strftime(str, sizeof(str), "%T", timeinfo);
+		my_printf("\x1b[1m\x1b[32m%s", str);
+		my_printf(" \x1B[34m%s", getcwd(NULL, 0));
+		my_printf(" \x1B[0m$> ");
+	}
 }
 
 int	main_loop(char **envp, int end, char *str)

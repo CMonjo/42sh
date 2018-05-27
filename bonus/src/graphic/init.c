@@ -23,7 +23,8 @@ void	put_list_sprite(sprite_t **sprite, char *path, sfVector2f position)
 sprite_t	*sprite_list_init(void)
 {
 	sprite_t *sprite_list = NULL;
-	char *sprite[2] = {"texture/bg.png", "texture/retro.png"};
+	char *sprite[2] = {"assets/texture/bg.png",
+	"assets/texture/retro.png"};
 	sfVector2f pos[2] = {(sfVector2f){0, 0}, (sfVector2f){0, 0}};
 
 	for (int i = 0; i != 2; i++)
@@ -36,10 +37,10 @@ info_t	*info_init(void)
 	info_t *info = malloc(sizeof(info_t));
 
 	info->str = NULL;
-	info->music = sfMusic_createFromFile("music/ost.ogg");
+	info->music = sfMusic_createFromFile("assets/music/ost.ogg");
 	info->window = sfRenderWindow_create((sfVideoMode){1920, 1080, 32},
 	"shell", sfDefaultStyle, NULL);
-	info->font = sfFont_createFromFile("font/retro.otf");
+	info->font = sfFont_createFromFile("assets/font/retro.otf");
 	info->text = text_creation(info->str, info->font,
 	20, (sfVector2f){400, 40});
 	sfMusic_setLoop(info->music, sfTrue);

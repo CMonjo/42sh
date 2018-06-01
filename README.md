@@ -10,7 +10,7 @@ For this project it's necessary to reproduce a Shell with Linux command manageme
 
  * [Make](https://www.gnu.org/software/make//)
  * [GCC](https://gcc.gnu.org/)
- * [CSFML 2.3] (https://www.sfml-dev.org/download.php)
+ * [CSFML 2.3](https://www.sfml-dev.org/download.php)
 
 ## Compilation
 

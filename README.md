@@ -1,4 +1,4 @@
-# minishell1
+# 42sh
 
 
 Epitech's minishell1 project in C language. 
